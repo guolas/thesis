@@ -1,0 +1,128 @@
+\documentclass[11pt]{book}
+
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx} 
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage[pdftex]{color, hyperref}
+\hypersetup{colorlinks,%
+	citecolor=black,%
+	filecolor=black,%
+	linkcolor=black,%
+	urlcolor=black,%
+}
+\pdfpagewidth=\paperwidth
+\pdfpageheight=\paperheight
+
+% package `subfigure` and `subfig` are deprecated and should not be used
+% unless withing the IEEETran or ACM SIG templates
+\usepackage{subcaption}
+
+% To handle the acronyms nicely
+\usepackage[nonumberlist, toc, acronym]{glossaries}
+\input{./acronyms/acronyms}
+\makeglossaries
+
+% To handle the references
+\usepackage{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\refs}[1]{Section~\ref{#1}}
+\newcommand{\refss}[1]{Subsection~\ref{#1}}
+\newcommand{\reff}[1]{Figure~\ref{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Margins
+%\setlength{\textheight}{22cm}
+%\setlength{\headsep}{1cm}
+%\setlength{\topmargin}{-0.5cm}
+%\setlength{\textwidth}{14cm}
+\setlength{\oddsidemargin}{2cm}
+\setlength{\evensidemargin}{2cm}
+
+% Include up to subsections in the TOC
+\setcounter{tocdepth}{3}
+
+% So that the empty pages have no page number
+\makeatletter
+  \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+  \vspace*{\fill}
+    \thispagestyle{empty}
+    \newpage
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREFACE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% \frontmatter
+% % First part uses roman numbering
+\pagenumbering{gobble}
+% \cleardoublepage
+% \include{./ch0/frontmatter}
+% \newpage
+% 
+% \cleardoublepage
+% \include{./ch0/committee}
+% \newpage
+% 
+% \cleardoublepage
+% \include{./ch0/acknowledgement}
+% \newpage
+% 
+% \cleardoublepage
+% \pagenumbering{Roman}
+% \include{./ch0/abstract}
+% \newpage
+% 
+% \cleardoublepage
+% \include{./ch0/resumen}
+% \newpage
+
+% Index
+\tableofcontents{}
+
+% List of tables and Figures
+% \addcontentsline{toc}{chapter}{\protect\numberline{}{Lista de tablas}}
+\listoftables{}
+\listoffigures{}
+
+% Acronyms
+\printglossary[type=\acronymtype]
+
+\mainmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CHAPTERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % Back to arabic numbering
+% \pagenumbering{arabic}
+
+% Introduction
+\include{./ch1/ch1}
+
+% State of the art
+
+% System Model - Block Diagonalization
+
+% Clustering Analysis
+
+% Scheduling
+
+% Conclusions
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% REFERENCES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addcontentsline{toc}{chapter}{\protect\numberline{}{References}}
+\bibliographystyle{abbrvnat}
+\bibliography{./bibliography/references} 
+
+\end{document}
