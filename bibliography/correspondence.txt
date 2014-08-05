@@ -1,0 +1,9 @@
+# lozano13 -> R2 (tcom); Lozano (comlet)
+# shim08 -> Shim2008 (achievable ates); Shim2008 (comlet)
+# spence04 -> Spencer2004 (tcom);
+# zhang09 -> Zhang2009 (tcom); Zhagn2009 (comlet)
+# zhang10 -> Zhang2010 (tcom); 
+# caire03 -> Caire (tcom);
+# tulino04 -> Tulino (tcom);
+
+# zhang10 (comlet) -> duplicated but different

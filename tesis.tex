@@ -1,34 +1,45 @@
 \documentclass[11pt]{book}
 
-\usepackage[ruled,vlined]{algorithm2e}
 \usepackage[utf8]{inputenc}
 
 \usepackage{graphicx} 
+
+\usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{amsmath}
+\usepackage{xfrac} % to use slanted fractions
+\usepackage[bold-style=ISO]{unicode-math} % for bold math symbols
 
-\usepackage[pdftex]{color, hyperref}
-\hypersetup{colorlinks,%
-	citecolor=black,%
-	filecolor=black,%
-	linkcolor=black,%
-	urlcolor=black,%
-}
+%\usepackage[pdftex]{color}
+\usepackage{color}
+% \usepackage[pdftex]{color, hyperref}
+% \hypersetup{colorlinks,%
+% 	citecolor=black,%
+% 	filecolor=black,%
+% 	linkcolor=black,%
+% 	urlcolor=black,%
+% }
+
 \pdfpagewidth=\paperwidth
 \pdfpageheight=\paperheight
+
+% To change the fontsize of the captions
+\usepackage[font=footnotesize]{caption}
 
 % package `subfigure` and `subfig` are deprecated and should not be used
 % unless withing the IEEETran or ACM SIG templates
 \usepackage{subcaption}
 
+% To have more flexible tables
+\usepackage{tabularx}
+
 % To handle the acronyms nicely
 \usepackage[nonumberlist, toc, acronym]{glossaries}
-\input{./acronyms/acronyms}
+\input{./misc/acronyms}
 \makeglossaries
 
-% To handle the references
-\usepackage{natbib}
+% % To handle the references
+% \usepackage{natbib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\refs}[1]{Section~\ref{#1}}
@@ -37,12 +48,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Margins
-%\setlength{\textheight}{22cm}
-%\setlength{\headsep}{1cm}
-%\setlength{\topmargin}{-0.5cm}
-%\setlength{\textwidth}{14cm}
-\setlength{\oddsidemargin}{2cm}
-\setlength{\evensidemargin}{2cm}
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+
+\setlength{\parskip}{1em plus0.2em minus0.2em}
 
 % Include up to subsections in the TOC
 \setcounter{tocdepth}{3}
@@ -55,6 +63,9 @@
     \newpage
     \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{./misc/symbols}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PREFACE
@@ -86,12 +97,16 @@
 % \newpage
 
 % Index
-\tableofcontents{}
+% % \tableofcontents{}
 
 % List of tables and Figures
 % \addcontentsline{toc}{chapter}{\protect\numberline{}{Lista de tablas}}
-\listoftables{}
-\listoffigures{}
+% % \listoftables{}
+% % \listoffigures{}
+
+\cleardoublepage
+\include{./misc/notation}
+\newpage
 
 % Acronyms
 \printglossary[type=\acronymtype]
@@ -105,15 +120,22 @@
 % \pagenumbering{arabic}
 
 % Introduction
-\include{./ch1/ch1}
+% \include{./01.introduction/introduction}
 
 % State of the art
+% \include{./02.state_of_the_art/state_of_the_art}
 
-% System Model - Block Diagonalization
+% System Model
+\include{./03.system_model/system_model}
 
-% Clustering Analysis
+% Achievable Rates 
+% \include{./10.achievable_rates/achievable_rates}
+
+% Rate statistics
+% \include{./11.rate_statistics/rate_statistics}
 
 % Scheduling
+% \include{./12.simple_threshold_scheduling/simple_threshold_scheduling}
 
 % Conclusions
 
@@ -122,7 +144,8 @@
 % REFERENCES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{chapter}{\protect\numberline{}{References}}
-\bibliographystyle{abbrvnat}
+% \bibliographystyle{abbrvnat}
+\bibliographystyle{ieeetr}
 \bibliography{./bibliography/references} 
 
 \end{document}

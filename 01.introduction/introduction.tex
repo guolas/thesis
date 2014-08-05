@@ -1,0 +1,86 @@
+\chapter{Introduction}\label{ch:intro}
+
+Every new generation of cellular network technologies comes with a new set of
+requirements, dictated by the trends in the use of the mobile connectivity. A
+common requirement to every single generation is their striving for higher data
+rates and greater power efficiency. This motivates research and techology
+innovation in order to achieve the goals set for each generation.
+
+
+The research associated usually requires revisiting old paradigms used in
+previous generations, and updating them with novel ideas.
+
+
+The \emph{release 7} of the \gls{3gpp} \gls{3g} specifications \cite{3gpprel7},
+also known as \gls{hspa+}, inluded the use of \gls{mimo} as a means to increase
+the rates of transmission.
+
+
+\emph{Release 8}, more well known by its commercial name \gls{lte} \cite{3gpplte},
+introduced a new physical layer, based on \gls{ofdm} instead of \gls{wcdma} as in
+\gls{3g}. Although the rates attainable with \gls{wcdma} may be comparable to those
+obtained with \gls{ofdm}, the latter provides a much easier equalization mechanism
+that makes dealing with multipath channels a simpler task. Apart from that \gls{ofdm}
+provides a higher flexibility in the resource allocation and user and enables the
+use of \gls{ofdma}.
+
+\gls{lte} did not meet the requirements issued by the \gls{itur} \gls{imta} radio
+interface \cite{imta} for what is known as \gls{4g} though.
+
+The introduction of \gls{ltea} in \emph{release 10} of the LTE specification
+\cite{3gppltea} met the requirements to be considered an \gls{imta} system. The
+main novelties included in \gls{ltea} are \gls{ca}, enhanced use of MIMO techniques
+and support for \gls{rn}.
+
+\emph{Release 11} \cite{3gpprel11} included in the specification the support for
+\gls{comp} operation. \gls{comp} was included in order to improve the network
+performance at cell edges, for it uses several transmitters to provide coordinated
+transmission in the downlink, and a number of receivers to provide coordinated
+reception in the uplink.
+
+The \gls{comp} operation considered in \cite{3gpprel11} is just a part of a much
+broader field of multi-cell cooperation or coordinated communications where several
+cells are assumed to cooperate, in the sense that they take measures in order to
+alleviate to a certain degree the level of interference introduced into other parts
+of the network, or the use of that interference to their advantage.
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+            \includegraphics[width=\textwidth]{./01.introduction/img/frequency_reuse.png}
+        \caption{Frequency reuse factor of $1 / 7$.}
+        \label{fig:freuse}
+    \end{subfigure}
+    % Comment out the line break that is introduced with the blank line
+    % so that it does not put the images one on top of the other...
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{./01.introduction/img/universal_freq_reuse.png}
+        \caption{Frequency reuse factor of $1$.}
+        \label{fig:ufreuse}
+    \end{subfigure}
+    \caption{Different frequency planning options}
+\end{figure}
+
+The need for coordination among cells arises especially in networks where \gls{ufr}
+is used. In the search for higher spectral data rates and a more efficient use of
+the resources, \gls{ufr} is a must to make the most out of the scarce
+resource that the radio frequency spectrum is. The conventional approach for
+cellular networks was to perform a careful frequency planning in order to avoid
+the interference among neighboring cells. Clusters of $N$ cells were grouped
+together, and assigned $N$ frequency bands to be used, and the pattern is repeated
+for different clusters, yielding what is called a \emph{frequency reuse factor}
+of $1 / N$, as exemplified in \reff{fig:freuse}.
+
+The problem that this poses is that the available spectrum must be split, which
+is an inherent inefficiency in the use of the resources.
+
+\gls{ufr}, in turn, implies that neighboring cells share a common spectrum, as it
+can be seen in \reff{fig:ufreuse}, which means that they would be interfering each
+other. Therefore, "A new look at the interference" \cite{gesbert10} is needed.
+
+In multi-cell cooperative communications, multiple cells are assumed to cooperate,
+in the sense that they take measures in order to alleviate to a certain degree the
+level of interference introduced into other parts of the network, or to use that
+interference to their advantage. The conventional concept of the interference as
+being an impairment shifts to a new point of view where the interference can be
+used to improve the overall performance of the network.
