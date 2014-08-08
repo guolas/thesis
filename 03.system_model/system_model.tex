@@ -464,7 +464,7 @@ discussed in \refs{sec:power_allocation}.
 In \refs{sec:bd}, the \gls{bd} algorithm has been described to get the precoding
 matrix to be used at the transmitter and the equalization filter to be used at
 the receiver side. After \gls{bd} has been used, the power should be allocated
-to each of the streams of data of each user, this is, the $p_{ij}$ in
+to each of the data streams of each user, this is, the $p_{ij}$ in
 \eqref{eq:bd_ergodic_capacity} should be calculated in order to achieve a given
 performance, and subject to particular constraints.
 
@@ -545,8 +545,8 @@ the precoding matrix of the $j$-th \gls{bs}, and
 
 \noindent
 the matrix containing the power assigned to all the streams of all the users,
-the power constrain in \eqref{eq:generic_optim_problem} can then be reformulated
-as
+the power constraint in \eqref{eq:generic_optim_problem} can then be
+reformulated as
 
 \begin{equation} \label{eq:pbpc_constraint}
 	\Tr \left( \WtxBar_j\RR_{\ss}\WtxHbar_j \right) \leq P_{j,\max}
@@ -625,7 +625,7 @@ The sum-rate maximization problem can then be formulated in \emph{standard form}
 \end{aligned}
 \end{equation}
 
-In the next sections, different alternatives for getting these powers are
+In the next sections, different alternatives for obtaining these powers are
 presented and described.
 
 % ------------------------------------------------------------------------------
@@ -821,7 +821,7 @@ first considering an equivalent virtual \gls{bs} so that the problem is cast
 with a single power constraint.
 
 In order to do so, instead of having a power constraint for each of the \gls{bs}
-consider a single power constraint given by the more restrictive \gls{bs} in the
+consider a single power constraint given by the most restrictive \gls{bs} in the
 original problem. Define
 
 \begin{equation} \label{eq:equiv_bs}
@@ -848,7 +848,7 @@ users' streams. The optimization problem becomes then
 \end{equation}
 
 \noindent
-where $\P_{\text{BS}, \max}$ represents the more restrictive power constraint
+where $P_{\text{BS}, \max}$ represents the most restrictive power constraint
 among all of the \gls{bs}.
 
 This problem meets the same conditions as the original problem so that a similar
@@ -909,7 +909,7 @@ written as
 
 The solution of this simplified problem is given by the water-filling solution
 with a variable water level and, in this case, an uncoupled solution for each of
-the streams of date for each user. This allows for the use of standard and
+the data streams for each user. This allows for the use of standard and
 efficient methods to find the power allocation \cite{cioffi_notes}.
 
 Clearly, the definition of the new problem makes it more restrictive than the
@@ -971,7 +971,7 @@ The simplest, both conceptually and computationally, alternative that can be
 considered to solve the power allocation in \eqref{eq:sum_rate_maxim} consists
 on considering a uniform power allocation.
 
-This approach assigns the same power to all the streams of data of all the
+This approach assigns the same power to all the data streams of all the
 users. Formally this means
 
 \begin{equation} \label{eq:equal_power}
