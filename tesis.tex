@@ -1,6 +1,6 @@
 \documentclass[11pt]{book}
 
-\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc}
 
 \usepackage{graphicx} 
 
@@ -10,8 +10,12 @@
 \usepackage{xfrac} % to use slanted fractions
 \usepackage[bold-style=ISO]{unicode-math} % for bold math symbols
 
-%\usepackage[pdftex]{color}
+% \usepackage[pdftex]{color}
 \usepackage{color}
+
+%% For some reason I am not able to make the hyper links to work, so it should
+%% be the case that I am missing something here.
+% \usepackage{hyperref}
 % \usepackage[pdftex]{color, hyperref}
 % \hypersetup{colorlinks,%
 % 	citecolor=black,%
@@ -41,7 +45,11 @@
 % % To handle the references
 % \usepackage{natbib}
 
+% To handle left subscripts
+\usepackage{tensor}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\refa}[1]{Appendix~\ref{#1}}
 \newcommand{\refs}[1]{Section~\ref{#1}}
 \newcommand{\refss}[1]{Subsection~\ref{#1}}
 \newcommand{\reff}[1]{Figure~\ref{#1}}
@@ -104,6 +112,7 @@
 % % \listoftables{}
 % % \listoffigures{}
 
+% Notation page
 \cleardoublepage
 \include{./misc/notation}
 \newpage
@@ -129,7 +138,7 @@
 \include{./03.system_model/system_model}
 
 % Achievable Rates 
-% \include{./10.achievable_rates/achievable_rates}
+\include{./10.achievable_rates/achievable_rates}
 
 % Rate statistics
 % \include{./11.rate_statistics/rate_statistics}
@@ -139,6 +148,11 @@
 
 % Conclusions
 
+\appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APPENDICES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{./21.appendices/appendix_a}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % REFERENCES

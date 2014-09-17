@@ -1,573 +1,693 @@
-\chapter[Achievable Rates]{Mean Achievable Rates in Clustered Coordinated Base Station Transmission with Block Diagonalization}
+\chapter[Achievable Rates]{Mean Achievable Rates in Clustered Coordinated Base
+Station Transmission with Block Diagonalization\footnote{
+    The work shown in this chapter has been published in \cite{corvaja13b}.
+}} \label{ch:achiev_rates}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
+%-------------------------------------------------------------------------------
+\section{Introduction}\label{sec:achiev_introduction}
 
-\gls{sdm} based on \gls{mimo} techniques has been adopted in recent wireless standards, 
-in order to improve the data rates. However, the gains of \gls{mimo} processing in cellular networks are hampered by the interference that characterizes these environments. The classical approach to cope with interference in cellular systems has been frequency reuse with the inherent loss in spectral efficiency. If we would like to achieve spectrally-efficient communications, it is mandatory that all cells/sectors operate on the same frequency channel, what is denoted as \gls{ufr}. 
+In \verb+\refc{ch:state_art}+ it has been discussed how global coordination in a
+cellular network is not feasible for practical application. Research has shown
+that grouping cells in clusters may help to alleviate some of the problems of
+global coordination. The clustering solution is not unique, though, and multiple
+alternatives an numerous parameters have to be chosen in order to meet different
+objectives.
 
-With this motivation, some new techniques have emerged to manage interference in cellular systems with \gls{ufr}, by introducing coordination among the base stations in the downlink, which are known as network \gls{mimo} or \gls{cbst} \cite{karakayali06}.
+The objective of this chapter is to analyze the mean achievable rate in a cellular network where clusters have been formed, and where \gls{bd} is used within
+each cluster to manage the interference. 
 
-In \cite{shim08} the \gls{ocelli} is considered when designing the transmission for a multi-user \gls{mimo} downlink. In \cite{andrews07} the authors analyze several approaches for overcoming interference in \gls{sdm} \gls{mimo} cellular networks. If the interference is known by the transmitters, cooperative encoding among base stations using \gls{dpc} can suppress \gls{ocelli} \cite{shamai01}. In \cite{karakayali06} several strategies are proposed to perform \gls{cbst}. Interference is eliminated by jointly and coherently coordinating the transmission from the base stations in the network, assuming that base stations know all downlink signals. Besides \gls{dpc}, they propose a \gls{zf} scheme that, although suboptimal, does not involve the complexity of \gls{dpc}. The capacity of \gls{mimo} benefits from \gls{cbst} not only because of the rise of the operating \gls{sinr} point, but also from the better rank condition of the joint channel matrix resulting from non-collocated base stations \cite{zhang04}.
+With this analysis, further research can be made in order to be able to choose
+from one of the most important parameters in clustering, the cluster size.
 
-Similarly to multi-user \gls{mimo}, \gls{bd} \cite{spencer04}, \cite{lim09} may be applied for \gls{cbst} as a good compromise between complexity and performance. In \cite{zhang09} \gls{bd} is applied in a multicell scenario in combination with the \gls{ocelli} reduction scheme of \cite{shim08}. Alternatively in \cite{liu09} a \gls{svd} approach is proposed that simplifies the channel estimation requirements at the expense of a performance degradation. Other linear schemes based on minimizing the mean squared error have also been proposed \cite{armada11a},\cite{shi11}.
+Numerical simulations are also performed in order to validate the theoretical
+analysis developed.
 
-The main drawback of all these systems is that they require \gls{csi} and transmit data to be simultaneously known to all cooperating base stations, with the cost of higher backhaul capability and increased signal overhead, which could even question the effectiveness of coordination \cite{lozano13},\cite{barbieri12}. In particular in \cite{lozano13} it is shown that coordination reaches a {\it saturation region} where no increase of \gls{snr} can lead to a better performance. An important open question is whether this saturation occurs at operational \gls{snr} values.
+%-------------------------------------------------------------------------------
+\section{Clustered Network}\label{sec:achiev_clust_net}
 
-Some recent approaches have been proposed to avoid \gls{csi} and data sharing. Non coherent joint processing \cite{sun11} does not require cell-to-cell \gls{csi} exchange at the expense of higher processing cost at the receivers with successive interference cancellation. In \cite{bjornson10} the case of distributed cooperation is analyzed where each base station has only local \gls{csi}. As a practical alternative, we focus here on clustered coordination, where only a limited number of base stations can cooperate in order for the overhead to be affordable. Base stations are grouped into cooperation clusters and only the base stations of each cluster exchange information and jointly process signals. In \cite{boccardi07a} clustered coordination is analyzed, where clusters are of limited size. This has been shown to be a good trade-off between performance and overhead. Even higher performance gains can be attained if the clusters are formed dynamically \cite{papadogiannis08}, \cite{moon11} for example by user-centric approaches \cite{bjornson11}. 
+The network to be considered is organized as independent groups of $M$ cells,
+each of which is a cluster where its cells coordinate in order to transmit to
+the $N$ users that are located within the cluster.
 
-Note however that none of these works analyzed the effect of the size of the clusters of cooperating base stations and the effect of interference coming from outside the clusters. In fact a reduction of the number of cooperating base station reduces at the same time the complexity, the overhead and the difficulty to obtain the \gls{csi}. 
+The clusters that form the network are non-overlapping, \emph{i.e.} each cell in
+the system belongs to one and only one cluster. Overlapping, user-centric
+clusters have been shown to provide, in some situations, better performance than
+disjoint clusters \cite{bjornson11}, but this approach gives rise to a dramatic
+increase of the management complexity.
 
-Here we focus on this reduction of the cooperating base stations, by grouping them into fixed non-overlapping clusters, and we analyze the effect of the interference from outside the cluster. 
-In terms of complexity non-overlapping and fixed clusters reduce the complexity, which is understood not as the mere coordination signalling overhead, but also as the signalling to manage the coordinated base stations.
+The clusters, then, are defined by the network planner, and they are kept fixed,
+grouping the \gls{bs} according to a distance criterion, so that the cells
+belonging to a cluster must form, borrowing the name from graph theory, a
+\emph{connected component} of the graph containing all the cells in the system.
 
-In previous works \cite{zhang09} shows by simulation that a small cluster size is sufficient to obtain most of the sum rate benefits from clustered coordination. Equivalent conclusions are obtained in \cite{huang09}, that also evaluated by
-simulation the throughput performance of \gls{mimo} techniques serving a dense population of stationary users with scheduled packet data.
-The authors of \cite{zhang10} developed analytical expressions for pure \gls{zf} in a 2 or 3-cell network with base stations transmitting at full power and each of the mobile stations equipped with just one receive antenna.
-Note however that clustering is not considered, since they assume that two or three cells constitute the whole network.
-In \cite{li12} the resource allocation problem is addressed for a large network with 3-sector base stations. The system is statically divided into a number of disjoint clusters of 3\,sectors and zero forcing is used to cancel interference within each cluster. Two cooperative frequency reuse approaches are designed to mitigate the inter-cluster interference.
+In the setup under study, all the \gls{bs} in the cluster are considered cluster
+members, that is, no scheduling or adaptive selection of active \gls{bs} is
+addressed in this work. In any case, they could be considered as a special case
+of the optimization problem to obtain the power allocation scheme.
 
-In this work we focus on clustered \gls{bd}-based \gls{cbst} with \gls{pbpc} and present an analytical evaluation of the average user rates that can be achieved with different cluster sizes. 
-Although the increased signalling required for the exchange of the channel state information is normally not considered \cite{sun11}--\cite{huang09}, since the increased traffic on the control plane can have a limited impact on the useful traffic on the user plane, here we present some results also considering some signalling overhead, as in \cite{lozano13}.
-  For this environment, other different approaches, such as dynamic or user-centric clusters, and several transmission techniques, besides \gls{mmse} or \gls{bd}, have been proposed and studied \cite{bjornson13}. Here we consider fixed non-overlapping clusters since they reduce the management complexity and \gls{bd}, since its implementation, contrary to \gls{mmse}, does not require any knowledge of out-of-cluster interference to be effective and any coordination can be limited to each cluster. Moreover, for a similar scenario such as the broadcast \gls{mimo} channel, \gls{bd} proves to be quite close to optimum \cite{caire03},\cite{boccardi07b}. Based on this experience on the broadcast channel, several authors, e.g. \cite{shim08},\cite{zhang09},\cite{armada11b}, proposed the use of \gls{bd} also for the cooperative downlink scenario, being the main difference with respect to the broadcast channel the power constraint that is distributed among different base stations.
-
-We derive an analytical expression for the mean achievable rate per user with \gls{bd}, which accounts for the propagation characteristics, the antenna configuration, the thermal noise level and the cluster size. We show that the power needed to coordinate the users and to reduce the interference within the cluster determines a lower power available for each parallel stream in the spatial multiplexing scheme and a trade-off occurs between the noise level and the interference coming from outside the cluster, that depends on the cluster size. We can see that in a wide range of operational conditions a reduced cluster size around seven cells gives a performance quite close to the maximum achievable. The conclusions drawn are specific to the particular choice of \gls{bd}, although some general design guidelines can be obtained, confirmed by some more general studies on the subject \cite{lozano13}.
-
-% \textbf{Notation}: 
-% Boldface symbols will be used for matrices and vectors. Superscripts $^T$ and $^H$ denote the transpose and the Hermitian
-% transpose of a matrix, respectively.
-
-\section{System and Cluster Model}\label{sec:system_model}
-
-We target a coordinated transmission downlink scenario where cells of radius $R_{cell}$ are grouped into clusters. Clusters are
-composed of $M$ \gls{bs} that coordinate their transmission serving a total of $N$ users in each cluster. 
-An example is depicted in \reff{fig:tiers} for $M=7$, showing the cell radius $R_{cell}$, i.e. the radius of the circle which circumscribes the cell.
-We consider non-overlapping clusters, that is, each cell belongs to just one cluster. Although overlapping user-centric clusters could provide a better performance \cite{bjornson11}, this approach gives rise to a dramatic increase of the management complexity. 
-The clusters are defined by the network planner and are kept fixed, grouping the \gls{bs} according to a distance criterion.
-In our setup the cluster members are all the base stations inside the cluster, in other words, scheduling or adaptive selection of the active base stations are not addressed here, but they could be considered as a special case of optimization of the power allocation scheme.
-
-The \gls{bs} have a maximum available power $P_{max}$ and are equipped with $t$ transmit antennas, while the user terminals
-have $r$ receive antennas. The signals coming from the \gls{bs} in a cluster cause interference to other clusters since there is no
-coordination among clusters. The size of the cluster $M$ is then one of the key parameters that we consider in the analysis.
-\reff{scheme} presents an example of the system showing the transmission within a single cluster with $M=3$ cells, $N=2$ active users (denoted by user 1 and user 2), $t=3$ transmit antennas and $r=1$ receive antenna.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
+\begin{figure}[t]
 \begin{center}
-\begin{small}
-% \hspace*{-0mm}\input ./Fig1.tex
-\end{small}
-\end{center}
-\vspace*{-2.0mm}\caption{Model of a cluster with $M=3$ \gls{bs} and $N=2$ active users. The contributions $\miH_{2j},\quad j=1,2,3$ from each \gls{bs} to the overall channel $\miH_{2}$ of the user~2 are shown.}\label{scheme}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Channel model}\label{channel_model}
-
-The propagation inside a cluster is modelled by a $Nr\times Mt$
-channel matrix $\miH$ whose elements are the
-fading coefficients from any transmit antenna of each \gls{bs} to any receive antenna
-of each user. Then the total channel can be written as  
-$\miH=\left[\miH_1^\miT\miH_2^\miT\dots\miH_N^\miT\right]^\miT$, where 
-$\miH_i, \quad i=1\dots N$ is $r\times Mt$ channel matrix seen by user $i$, which contains $M$ sub-matrices $\miH_{ij}$ of size $r\times t$ representing the channel from the \gls{bs} $j$. An example is shown in \reff{scheme} where the contributions $\miH_{ij}$ are shown for the user~2.
-In terms of propagation, the channel matrix is usually decomposed into a spatial correlation at the transmitter, a fading matrix and a spatial correlation at the receiver.
-In the following we consider spatially uncorrelated antennas at both transmitter and receiver and Rayleigh fading, as in \cite{karakayali06}, so that he entries of the matrix $\miH_i$ are iid complex Gaussian random variables with zero mean and a variance which represents the power path loss between base station $j$ and user $i$. 
-The path loss varies according to an exponential power decay with exponent $\gamma$, namely $u_{ij}^{-\gamma}$, as a function of the distance $u_{ij}$ from user $i$ to \gls{bs} $j$. The received signal is thus
-\begin{equation}
-    \miy=\miH\mix+ \minn \label{eq:yHxn}
-\end{equation}
-where $\miy$ is the received $Nr\times 1$ signal vector, $\mix$ the $Mt\times 1$ signal vector transmitted from all the coordinated \gls{bs} and $\minn$ is the $Nr\times 1$ vector of i.i.d complex Gaussian noise entries
-with zero-mean and variance $\sigma_n^2$.
-
-Since the received power varies according to the user location, the amount of noise and the value $\rho$ of the \gls{snr} are defined with reference to the power received at the cell border, as done also in e.g. \cite{zhang09}, namely
-\begin{equation}
-    \rho = \frac{P_{max}R_{cell}^{-\gamma}}{\sigma_n^2}\;. \label{defSNR}
-\end{equation}
-
-
-\subsection{Interference model}\label{interference}
-
-In \reff{fig:tiers} we show an example of cluster layout, where three complete clusters each consisting of seven cells
-are presented, together with other cells belonging to other clusters, not completely shown.
-The user $i$, at the distance $u_i$ from its serving \gls{bs}, is affected from interference coming from the neighbor
-clusters. The interfering cells belonging to the first tier are located at a distance $D_1$ (or greater) from \gls{bs} $i$. Similarly for the user $j$ at distance $u_j$ from \gls{bs} $j$, the first tier of interfering cells is at a distance $D_2$ from \gls{bs} $j$. Due to the cellular geometry, for a cluster size up to 18, only these two possibilities exist: the closest interfering cell is located at either $D_1$ or $D_2$ from the serving \gls{bs} of each user.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-\begin{center}
-\begin{small}
+    \dummybox
 % \hspace*{1mm}\input ./Fig2.tex
-\end{small}
 \end{center}
-\vspace*{1.2mm}\caption{System layout with clusters of seven cells of radius $R_{cell}$ (the radius of the circle circumscribing the cell) with an example of two users, with the distances $D_1$ and $D_2$, respectively, from their \gls{bs} to the interfering \gls{bs}.}\label{fig:tiers}
+\caption{System layout with clusters of seven cells of radius $\Rcell$ (the
+    radius of the circle circumscribing the cell) with an example of two users,
+    with the distances $\Dtone$ and $\Dttwo$, respectively, from their \gls{bs} to
+    the interfering \gls{bs}.}
+\label{fig:achiev_cluster_layout}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-According to a uniform distribution of the users over each cell, the distance $u_i$ of user $i$ from the nearest \gls{bs} has a probability density function
-\begin{equation}
-    f_{u_i}(u_i)=2u_i/R_{cell}^2\;, \label{density_d}
-\end{equation}
-which approximates the hexagonal cell by a circular one with the same radius (see \reff{fig:tiers}). In the following the subscript $i$ is skipped.
-The interference power is given by 
-\begin{equation}
-      I_i(u) = \sum_{m=1}^{M_{interf}} P_{max}\, \left(d_{im}\right)^{-\gamma}\;,\label{interfexact}
-\end{equation}
-where $M_{interf}$ is the number of interfering stations and $d_{im}$ is the distance between user $i$ and base $m$ (belonging to the external clusters).
-To account for the interfering power, we introduce an equivalent model, providing the same amount of interference, but where all the interfering \gls{bs} for each user are located at the same distance, namely the minimum distance, either
-$D_{1}=\sqrt{3}R_{cell}$ or $D_2=3R_{cell}$ (see \reff{fig:tiers}).
-In this way some \gls{bs} are actually considered closer than what they really are, and this effect is accounted for with an equivalent number of interfering base stations $M_{eq,i}$. For example, all the interfering stations are considered at $D_1-u_i$ from user $i$, while for user $j$ at $D_2-u_j$, and so on. 
-The distance according to the model above is given by $d_{ij}=D_i-u$ for all the stations of the adjacent clusters, so that the interference is represented by a term
-\begin{equation}
-      I_i(u) = P_{max}\, M_{eq, i}\left(D_i-u\right)^{-\gamma}\;,\label{interference_u}
-\end{equation}
-where $D_i$ can be either $D_1$ or $D_2$ (see \reff{fig:tiers}) and we assume that the base stations transmit at the maximum power.
-This approach is similar to what is considered in \cite{cheikh11}, where a continuous of interference is assumed, so that all the interfering \gls{bs} are spread over the whole plane but at the same distance from the user, with a suitable probability density function (pdf) of the distance.
 
-The real and equivalent models produce the same total interference power for each user if $M_{eq,i}$ is adequately selected. In order to determine $M_{eq,i}$ we consider the interference coming from the first tier of neighbor cells, so that for different cluster configurations we have a different number of interfering base stations for each cell.
-This is clear in \reff{Meq} where a cluster of $M=4$ cells is shown, in which users in cells 1 and 3 experience an interference coming from $M_{int,1}=M_{int,3}=4$ neighbor cells, while cells 2 and 4 receive interference from $M_{int, 2}=M_{int, 4}=3$ cells.
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
+\reff{fig:achiev_cluster_layout} shows such a clustered network, where the
+disjoint clusters can be observed, together with other parameters that will be
+used in considering the interference for the analysis.
+
+%-------------------------------------------------------------------------------
+\section{Interference Model}\label{sec:achiev_interf}
+
+In \reff{fig:achiev_cluster_layout} an example of a network is shown, with three
+complete clusters of $M=7$ cells each, and with some cells belonging to clusters
+not completely shown.
+
+The user $i$, at a distance $d_i \triangleq d_{ii}$ from its serving \gls{bs},
+is affected by the interference originated in the neighboring clusters. In this
+case, the closest interfering cells are located at a distance $\Dtone = \sqrt{3}
+\Rcell$ from the $i$-th \gls{bs}.
+
+Similarly, for the user $j$, at a distance $d_j \triangleq d_{jj}$ from its
+serving \gls{bs}, the nearest interfering cells are located at a distance
+$\Dttwo = 3\Rcell$ from the $j$-th \gls{bs}.
+
+Due to the cellular geometry, for a cluster size of up to 18, only these two
+possibilities exist: the closest interfering cell is at a distance of either
+$\Dtone$ or $\Dttwo$ from the serving \gls{bs} of each user.
+
+The hexagonal cell can be approximated by a circular one with radius $\Rcell$,
+see \reff{fig:achiev_cluster_layout}, and then, assuming a uniform distribution
+of the users over each cell, the \gls{pdf} of the distance of a user to its
+serving (closest) \gls{bs} is given by
+
+\begin{equation} \label{eq:pdf_distance}
+    f_{d_i}\left(d_i\right) = \frac{2d_i}{\Rcell^2}
+\end{equation}
+
+The interference power received at the user $i$ is equal to
+
+\begin{equation} \label{eq:interf_power}
+    I_i\left( d_i \right) = \sum\limits_{m=1}^{\Minterf}P_{\max}
+    \hat{d}_{im}^{-\gamma}
+\end{equation}
+
+\noindent
+where $\Minterf$ is the number of interfering \gls{bs}, \emph{i.e.} the total
+number of cells in the system minus the $M$ cells that form the cluster, and
+$\hat{d}_{im}$ is the distance from the $m$-th \gls{bs} outside the cluster to
+the $i$-th user in the cluster. All the interfering \gls{bs} are assumed to be
+transmitting at full power.
+
+In order to simplify the computation of the interference power, an equivalent
+model is introduced. In this model, the interference comes from $\Meqi$ cells,
+all of which are located at the same distance $\left(D_i - d_i\right)$ from the
+$i$-th user, the one being interfered. 
+
+The distance $D_i$ takes the value of the distance from the serving \gls{bs} to
+the closest interfering \gls{bs}
+
+\begin{equation} \label{eq:interf_min_dist}
+    D_i \in \left\{ \Dtone, \Dttwo \right\}
+\end{equation}
+
+The equivalent number of interfering \gls{bs}, $\Meqi$, is such that the total
+interference power is the same as in the original layout.
+
+With all this, \eqref{eq:interf_power} can be written as
+
+\begin{equation} \label{eq:interf_power_eq}
+    I_i\left(d_i\right) = P_{\max}\Meqi\left(D_i - d_i\right)^{-\gamma}
+\end{equation}
+
+This approach is similar to that followed in \cite{cheikh11}, where a fluid
+model network is used. This model assumes that there is a continuum of \gls{bs}
+interfering, but this will not be considered in the current work for the sake of
+simplicity.
+
+The real and equivalent model produce the same total interference, provided that
+$\Meqi$ is adequately selected.
+
+In order to determine $\Meqi$ the only interference that is accounted for is the
+one coming from the first tier of neighboring cells. This implies that different
+cluster configurations may have different number of interfering \gls{bs} for
+each of the cells in the cluster, and this number for the $i$-th cell is denoted
+as $\Minti \leq \Minterf$.
+
+\begin{figure}[t]
 \begin{center}
-\begin{small}
+    \dummybox
 % \hspace*{-8mm}\input ./Fig3.tex
-\end{small}
 \end{center}
-\vspace*{1.2mm}\caption{Cluster with $M=4$ cells and neighbor interfering cells.}\label{Meq}
+\caption{Cluster with $M=4$ cells and neighbor interfering cells.}
+\label{fig:cluster_interf_cells}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-For example, if we consider $M=1$, we have that the user $i=1$ in the cell is affected by an interference power $I_1$ which comes from all the $M_{int, 1}=6$ cells belonging to the first tier. For these, we can consider that half of them ($M_{int, 1}/2=3\,$) are located at $(D_1-u)$ and half of them at $(D_1+u)$.
-Accordingly, we have
-\begin{eqnarray}
- &&\hspace*{-12mm}I_1=P_{max}\left[\frac{3}{(D_1+u)^\gamma} + \frac{3}{(D_1-u)^\gamma}\right] = P_{max}\,M_{eq, 1}\frac{1}{(D_1-u)^\gamma}\\
- &&\hspace*{-12mm}M_{eq, 1}=3\left[1+\frac{(D_1-u)^{\gamma}}{(D_1+u)^{\gamma}}\right]\;.
-\end{eqnarray}
-In general, if we consider for user $i$ that $M_{int, i}$ interfering \gls{bs} belong to the first tier at distance $D_i$, the number of equivalent interfering station is given by 
-\begin{equation}
- M_{eq, i} \approx \frac{M_{int, i}}{2} \left[1+\left(\frac{D_i-u}{D_i+u}\right)^\gamma\right]\; \label{Meqi}
-\end{equation}
-In order to evaluate the value (\ref{Meqi}) we can set the distance $u$ to the average distance of the user within the cell. A similar approach is used also in \cite{pijcke11} to characterize the statistics of the interference in a multi-cell scenario. 
-With this average value, derived from (\ref{density_d}), namely $E[u]=2R_{cell}/3$, we have 
-\begin{equation}
- M_{eq, i} \approx \frac{M_{int, i}}{2} \left[1+\left(\frac{D_i-2R_{cell}/3}{D_i+2R_{cell}/3}\right)^\gamma\right]\;.\label{exprMeq}
-\end{equation}
-We see in the comparison between the analytical results and the simulations of Section~\ref{results}, that this approximation is rather good.
 
-%%%%%%% SECTION
-\section{Block diagonalization}\label{ChannelModel}
+This is made clear in \reff{fig:cluster_interf_cells} where a cluster with
+$M = 4$ cells is surrounded by $\Minterf = 12$ cells. In this cluster, cells 1
+and 3 experience an interference coming from $M_{\text{int}, 1} =
+M_{\text{int}, 3} = 4$ neighboring cells, while cells 2 and 4 receive the
+interference from $M_{\text{int}, 2} = M_{\text{int}, 4} = 3$ cells.
 
-From (\ref{eq:yHxn}) we express the received signal as
-\begin{equation}
-    \miy=\miH\mix+ \minn =\miH\miW\mib+ \minn \;,\label{eq_yHxn}
-\end{equation}
-in which the signal vector $\mix$ within a cluster is obtained by applying a precoding (or beamforming) matrix, that is
- $\mix= \miW\mib$, with $\mib=[b_{11},\dots,b_{1r},\dots,b_{Nr}]^\miT$, $b_{i\ell}$
-represents the symbol of the $\ell$-th data stream of user $i$, transmitted with power $P_{i\ell}$ and
-$\miW=[\miw_{11},\dots,\miw_{1r},\dots,\miw_{Nr}]$ is the
-beamforming matrix, where $\miw_{i\ell}=\left[w^{11}_{i\ell},\dots,w^{1t}_{i\ell},\dots,w^{kl}_{i\ell},\dots,w^{Mt}_{i\ell}\right]^\miT$
-are the precoding vectors for the $\ell$-th data stream of the $i$-th
-user. The beamforming matrix $\miW$ is obtained under a \gls{bd} criteria as in
-\cite{karakayali06},\cite{armada11b}, to guarantee that
-\begin{equation}
-\label{eq:3}
-\begin{split}
-     &\miH_k \left[\miw_{i1},\miw_{i2}\dots \miw_{ir}\right]
-         =\left \{\begin{array}{lcl}\mi0 &: & k\neq i\\ \miU_i\miS_i &: & k=i \end{array}\right .,\\
-\end{split}
-\end{equation}
-where $\miU_i$ is unitary and
-$\miS_i=\text{diag}\{\lambda_{i1}^{1/2},\lambda_{i2}^{1/2},\dots,\lambda_{ir}^{1/2}\}$.
-The $\lambda_{i\ell}^{1/2}$ are obtained from a singular value decomposition of the interfering channels according to the procedure explained in \cite{armada11b}. Then, the received signal can be expressed as
-\begin{equation}
-\label{eq:4} \miy=\left [\begin{array}{cccc}
-\miU_1\miS_1 & \mi0 &\dots & \mi0\\
-\mi0 & \miU_2\miS_2 &\dots & \mi0\\
-\vdots & \vdots &\ddots & \vdots\\
-\mi0 & \mi0 &\dots & \miU_N\miS_N\\
-\end{array}\right ]\mib+ \minn .
-\end{equation}
-Each user independently rotates the received signal and decouples the different streams
-\begin{equation}
-\label{eq:5} \widetilde{\miy}=\left [\begin{array}{cccc}
-\miU_1^H & \mi0 &\dots & \mi0\\
-\mi0 & \miU_2^H &\dots & \mi0\\
-\vdots & \vdots &\ddots & \vdots\\
-\mi0 & \mi0 &\dots & \miU_N^H\\
-\end{array}\right ]\miy=\left [\begin{array}{c}
-\lambda_{11}^{1/2}b_{11}\\
-\vdots\\
-\lambda_{1r}^{1/2}b_{1r}\\
-\vdots\\
-\lambda_{Nr}^{1/2}b_{Nr}\\
-\end{array}\right ]+ \widetilde{\minn}
-\end{equation}
-where the noise $\widetilde{\minn}$ remains white with the same covariance because of the unitary transformation. \gls{bd} is possible in this scenario if the condition $Mt$ $\geq$ $Nr$ is satisfied. 
-This approach assumes the knowledge of the \gls{csi} for the coordinated cells, i.e. inside the clusters. The effect of imperfect channel knowledge has been considered in \cite{armada11b}, where 
-we showed the limits, in terms of channel estimation error, required to achieve a mean achievable rate close to the ideal one obtained with perfect \gls{csi}. 
+In order to approximate the value of equivalent interfering \gls{bs} for a
+general network setup, fist consider a simple scenario \reff{fig:cluster_1} with
+a cluster of $M = 1$ cells, where a single user, $i = 1$, in the cell is
+affected by an interference power $I_1$ coming from all the
+$M_{\text{int}, 1} = 6$ belonging to the first tier.
 
-%%%%%%% SECTION
-\section{Analysis of the rate}\label{SINR}
+\begin{figure}[t]
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{./10.achievable_rates/img/cluster_1}
+\end{center}
+\caption{Simple scenario with a single cluster of $M = 1$ cell, and the six
+    interfering cells surrounding it.}
+\label{fig:cluster_1}
+\end{figure}
 
-With respect to the ideal case of a single cluster, where interference among the users is cancelled by \gls{bd}, 
-in a multi-cluster environment we have to consider the effect of the
-interference coming from the cells outside the cluster. Hence, the achievable rate of user $i$ is
-\begin{equation}
- R_i=\sum_{\ell=1}^{r} \log_2\left(1+\lambda_{i\ell}\frac{P_{i\ell}}{\sigma_n^2+I_{i}}\right)\;.\label{rates1}
+An assumption that can be made is that half of the $M_{\text{int}, 1}$, \emph{i.e.} three, \gls{bs} are located at a distance $\left( D_1 - d_1 \right)$ and the
+other half are located at a distance $\left( D_1 + d_1 \right)$. Accordingly,
+the interference power can be expressed as
+
+\begin{equation} \label{eq:interf_cluster_1}
+    I_1\left(d_1\right) = P_{\max} \left[ \frac{3}{\left(D_1 + d_1
+        \right)^\gamma} + \frac{3}{\left(D_1 + d_1 \right)^\gamma}\right]
 \end{equation}
-where the parameter $I_i$ represents the average power of the total interference contributions received by each antenna of user $i$ from the interfering base stations. 
-In order to evaluate (\ref{rates1}) we notice that the rate depends on the distance $u$ of each user's equipment from the center of its cell. Introducing the pdf of distance given by (\ref{density_d}) and making explicit the dependence of the parameters on the distance $u$, the expectation of (\ref{rates1}) becomes
-\begin{equation}
- \overline{R_i}=\int_0^{R_{cell}}\sum_{\ell=1}^{r} \log_2\left(1+\lambda_{i\ell}(u)\frac{P_{i\ell}}{\sigma_n^2+I_i(u)}\right)\,\frac{2u}{R_{cell}^2}\,du\;.\label{rates1inte}
+
+\noindent
+which is equal to \eqref{eq:interf_power_eq} if the equivalent number of
+interfering \gls{bs} is defined as
+
+\begin{equation} \label{eq:meq_cluster_1}
+    M_{\text{eq},1} = 3 \left[ 1 + \left(\frac{D_1 - d_1}{D_1 + d_1}
+    \right)^\gamma\right]
 \end{equation}
-In (\ref{rates1inte}) we have three parameters determining the overall rate, namely:
+
+In general, if a user $i$ is considered to have $M_{\text{int}, i}$ interfering
+\gls{bs} in the first tier at a distance $D_i$, defined as in
+\eqref{eq:interf_min_dist}, then the equivalent number of interfering \gls{bs}
+is given by
+
+\begin{equation} \label{eq:general_meq}
+    M_{\text{eq}, i} \approx \frac{M_{\text{int}, i}}{2} \left[ 1 + \left(
+    \frac{D_i - d_i}{D_i + d_i}\right)^\gamma\right]
+\end{equation}
+
+In order to evaluate \eqref{eq:general_meq}, it is possible to set the distance
+$d_i$ to the average distance of the user within the cell. A similar approach is
+used in \cite{pijcke11} to characterize the statistics of the interference in a
+multi-cell scenario. This average distance can be obtained from the uniform
+spatial distribution in \eqref{eq:pdf_distance} as
+
+\begin{equation} \label{eq:average_distance}
+    \mathbb{E}\left\{d_i\right\} = \frac{2}{3}\Rcell
+\end{equation}
+
+\noindent
+and then
+
+\begin{equation} \label{eq:meq_cluster_generic}
+    M_{\text{eq}, i} \approx \frac{M_{\text{int},i}}{2} \left[ 1 + \left(
+        \frac{D_i - \frac{2}{3}\Rcell}
+        {D_i + \frac{2}{3}\Rcell}\right)^\gamma\right]
+\end{equation}
+
+\refs{sec:achiev_numerical} deals with the comparison between simulations and
+the analytical results, showing that the approximation in
+\eqref{eq:meq_cluster_generic} is rather good.
+
+
+%-------------------------------------------------------------------------------
+\section{Analysis of the Rate}\label{sec:achiev_rate_analysis}
+
+In the case of having global coordination or, equivalently, having only one
+cluster including all the \gls{bs}, the interference among the users is
+completely eliminated through the use of \gls{bd}, \emph{cf.} \refs{sec:bd}. On
+the other hand, in a multicluster environment, it is necessary to consider the
+effect of the interference coming from the cells outside the cluster. Hence, the
+mean achievable rate in \eqref{eq:bd_ergodic_capacity} becomes (dropping the
+expectation notation)
+
+\begin{equation} \label{eq:rate_bd_interf}
+    R_i^{\text{BD}} = \sum\limits_{k = 1}^{\ell} \log_2 \left(1 +
+        \frac{\lambdahat_{ik} p_{ik}}{\sigma_i^2 + I_i} \right)
+\end{equation}
+
+\noindent
+where the parameter $I_i$ represents the average power of the total interference
+contributions received in each data stream of user $i$ from the interfering
+\gls{bs}.
+
+It can be seen in \eqref{eq:rate_bd_interf} that the rate depends on the distance $d_i$ of each user's equipment from the center of its cell. Using the pdf in
+\eqref{eq:pdf_distance} the average of the rate over all possible locations,
+making explicit the dependence on the distance $d_i$, can be expressed as
+
+\begin{equation} \label{eq:rate_bd_loc_aver}
+\begin{aligned}
+    \bar{R}_i^{\text{BD}} &= \int\limits_0^{\Rcell} R_i^{\text{BD}}\left(u
+    \right) \frac{2u}{\Rcell^2} \dee u \\
+    &= \int\limits_0^{\Rcell} \sum\limits_{k = 1}^{\ell} \log_2 \left(1 +
+    \frac{\lambdahat_{ik}\left(u\right) p_{ik}}{\sigma_i^2 + I_i\left(u\right)}
+    \right) \frac{2u}{\Rcell^2} \dee u
+\end{aligned}
+\end{equation}
+
+In \eqref{eq:rate_bd_loc_aver} there are three parameters that determine the
+overall average rate, namely
+
 \begin{itemize}
- \item The interference $I_i(u)$, coming from outside the cluster.
- \item The effect of the channel fading and of the path loss, represented by the term $\lambda_{i\ell}(u)$.
- \item The power $P_{i\ell}$ assigned to the $\ell$-th stream of user $i$.
-\end{itemize}  
-In the following, the characterization of each parameter will be approached separately.
-
-\subsection{Interference}
-
-As described in Section~\ref{interference} the contribution of interference $I_i(u)$ on each receive antenna of user $i$ coming from the cells outside the cluster, can be considered as generated by an equivalent number of \gls{bs}, located all at the distance $D_i-u$ from the user, where $D_i$ will be either equal to $D_1$ or to $D_2$, for users in clusters whose size is up to 18~cells.
-The interfering distance $D_i$ is then normalized to the cell radius $R_{cell}$, setting $D_i= d_i\,R_{cell}$.
-In (\ref{rates1}) we assume that the interference can be treated as Gaussian noise, so that its statistical power is required.\footnote{In simulations we found that on average at least 25 out-of-cluster cells contribute with interference to a given user with a power greater than the received useful power at the cell edge. This number corresponds to a scenario with cell radius of 1400\,m and propagation exponent 3.8.}
-
-\subsection{Fading effect}\label{lambda_ij}
-
-The terms $\lambda_{i\ell}$ are the squared diagonal values of the matrix $\miS_i$. This matrix is obtained as
-we can see from (\ref{eq:3})--(\ref{eq:4}) by the combination of the 
-channels $\miH_{i}$ containing all the fading coefficients, with the elements of a unit-norm matrix $\miW$.
-We notice that the channel matrix $\miH_{i}$ is composed of the sub-matrices $\miH_{ij}$, where the fading elements of $\miH_{ii}$ have a power path loss $u_{ii}^{-\gamma}$, while the elements of $\miH_{ij}$ are independent of $\miH_{ii}$ with path loss $u_{ij}^{-\gamma}$, where $u_{ij}$ is the distance of the user $i$ from the base station $j$.
-Then, by separating the path loss corresponding to the distance from the nearest base station, namely $u_{ii}$, we can write $\lambda_{i\ell}=\mu_{i\ell}u_{ii}^{-\gamma}$ where $\mu_{i\ell}$ are the elements of the diagonal matrix $u_{ii}^{-\gamma}\miS_\ell\miS_\ell^H$.
-We note that these diagonal elements are the singular values of the matrix $u_{ii}^{-\gamma} \miH_i\miW \miW^H \miH_i^H$ where $\miH_i$ has Gaussian entries and $\miW$ is unitary.
-These are the eigenvalues of a Wishart matrix in the case $Mt=Nr$, while in the general case with $Mt\geq Nr$, 
-this matrix can be approximated by a Wishart matrix.\footnote{By simulation we derive that the mean of the values $\mu_{i\ell}$ is the same and the maximum difference between the two CDFs is less than 10\%.}
-The joint pdf of these $\mu_{i\ell}$ for a Wishart matrix can be obtained when
-the columns of the corresponding Gaussian matrix have identity covariance matrix $\Sigma=\miI$. The joint pdf is given by \cite{tulino04}
-\begin{equation}
-    f\left(\mu_{i1}, \ldots, \mu_{ir}\right) =e^{-\sum_{n=1}^{r}\mu_{in}}\prod_{n=1}^{r} \frac{1}{\left[(r-n)!\right]^2}\prod_{m>n}^{r} \left(\mu_{im}-\mu_{in}\right)^2\;.
-\end{equation}
-However, in the rate evaluation the complete joint pdf is not needed, since only the sum $\sum_{i=1}^N \sum_{\ell=1}^r\log(\mu_{i\ell})$ is required, which represents the expectation of the logarithm of the determinant, for which results are available also for a generic covariance matrix $\Sigma\neq\miI$,
-given by \cite{tulino04}
-\begin{equation}
-	E[\sum_{i=1}^N \sum_{j=1}^r\log(\mu_{i\ell})] = \sum_{k=0}^{Nr-1}\psi(Nr-k) + log (|\Sigma|)\label{suma_log_lambda}
-\end{equation}
-where $\psi(\cdot)$ is the Euler's digamma function \cite{gradshteyn00}.  
-The columns of the matrix $u_{ii}^{-\gamma/2}\miH_i\miW$ have covariance matrix
-\begin{equation}
-	\Sigma=\miI \left[1+\sum_{{j=1}\;{j\not=i}}^{M} \left(\frac{u_{ii}}{D_{ji}}\right)^{\gamma}\right]\;,
-\end{equation}
-We can define the parameter $F$
-\begin{equation}
-	F=1+\sum_{{j=1}\;\;{j\not=i}}^{M} \left(\frac{u_{ii}}{D_{ji}}\right)^{\gamma}
-\end{equation}
-which can be considered as a cluster gain. Its value again can be obtained considering the user at the average distance $u_{ii}=\frac{2}{3}R_{cell}$ and the base stations at the distances $D_1$ or $D_2$
-\begin{equation}
-	F=\begin{cases} 1+ \frac{M-1}{2}\left[ \left(\frac{\frac{2}{3}R_{cell}}{D_1-\frac{2}{3}R_{cell}}\right)^{\gamma} + \left(\frac{\frac{2}{3}R_{cell}}{D_1+\frac{2}{3}R_{cell}}\right)^{\gamma}\right]&M\leq7\\
-                       \begin{array}{ll}3\left[\left(\frac{\frac{2}{3}R_{cell}}{D_1-\frac{2}{3}R_{cell}}\right)^{\gamma} 
-                       + \left(\frac{\frac{2}{3}R_{cell}}{D_1+\frac{2}{3}R_{cell}}\right)^{\gamma}\right] \\
-                       + \frac{M-7}{2} \left[\left(\frac{\frac{2}{3}R_{cell}}{D_2-\frac{2}{3}R_{cell}}\right)^{\gamma} + \left(\frac{\frac{2}{3}R_{cell}}{D_2+\frac{2}{3}R_{cell}}\right)^{\gamma}\right]\end{array} &7<M\leq18
-          \end{cases}
-  \label{Fapprox}
-\end{equation}
-In \reff{lambdaFig} we consider a fixed distance $u=\frac{2}{3}R_{cell}$ and we compare the sum of the log values obtained by simulation and by expressions (\ref{suma_log_lambda})--(\ref{Fapprox}), for the case $r=t=2$.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-\begin{center}
-\begin{small}
-% \hspace*{-0mm}\input ./Fig4.tex
-\end{small}
-\end{center}
-\vspace*{-2.4mm}\caption{Sum-log of the terms $\mu_{ij}$: Comparison between simulation and (\ref{suma_log_lambda}) for $r=t=2$.}\label{lambdaFig}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The effect of increasing the cluster size is to reduce the contribution of the farthest base stations, which becomes negligible due to the path-loss. Therefore we can see a saturation of the trace and of the sum-log of the values $\mu_{i\ell}$, by increasing the size of the cluster $M$. Notice that in the evaluation of the mean achievable rate we apply a factor $1/N$ in order to evaluate the average rate per user, taking into consideration that in a bigger cluster we have also more users. This factor determines a decrease of the trace with respect to $N$ and correspondingly, of the average value of $\mu_{i\ell}$. Thus a decrease occurs in the mean achievable rate per user for large values of $N$, as we will see in Section~\ref{results}.
-
-
-\subsection{Power allocation}
-
-Under the \gls{bd} strategy the transmission within each cluster is equivalent to a set of parallel non-interfering channels. Then the power must be allocated to maximize some \gls{qos} parameters, such as the sum rate (or a weighted sum
-of the rates), for the users of each cluster. This objective is subject to a maximum transmission power available at each base station $P_{max}$, namely
-\begin{equation}
-	\sum_{l=1}^{t} \sum_{i=1}^{N}\sum_{\ell=1}^{r} P_{i\ell} \left|w_{i\ell}^{kl}\right|^2 \leq P_{max}\;,
- \label{constraints}
-\end{equation}
-for each \gls{bs} $j=1,\ldots,M$. The rate maximization problem has been tackled in several works, e.g. \cite{shim08},\cite{armada11b} and solutions range from the simplest uniform power approach to optimal allocation, whose derivation requires the cumbersome numerical solution of the convex optimization problem. A power allocation solution, which resembles the well known waterfilling scheme and performs very close to the optimum, has been presented in \cite{armada11b}. 
-In the following a theoretical framework is derived for the uniform power allocation scheme, which is the simplest. In any case, here we are not interested in the problem of power allocation, since it can be solved separately and the actual power, if different form the uniform, could be inserted in the analytical expression that we develop. An example, with a different power allocation, will be presented in the results.
-
-With a uniform power allocation, a common average value $P_{0}$ replaces $P_{i\ell}$ in (\ref{rates1inte}), representing the average transmitted power from the coordinated \gls{bs} to each receive antenna of user $i$. This value of power $P_{0}$, allocated to each of the $r$ parallel streams of user $i$, varies according to the number of \gls{bs} in the cluster, decreasing for a larger size of the cluster, since a fraction of the overall available power is spent for the coordination, to null the interference. 
-
-If we substitute a common value $P_0$ for each $i=1,\ldots,N$ and $\ell=1,\ldots,r$ the condition (\ref{constraints}) is limited by the \gls{bs} for which the following sum is maximum 
-\begin{equation}
-	\sum_{l=1}^{t} \left|w_{i\ell}^{kl}\right|^2 \;.
-\end{equation}
-By using a Gaussian approximation of the coefficients $w_{i\ell}^{kl}$, $P_0$ is then related to the reciprocal value of the maximum of $M$ random variables
-\begin{equation}
-	P_0=\frac{P_{max}}{E[\chi]}\qquad\qquad\chi =\max \{\chi_1,\ldots, \chi_M\}
-\end{equation}
-with $\chi_i$ chi-squared with $t$ degrees of freedom.
-The probability distribution function of $\chi$ is 
-\begin{equation}
-	F_{\chi}(x)= P\left(t, x\right)^M
-\end{equation}
-being $P(\cdot, \cdot)$ the regularized Gamma function.
-The mean value is derived from the probability distribution function as
-\begin{equation}
-	E[\chi]=\int_0^{+\infty} \left(1-F_\chi(x)\right)\, dx
-\end{equation}
-and can be evaluated using the bounds
-\begin{equation}
-    (1-e^{-\alpha x})^{a}\leq P(a, x)\leq (1-e^{-\beta x})^{a}
-\end{equation}
-with
-\begin{eqnarray}
-    &&\hspace*{-10mm}\alpha=\left\{ \begin{array}{ll}1  &0<a<1\\ d_a &a>1\end{array}\right.\quad \beta=\left\{ \begin{array}{ll}d_a  &0<a<1\\1 &a>1\end{array}\right.\\
-	&&\hspace*{-10mm}d_a = \left(\Gamma(a+1)\right)^{-\frac{1}{a}}\;,
-\end{eqnarray}
-where $\Gamma (\cdot)$ is the Gamma function.
-Then $E[\chi]$ is bounded by  
-\begin{equation}
- \frac{1}{\beta}\left[\psi(Mt+1)+\gamma_0\right] \leq E[\chi]\leq \frac{1}{\alpha}\left[\psi(Mt+1)+\gamma_0\right]\label{power_cluster_eq}
-\end{equation}
-with $\psi$ the digamma function and $\gamma_0$ the Euler constant. In terms of $P_0$, we have
-\begin{equation}
- P_{max}\frac{\Gamma(t+1)^{-1/t}}{\psi(Mt+1)+\gamma_0}\leq P_0\leq  \frac{P_{max}}{\psi(Mt+1)+\gamma_0}\label{P_unif}
-\end{equation}
-In the evaluation of the rate, we will consider the lower bound, giving a lower bound to the average rate of user $i$.
-The bounds for the power per stream derived by (\ref{P_unif}) with uniform power allocation are compared in \reff{power_cluster} with the results obtained by simulations.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-\begin{center}
-\begin{small}
-% \hspace*{-0mm}\input ./Fig5.tex
-\end{small}
-\end{center}
-\vspace*{-2.4mm}\caption{Normalized average power per stream $P_0/P_{max}$ for different antenna
-configurations: comparison between simulations and the bounds (\ref{power_cluster_eq}).}\label{power_cluster}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- We notice a very good agreement between the analytical and simulation results, for different antenna configurations.
-In particular we see that for a small number of cells in the cluster the upper bound is quite tight, while, when the cluster size increases the lower bound provides a better approximation. 
-This power decrease is affecting the mean achievable rate for an increasing size of the cluster, as discussed in the following results of Section~\ref{results}.
-
-\subsection{Evaluation of the mean achievable rate}
-
-The performance of the coordination scheme will be measured by the mean achievable rate per user in the cluster $\overline{R}$,
-\begin{equation}
- \overline{R}=\frac{1}{N} \sum_{i=1}^{N} \overline{R_i}\;.
-\end{equation}
-We can derive a lower bound for each user's average rate, by considering the inequality 
-\begin{equation}
-   \log(1+SINR)\geq\log(SINR)\;.
-\end{equation} 
-Then the integral (\ref{rates1inte}) can be expressed as
-\begin{equation}
-      \overline{R_i}\simeq\frac{1}{\log 2 }\sum_{\ell=1}^{r}
-          \int_0^{R_{cell}}\log\left(\frac{P_{i\ell} \, \mu_{i\ell}u^{-\gamma}}{\sigma_n^2+P_{max}M_{eq,i}(D_i-u)^{-\gamma}}\right)\,\frac{2u}{R_{cell}^2}\,du\:, \label{inteapprox1}
-\end{equation}
-where the model of interference has been introduced. Then
-\begin{eqnarray}
-      \overline{R_i}&\!\!\!\simeq\!\!\!&\frac{1}{\log 2 }\sum_{\ell=1}^{r}\left\{
-          \log\left(\mu_{i\ell}\right)+\log\left(\frac{P_{i\ell}}{P_{max}}\right)\right.\nonumber\\ 
-      &\!\!\!+\!\!\!&\left. \int_{0}^{R_{cell}}\log\left(\frac{u^{-\gamma}}{\frac{\sigma_n^2}{P_{max}}+M_{eq, i}(D_i-u)^{-\gamma}}\right)\,\frac{2u}{R_{cell}^2}\,du\right\}\:.\label{inteapprox2}
-\end{eqnarray}
-We define $Z_i$ the integral part of (\ref{inteapprox2}), i.e.
-\begin{equation}
-      Z_i=\int_{0}^{R_{cell}}\log\left(\frac{u^{-\gamma}}{\frac{\sigma_n^2}{P_{max}}+M_{eq, i}(D_i-u)^{-\gamma}}\right)\,\frac{2u}{R_{cell}^2}\,du\:.\label{Z_i}
-\end{equation}
-In the Appendix we detail the evaluation of $Z_i$, which gives
-\begin{eqnarray}
-	Z_i&=&
-          \frac{\gamma}{2}+\log(\rho)+ d_i^2 \log\left(\frac{d_I^\gamma}{M_{eq,i}\rho+d_i^\gamma}\right) \nonumber\\
-          &+&\frac{d_i^2\gamma}{2}\left[\mbox{$_2$F$_1$}\left(1,\frac{2}{\gamma};\frac{\gamma+2}{\gamma};\frac{-d_i^\gamma}{M_{eq,i}\rho}\right)\right.\nonumber\\
-         &-&\left.4\mbox{$_2$F$_1$}\left(1,\frac{1}{\gamma};\frac{\gamma+1}{\gamma};\frac{-d_i^\gamma}{M_{eq,i}\rho}\right)\right] 
-          \nonumber\\
-          &+&2d_I(d_i-1)\gamma \;\mbox{$_2$F$_1$}\left(1,\frac{1}{\gamma};1+\frac{1}{\gamma};\frac{-(d_i-1)^\gamma}{M_{eq,i}\rho}\right)\nonumber\\
-             &-&\frac{(d_i-1)^2}{2}\gamma\, \mbox{$_2$F$_1$}\left(1,\frac{2}{\gamma};1+\frac{2}{\gamma};\frac{-(d_i-1)^\gamma}{M_{eq,i}\rho}\right)\nonumber\\
-             &-& (d_i^2-1) \log\left(\frac{(d_i-1)^\gamma}{M_{eq,i}\rho+(d_i-1)^\gamma}\right) \;.\label{Zi}
-\end{eqnarray}
-where $\mbox{$_2$F$_1$}$ is the hypergeometric function and $\rho$ is the \gls{snr} defined in (\ref{defSNR}).
-Then, using (\ref{suma_log_lambda}) and (\ref{P_unif}), we obtain the analytical expression for the mean achievable rate per user 
-\begin{eqnarray}
- \overline{R} &=& \frac{1}{\log 2}\left\{\frac{1}{N}\left[\sum_{\ell=1}^{Nr} \psi(Nr-j) 
- + \log\left( F \right) \right]\right.\nonumber\\
-&+& \left.r\left[\log \left(\frac{\Gamma(t+1)^{-1/r}}{\psi(Mt+1)+\gamma_0}\right)+\frac{\gamma}{2}+\log(\rho)\right] \right\}\nonumber\\ 
-        &+&\frac{1}{N\log 2}\sum_{i=1}^{N}
-        \left\{ 
-d_i^2\gamma\left[\frac{1}{2} \,\mbox{$_2$F$_1$}\left(1,\frac{2}{\gamma};1+\frac{2}{\gamma};-\frac{d_i^\gamma}{M_{eq,i}\rho}\right)\right.\right.\nonumber\\
-&-&\left.2\mbox{$_2$F$_1$}\left(1,\frac{1}{\gamma};1+\frac{1}{\gamma};-\frac{d_i^\gamma}{M_{eq,i}\rho}\right)\right]
-        + d_i^2 \log\left(\frac{d_i^\gamma}{M_{eq,i}\rho+d_I^\gamma}\right)\nonumber\\  
-        &+& 2d_i(d_i-1)\gamma \;\mbox{$_2$F$_1$}\left(1,\frac{1}{\gamma};1+\frac{1}{\gamma};-\frac{(d_i-1)^\gamma}{M_{eq,i}\rho}\right)\nonumber\\ 
-        &-&\left.\frac{1}{2} (d_i-1)^2\gamma\, \mbox{$_2$F$_1$}\left(1,\frac{2}{\gamma};1+\frac{2}{\gamma};-\frac{(d_i-1)^\gamma}{M_{eq,i}\rho}\right)\right.\nonumber\\
-             &-&\left. (d_i^2-1) \log\left(\frac{(d_i-1)^\gamma}{M_{eq,i}\rho+(d_i-1)^\gamma}\right) \right\}\;,\label{final_rate}
-\end{eqnarray}
-where $M_{eq,i}$ is given by (\ref{exprMeq}) and $F$ by (\ref{Fapprox}).
-
-%%%%%%%%%%%%%%%%% SECTION
-\section{Numerical results}\label{results}
-
-We present results derived from the analytical expression (\ref{final_rate}) and from simulations in a scenario of 169~cells (7 concentric tiers of hexagonal cells), averaging 5,000~random trials. 
-In each trial the positions of the users are randomly set according to a uniform distribution inside each cell as described in Section~\ref{sec:system_model} and the channel is randomly generated according to the model of Section~\ref{channel_model}. 
-The parameter evaluated in the simulations is the achievable rate of (\ref{rates1}), in which the values of powers, interference, the coefficients $\lambda_{i\ell}$, etc. are obtained by simulation. 
-The clusters, despite being static, can have different shape for the same number of cells $M$. Indeed, in the simulations, the clusters are generated following an heuristic approach which tries to group cells in a compact way, with regular shape, by minimizing the sum of the inter-cells distances, thus to avoid long clusters, where the interfering cells from other clusters are closer.
-Note however that some values of the size $M$ do not allow for regular clusters (i.e. hexagonal) to be formed. 
-If not otherwise stated, the following parameters are used: $\gamma=3.8$, cell radius $R_{cell}=1.4\,{\rm km}$ and $M=N$ with uniform distribution of the users within each cell.
-
-\subsection{Comparison with simulations and with MMSE}
-
-We first show a comparison between the expression (\ref{final_rate}), the simulation results, and an \gls{mmse} approach as in \cite{shi11} for an antenna configuration  $r=t=2$ and different values of the \gls{snr}, defined as in (\ref{defSNR}). The results of \gls{bd} refer to a uniform power allocation, so that a better rate could be obtained by power optimization, as shown in the following section. In \reff{rate2x2SNRa} the mean rate is shown as a function of the cluster size $M$, showing that an optimal value of $M$ exists for \gls{bd}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-\begin{center}
-\begin{small}
-% \hspace*{-2mm}\input ./Fig6.tex
-\end{small}
-\end{center}
-\vspace*{-2.7mm}\caption{Mean achievable rate per user as a function of the number of
-cells in the cluster for $r=2$, $t=2$, variable values of \gls{snr},
-$\gamma=3.8$.}\label{rate2x2SNRa}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We show as expected that an \gls{mmse} approach can achieve better results in the case of low \gls{snr}, but even for moderate values of \gls{snr}, the \gls{bd} approach gives comparable and even more favorable results, thus showing that the interference is dominating. We can see that even with \gls{mmse} the mean achievable rate tends to saturate with an increasing size $M$ of the clusters.
-The variability of the simulation results is not due to the limited number of trials, but to a natural variability 
-of the rate with respect to the cluster shape, so that the level of interference does not change regularly with a change of the cluster size $M$, being some aggregations more favorable than others. 
-
-The same behavior pointed out in \cite{lozano13} is shown in \reff{rate_SNR_M7} where saturation clearly appears after a certain value of \gls{snr}, depending on the propagation path-loss coefficient $\gamma$, which determines the influence of interference. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-\begin{center}
-\begin{small}
-% \hspace*{-2mm}\input ./Fig7.tex
-\end{small}
-\end{center}
-\vspace*{-2.7mm}\caption{Mean achievable rate as a function of the \gls{snr} for different values of the path-loss coefficient $\gamma$.}\label{rate_SNR_M7}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In particular, the saturation \gls{snr} for \gls{bd} is higher than for \gls{mmse}. For the first it is always above 20\,dB for the considered scenarios, even for very small path loss coefficients. This means that the saturation occurs for relatively large \gls{snr} values, what is of practical importance.
-If we compare \gls{mmse} and \gls{bd} under the restriction that the same $P_{max}$ is transmitted for all $\gamma$, then the saturation occurs at different levels for each $\gamma$, although the general conclusions do not change.
-
-To complete the validation of the theoretical results with the simulations, a fixed value of \gls{snr} and different numbers of antennas are considered in \reff{rateMxMSNR15-25} and the good agreement between the theoretical and simulation results is still maintained, giving the same tendency, for SNR$=25\,$dB and uniform power allocation.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-\begin{center}
-\begin{small}
-% \hspace*{0.5mm}\input ./Fig8.tex
-\end{small}
-\end{center}
-\vspace*{-2.7mm}\caption{Mean achievable rate per user as a function of the cluster size for SNR$=25\,$dB,
-$\gamma=3.8$ and different antenna configurations.}\label{rateMxMSNR15-25}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The small discrepancy between the theoretical results and the simulations is not only due to the approximations, but also to the fact that in the simulation scenario not all the clusters have the same shape, despite having the same number of cells.
-
-\subsection{Effect of the power allocation}
-
-The decrease of the rate with respect of the cluster size is two-fold: on one hand we experience the decrease of the %singular
- values $\lambda_{i\ell}$ and on the other hand, the power assigned to each stream decreases, due to a ``coordination loss''. If we assume a uniform power allocation the decrease is shown in \reff{power_cluster}. However, to remove the dependence of the rate on the power allocation scheme, we derived also the optimal power allocation, by numerical optimization, solving the convex problem of constrained optimization, as described also in \cite{armada11b}.%-\cite{Globecom2009}. 
-Then the optimal power is used in (\ref{final_rate}) instead of the value (\ref{P_unif}) corresponding to a uniform allocation.
-In \reff{rate2x2_unif_CVX} we compare the rate obtained with uniform and optimal power allocation, as a function of the cluster size $M$.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-\begin{center}
-\begin{small}
-% \hspace*{-1mm}\input ./Fig9.tex
-\end{small}
-\end{center}
-\vspace*{-2.7mm}\caption{Comparison between different power allocation schemes, namely uniform and optimal. 
-Mean achievable rate per user as a function of the cluster size for $r=t=2$, $\gamma=3.8$ and different values of \gls{snr}.}\label{rate2x2_unif_CVX}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We can see that, although the rates achieved by an optimal power allocation are higher, the curves follow a similar trend in both cases.
-
-\subsection{Optimum cluster size}
-
-From the results of Figs.~\ref{rate2x2SNRa}--\ref{rate2x2_unif_CVX} it is interesting to find the cluster size $M$ which can maximize the mean achievable rate. In \reff{OptimumvsSNRbeta38} the optimum cluster size is plotted as a function of the \gls{snr}, for different antenna configurations and for the power allocation schemes considered.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-\begin{center}
-\begin{small}
-% \hspace*{-1mm}\input ./Fig10.tex
-\end{small}
-\end{center}
-\vspace*{-2.7mm}\caption{Optimum cluster size as a function of the \gls{snr}, $\gamma=3.8$ and different antenna configurations.}\label{OptimumvsSNRbeta38}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We can note that for a wide range of \gls{snr} the optimum value is limited, around 7--10 cells. Only for high \gls{snr} it is more convenient to increase the cluster size, since the reduction of interference can compensate the decrease of cluster-gain due to the decrease of the factors $\lambda_{i\ell}$. This occurs for greater values of $M$ if we consider the optimal power allocation, since in the case of uniform power we have an additional decrease of the rate, due to the reduction of the power per stream that can be allocated, as $M$ increases.   
-
-\subsection{Effect of signalling overhead}
-
-In all the previous results the effect of the signalling overhead has not been taken into account, as in most of the published work \cite{sun11}--\cite{huang09}.
-However, if a certain percentage of the available resources are dedicated to channel estimation and signalling, the effective \gls{snr} and the payload are reduced with respect to the global achievable rate.
-In \cite{lozano13} the overhead, intended in that case solely for channel estimation purposes, is accouted for by a percentage $\alpha$, which should grow at least linearly with the cluster size. Then the effective \gls{snr} is $SNR_{eff} = SNR (1-\alpha)$ and the payload rate is $R_{eff}=(1-\alpha)R$. 
-
-In order to show the effect of the overhead on the achievable rate, in \reff{rate2x2SNR15over} 
-we adopt a very conservative approach in which the value of $\alpha$ grows only linearly with the cluster size $M$ up to the maximum value of 10\% for $M=19$. We compare its effect, with the achievable rate obtained without overhead.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-\begin{center}
-\begin{small}
-% \hspace*{-1mm}\input ./Fig11.tex
-\end{small}
-\end{center}
-\vspace*{-2.7mm}\caption{Mean achievable rate and payload rate as a function of the cluster size $M$ with different SNRs.}\label{rate2x2SNR15over}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Note that even with this small amount of overhead, increasing values of $M$ lead to a worse performance. Moreover, we should remark that in general the actual definition of the signalling overhead and its management is delegated to the operator implementation, being hardly defined even in the standards. Thus its quantitative effect can change considerably depending on how the overhead is defined.
-
-
-\section{Conclusions}
-We studied a clustered base station coordination in the downlink transmission, using \gls{bd} to remove interference among the users of the cluster. Since coordination is only performed within the cluster, users experience the interference from neighbor clusters, which depends on the cluster size. We derived an analytical expression for the mean achievable rate per user proposing an equivalent model for the interference, which allows to evaluate the impact of the main parameters, such as the \gls{snr}, the antenna configuration and the path-loss. These theoretical results can be used to derive higher order statistics or other performance parameters, as done in \cite{corvaja13a}. 
-The main results can be thus summarized:
-\begin{itemize}
-\item In the analysis of the rate the actual position of the user is affecting more significantly the useful term of the power received from the nearest base station, while for the interference level and the power received from neighbor \gls{bs}, the average position of the user in the cell provides a good approximation.
-\item Increasing the cluster size gives rise to a combination of effects, some with opposite consequences on the mean achievable rate: i) a reduction of the interference from the adjacent clusters, ii) a gain from coordination which soon saturates due to path-loss, and iii) a reduction of the power available for each stream in the case of uniform power allocation, due to the fewer degrees of freedom imposed by the \gls{bs} power constraints. 
-\item The maximum achievable rate can be obtained with a reduced cluster size (around 7--10) in a wide range of \gls{snr} values and for different antenna configurations.
-\item The same effect of saturation of the rate shown in \cite{lozano13} is confirmed. Fortunately, for \gls{bd} it happens for relatively large \gls{snr} values, even in the case of small path loss coefficients with high interference conditions.
+    \item The interference $I_i\left(d_i\right)$ coming from outside the
+        cluster.
+    \item The effect of the channel fading and of the path loss, represented by
+        the term $\lambdahat_{ik}\left(d_i\right)$.
+    \item The power $p_{ik}$ assigned to the $k$-th data stream of user $i$.
 \end{itemize}
-These conclusions apply to \gls{bd} with fixed non-overlapping clusters, which is a possible and feasible way to perform the coordination in a clustered scenario. Although other methods such as MSSE or adaptive or user-centric clusters could give a better achievable rate, in general they require more complexity, at least in the management of the network.
 
-% \appendices
-\section{Derivation of $Z_i$}
+In the following, the characterization of each of these parameters will be
+approached separatedly.
 
-Normalizing the distance to the cell radius $R_{cell}$ the integral in (\ref{inteapprox2}) becomes
-\begin{eqnarray}
-        Z_i&\!\!\!=\!\!\!& \int_0^{1}\log\left(\frac{u^{-\gamma}}{\frac{\sigma_n^2}{P_{max}R_{cell}^{-\gamma}}+M_{eq,i}(d_i-u)^{-\gamma}}\right)\,2u\,du\nonumber\\
-        &\!\!\!=\!\!\!& \int_0^{1}\log\left(\frac{u^{-\gamma}}{\frac{1}{\rho}+M_{eq,i}(d_i-u)^{-\gamma}}\right)\,2u\,du\nonumber \\
-        &\!\!\!=\!\!\!& 2 \int_0^1 \log\left(\frac{1}{\frac{1}{\rho}+M_{eq,i}(d_i-u)^{-\gamma}}\right) u \, du -2\gamma \int_0^1 \log(u) u \, du \nonumber\\[-3mm]
-\label{inteapprox3}
-\end{eqnarray}
-where $\rho$ is the \gls{snr} of (\ref{defSNR}).
-The last integral in (\ref{inteapprox3}) is evaluated using 2.723 of \cite{gradshteyn00}, namely
-\begin{equation}
-  \int u \log(u)\, du = u^2\left[\frac{\log u}{2}-\frac{1}{4}\right]\;,
+%-------------------------------------------------------------------------------
+\subsection{Interference}\label{ssec:achiev_rate_interf}
+
+As described in \refs{sec:achiev_interf} the contribution of interference,
+$I_i\left(d_i\right)$ on each data stream of user $i$, coming from the cells
+outside the cluste, can be considered as generated by an equivalent number of
+\gls{bs} located all of them at a distance of $D_i - d_i$ from the user. Recall
+that, for clusters of size up to 18, $D_i$ can take one of two values as in
+\eqref{eq:interf_min_dist}.
+
+The interfering distance $D_i$ is then normalized to the cell radius $\Rcell$ by
+setting
+
+\begin{equation} \label{eq:interf_dist_norm}
+    \bar{d}_i = \frac{D_i}{\Rcell}
 \end{equation}
-and gives
-\begin{equation}
-      Z_i=\frac{\gamma}{2}+ 2 \int_0^1 \log\left(\frac{1}{\frac{1}{\rho}+M_{eq,i}(d_i-u)^{-\gamma}}\right) u \, du  \:.\label{inteapprox4}
+
+In expression \eqref{eq:rate_bd_interf} it is assumed that the interference can
+be treated as Gaussian noise, so that the power is calculated as the variance
+of that noise. Throughout the simulations that were performed, it has been found
+that, on average, at least 25 out-of-cluster cells contributed with significant
+interference.\footnote{Being significant defined as being greater than the power
+received at the cell edge.}
+
+This number of 25 is dependent on the simulation paremeters, but it gives an
+idea of the order of magnitud of interferers present, and it justifies the
+treatment of the interference as Gaussian noise, by virtue of the central limit
+theorem \cite{papoulis_fourier}.
+
+%-------------------------------------------------------------------------------
+\subsection{Fading Effect}\label{ssec:achiev_rate_fading}
+
+The terms $\lambdahat_{ij}$ are the squared diagonal values of the matrix
+$\bLambdahat_i$, \emph{cf.} \refs{sec:bd}. This matrix is obtained in
+\eqref{eq:svd_max_rate} by the combination of the channel matrix $\HH_i$ and a
+unitary matrix, $\Vtilde_i^{(0)}$.
+
+The channel matrix $\HH_i$ is composed of the submatrices $\HH_{ij}$, where the
+fading elements have a power path loss of $d_{ij}^{-\gamma}$, and the elements
+of $\HH_{ij}$ are independent from the elements of $\HH_{ik}$ for all $j$
+different from $k$.
+
+It is possible to define an alternative set of coefficients $\kappa_{ij}$ that
+do not include ethe path loss effect
+
+\begin{equation} \label{eq:kappa_coeff}
+    \kappa_{ij} \triangleq \frac{\lambdahat_{ij}}{d_{i}^{-\gamma}}
 \end{equation}
-The last integral in (\ref{inteapprox4}) is expressed as
-\begin{eqnarray}
-	&&\hspace*{-5mm}\int_0^1 \log\left(\frac{1}{\frac{1}{\rho}+M_{eq,i}(d_i-u)^{-\gamma}}\right) u \, du\nonumber\\
-        &&\hspace*{-5mm}= \log(\rho)+ \int_{d_i-1}^{d_i} \log\left(\frac{1}{1+M_{eq,i}\rho x ^{-\gamma}}\right) (d_i-x) \, dx\;.
-\end{eqnarray}
-The latter can be solved by the following result of \cite{Wolfram}, 
-\begin{eqnarray}
-   &&\hspace*{-6mm}\int\log\left(\frac{1}{1+M_{eq,i}\rho x ^{-\gamma}}\right) (d_i-x) \, dx \nonumber\\
-   &&\hspace*{-6mm}= x\left[\frac{2d_i-x}{2}\log\left(\frac{x^\gamma}{M_{eq,i}\rho+x^\gamma}\right)
-  -d_i\gamma\;\mbox{$_2$F$_1$}\left(1,\frac{1}{\gamma};\frac{\gamma+1}{\gamma};\frac{-x^\gamma}{M_{eq,i}\rho}\right)
-\right.\nonumber\\
-&&\left.
-+\frac{x\,\gamma}{4} \;\mbox{$_2$F$_1$}\left(1,\frac{2}{\gamma};\frac{\gamma+2}{\gamma};\frac{-x^\gamma}{M_{eq,i}\rho}\right)\right]
-\end{eqnarray}
-where $\mbox{$_2$F$_1$}$ is the hypergeometric function 
-\begin{equation}
- \mbox{$_2$F$_1$}(a,b;c;z)=\frac{\Gamma(c)}{\Gamma(b)\,\Gamma(c-b)}\,\int_0^1\frac{x^{b-1}(1-x)^{c-b-1}}{(1-xz)^a}\,dx\;.
+
+These coefficientes are the elements of the main diagonal of the matrix
+
+\begin{equation} \label{eq:diag_matrix_no_path_loss}
+    d_{i}^{\gamma}\bLambdahat_i \bLambdahat_i^H
 \end{equation}
-Finally, we get 
-\begin{eqnarray}
-	Z_i&=&
-          \frac{\gamma}{2}+\log(\rho)+ d_i^2 \log\left(\frac{d_I^\gamma}{M_{eq,i}\rho+d_i^\gamma}\right) \nonumber\\
-          &+&\frac{d_i^2\gamma}{2}\left[\mbox{$_2$F$_1$}\left(1,\frac{2}{\gamma};\frac{\gamma+2}{\gamma};\frac{-d_i^\gamma}{M_{eq,i}\rho}\right)\right.\nonumber\\
-         &-&\left.4\mbox{$_2$F$_1$}\left(1,\frac{1}{\gamma};\frac{\gamma+1}{\gamma};\frac{-d_i^\gamma}{M_{eq,i}\rho}\right)\right] 
-          \nonumber\\
-          &+&2d_I(d_i-1)\gamma \;\mbox{$_2$F$_1$}\left(1,\frac{1}{\gamma};1+\frac{1}{\gamma};\frac{-(d_i-1)^\gamma}{M_{eq,i}\rho}\right)\nonumber\\
-             &-&\frac{(d_i-1)^2}{2}\gamma\, \mbox{$_2$F$_1$}\left(1,\frac{2}{\gamma};1+\frac{2}{\gamma};\frac{-(d_i-1)^\gamma}{M_{eq,i}\rho}\right)\nonumber\\
-             &-& (d_i^2-1) \log\left(\frac{(d_i-1)^\gamma}{M_{eq,i}\rho+(d_i-1)^\gamma}\right) \;.\label{zeta_i}
-\end{eqnarray}
+
+And it can be seen that these diagonal elements are the singular values of the
+matrix
+
+\begin{equation} \label{eq:wishart_mat}
+    d_{i}^{\gamma}\HH_i\Vtilde_i^{(0)} \Vtilde_i^{(0),H} \HH_i^H
+\end{equation}
+
+\noindent
+where $\HH_i$ has Gaussian entries, and $\Vtilde_i^{(0)}$ is a unitary matrix.
+
+In the case of having $Mt = Nr$, the coefficientes $\kappa_{ij}$ are the
+eigenvalues of a Wishart matrix while, in the general case of $Mt \geq Nr$ the
+matrix in \eqref{eq:wishart_mat} can be approximated by a Wishart matrix.
+Through simulations, it has been verified that the mean of the eigenvalues of 
+both matrices, the original in \eqref{eq:wishart_mat} and the approximate
+Wishart, is the same and the difference between the two \gls{cdf} is less than 10\,\%.
+
+The joint \gls{pdf} of the eigenvalues $\kappa_{ij}$ of a Wishart matrix can be
+obtained when the columns of the corresponding Gaussian matrix have an identity
+covariance matrix
+
+\begin{equation} \label{eq:cov_identity}
+    \mathbf{\Sigma}_i = \eye
+\end{equation}
+
+\noindent
+and it is given by \cite{tulino04}
+
+\begin{equation} \label{eq:joint_pdf_eigenv_eye_cov}
+    f_{\kappa_{i1}, \ldots, \kappa_{i\ell}}\left(\kappa_{i1}, \ldots,
+    \kappa_{i\ell}\right) = e^{-\sum_{k=1}^{\ell}\kappa_{ik}}\prod_{k=1}^{\ell}
+    \frac{1}{\left[\left(\ell - k\right)!\right]^2} \prod_{m = k + 1}^{\ell}
+    \left(\kappa_{im} - \kappa_{i\ell}\right)^2
+\end{equation}
+
+However, in the evaluation of the rate the complete \gls{pdf} is not needed, and
+only the sum
+
+\begin{equation} \label{eq:sum_kappa}
+    \sum_{i = 1}^{N}\sum_{k = 1}^{\ell} \log \left( \kappa_{ik} \right)
+\end{equation}
+
+\noindent
+is required, which represents the expectation of the logarithm of the
+determinant, for which results are available, also for the general case when the
+covariance matrix is different from the identity, $\mathbf{\Sigma} \neq \eye$,
+and it is given by \cite{tulino04}
+
+\begin{equation} \label{eq:sum_log_kappa}
+    \mathbb{E}\left\{\sum_{i=1}^{N}\sum_{k=1}^{\ell}\log\left(\kappa_{ik}
+    \right)\right\} = \sum_{m = 1}^{N\ell} \psi\left(N\ell - m\right) +
+    \log\left(\left|\mathbf{\Sigma}\right|\right)
+\end{equation}
+
+\noindent
+where $\psi\left(\cdot\right)$ is the Euler's digamma function
+\cite{gradshteyn00}, and where the matrix $\mathbf{\Sigma}$ is
+
+\begin{equation} \label{eq:covariance_total}
+    \mathbf{\Sigma} = \begin{bmatrix}
+        \mathbf{\Sigma}_1 & \zero & \cdots & \zero \\
+        \zero & \mathbf{\Sigma}_2 & \cdots & \zero \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \zero & \zero & \cdots & \mathbf{\Sigma}_N
+    \end{bmatrix}
+\end{equation}
+
+\noindent
+with $\mathbf{\Sigma}_i$ the covariance matrix of the columns of the matrix
+$d_{i}^{\sfrac{\gamma}{2}} \HH_i \Vtilde_i^{(0)}$
+
+\begin{equation} \label{eq:covariance_not_eye}
+    \mathbf{\Sigma}_i = \eye \left[1 + \sum\limits_{\substack{j=1\\j\neq i}}^{M}
+        \left(\frac{d_{i}}{d_{ij}}\right)^{\gamma}
+    \right]
+\end{equation}
+
+It is possible to define a parameter $G_i$
+
+\begin{equation} \label{eq:cluster_gain}
+    G_i \triangleq 1 + \sum\limits_{\substack{j=1\\j\neq i}}^{M} \left(
+    \frac{d_{i}}{d_{ij}}\right)^{\gamma}
+\end{equation}
+
+\noindent
+that can be considerd as a cluster gain. Its value can be approximated
+considering the average distance of a user to its \gls{bs} 
+\eqref{eq:average_distance}, and the distance from the rest of the \gls{bs} in
+the cluster to be either $\Dtone$ or $\Dttwo$. If additionally these two
+distances are normalized by the average distance in \eqref{eq:average_distance}
+
+\begin{equation} \label{eq:normalized_distances}
+\begin{aligned}
+    \Dtonebar &\triangleq \frac{3\Dtone}{2\Rcell} \\
+    \Dttwobar &\triangleq \frac{3\Dttwo}{2\Rcell}
+\end{aligned}
+\end{equation}
+
+\noindent
+then the gain factor $G_i$ can be approximated for different cluster sizes as
+
+\begin{equation} \label{eq:cluster_gain_value}
+    G_i = \begin{cases}
+    1 + \frac{M - 1}{2}\left[ \left( \frac{1}{\Dtonebar - 1}\right)^{\gamma}
+    \left( \frac{1}{\Dtonebar + 1}\right)^{\gamma} \right]
+    & M \leq 7 \\
+    3 \left[ \left( \frac{1}{\Dtonebar - 1}\right)^{\gamma}
+    \left( \frac{1}{\Dtonebar + 1}\right)^{\gamma} \right]
+    \frac{M - 7}{2} \left[ \left( \frac{1}{\Dttwobar - 1}\right)^{\gamma}
+    \left( \frac{1}{\Dttwobar + 1}\right)^{\gamma} \right]
+    & 7 < M \leq 18
+    \end{cases}
+\end{equation}
+
+In \reff{fig:sum_log_kappa} a fixed distance for the users equal to $d_{i} =
+\sfrac{2}{3}\Rcell$, \eqref{eq:average_distance}, is considered and the values
+of the sum of the natural logarithm of the values $\kappa_{ij}$ are calculated
+through simulations and using the expression \eqref{eq:sum_log_kappa}, for the
+case of $t = r = 2$.
+
+\begin{figure}[t]
+\begin{center}
+    \dummybox
+% \hspace*{1mm}\input ./Fig4.tex
+\end{center}
+\caption{Sum-log of the terms $\kappa_{ij}$. Comparison between simulations and
+the values obtained using \eqref{eq:sum_log_kappa} for $ t = r = 2$.}
+\label{fig:sum_log_kappa}
+\end{figure}
+
+It can be seen how the sum of the log values of $\kappa_{ij}$ presents a
+diminishing increase as the cluster size $M$ increases. This can be explained by
+a reduced contribution of the \gls{bs}, that are farther than in smaller
+clusters, which becomes negligible due to the path loss.
+
+Notice that, in the evaluation of the mean achievable rate, a factor
+$\sfrac{1}{N}$ is applied in order to evaluate the average rate per user, taking
+into consideration that in a cluster with more cells, there would be more users
+as well.
+
+Thus, a decrease occurs in the mean achievable rate per user for large values of
+$M$, as it will be shown in \refs{sec:achiev_numerical}.
+
+
+%-------------------------------------------------------------------------------
+\subsection{Power allocation}\label{ssec:achiev_rate_power}
+
+Under the \gls{bd} strategy, the transmission within each cluster is equivalent
+to a set of parallel non-interfering channels.
+
+Therefore, athe transmission power must be allocated in order to optimize some
+quality of service parameters, such as the sum rate or a weighted sum of the
+rates, for the users of each cluster.
+
+This objective is subject to a maximum transmission power available at each
+\gls{bs}, \eqref{eq:pbpc_constraint} and \eqref{eq:trace_terms_p_i}
+
+\begin{equation} \label{eq:pbpc}
+	\sum\limits_{i = 1}^N \sum\limits_{k = 1}^\ell p_{ik} \left\| \wbar_{j, ik}
+    \right\|_2^2 \leq P_{\max}
+\end{equation}
+
+\noindent
+for each of the $M$ \gls{bs} in the cluster.
+
+The rate maximization problem is described in more detail in
+\refs{sec:power_allocation}, and the solutions range from the simplest uniform
+power allocation, \emph{cf.} \refss{ssec:uniform_allocation}, to an optimal
+allocation, \emph{cf.} \refss{ssec:optimal_power_allocation}. In any case, the
+problem of power allocation is not the focus of this work because it can be
+solved separately and the actual powers could be inserted in the analytical
+expressions developed.
+
+Hence, in the following a theoretical framework is derived for the uniform power
+allocation scheme, for the sake of simplicity, and an example with a different
+power allocation will be presented with the results.
+
+With a uniform power allocation a common average power $p_s$ is used for every
+stream of every user, as seen in \eqref{eq:equal_power}. This value $p_s$ varies
+according to the number of \gls{bs} in the cluster, decreasing for a larger size
+of the cluster, since a fraction of the overall available power is spent in the
+coordination, to null the interference.
+
+Substituting all the $p_{ik}$ in \eqref{eq:pbpc} by the common value $p_s$ it is
+easy to see that the condition in \eqref{eq:pbpc} is limited by the \gls{bs} for
+which the following factor is maximum
+
+\begin{equation} \label{eq:chi_squared_j}
+    \chi_j \triangleq \sum\limits_{i = 1}^N \sum\limits_{k = 1}^\ell \left\|
+    \wbar_{j, ik} \right\|_2^2
+\end{equation}
+
+Assuming that the coefficients of the precoding matrix, \emph{i.e.} the elements
+of the vector $\wbar_{j, ik}$, are Gaussian then $\chi_j$ is a Chi-squared
+random variables with $N\ell t$ degrees of freedom, and then the power $p_s$ is
+related to the reciprocal value of the maximum of $M$ random variables
+
+\begin{equation} \label{eq:ps_reciprocal}
+    p_s = \frac{P_{\max}}{\mathbb{E}\left\{chi\right\}}
+\end{equation}
+
+\noindent
+with
+
+\begin{equation} \label{eq:chi_squared}
+    \chi = \max\left\{\chi_1, \ldots, \chi_M\right\}
+\end{equation}
+
+Then the probability distribution function of $\chi$ is given by
+
+\begin{equation} \label{eq:chi_squared_dist_function}
+    F_{\chi}\left(x\right) = P\left(N\ell t, x\right)^M
+\end{equation}
+
+\noindent
+where $P\left(\cdot,\cdot\right)$ is the regularized Gamma function.
+
+The mean value can be derived from the probability distribution function in
+\eqref{eq:chi_squared_dist_function} as
+
+\begin{equation} \label{eq:chi_squared_mean}
+    \mathbb{E}\left\{\chi\right\} = \int\limits_0^\infty \left( 1 - F_{\chi}
+    \left(x\right)\right) \dee x
+\end{equation}
+
+\noindent
+and it can be bounded using
+
+\begin{equation} \label{eq:bound_reg_gamma}
+    \left(1 - e^{-\alpha x}\right)^a \leq P\left(a,x\right) \leq
+    \left(1 - e^{-\beta x}\right)^a
+\end{equation}
+
+\noindent
+with
+
+\begin{equation} \label{eq:bound_parameters}
+\begin{aligned}
+    \alpha &= \begin{cases}
+    1 & 0 < a < 1 \\
+    \Gamma\left(a + 1\right)^{-\frac{1}{a}} & a > 1
+    \end{cases} \\
+    \beta &= \begin{cases}
+    \Gamma\left(a + 1\right)^{-\frac{1}{a}} & 0 < a < 1 \\
+    1 & a > 1
+    \end{cases}
+\end{aligned}
+\end{equation}
+
+\noindent
+where $\Gamma\left(\cdot\right)$ is the Gamma function.
+
+The average value of $\chi$ is then bounded by
+
+\begin{equation} \label{eq:bound_chi}
+    \frac{1}{\beta}\left[\psi\left(Mt + 1\right) + \gamma_0\right] \leq
+    \mathbb{E}\left\{\chi\right\} \leq
+    \frac{1}{\alpha}\left[\psi\left(Mt + 1\right) + \gamma_0\right]
+\end{equation}
+
+\noindent
+with $\psi\left(\cdot\right)$ again the Euler's digamma function, and $\gamma_0$ the Euler-Mascheroni
+constant.
+
+It is possible to rewrite \eqref{eq:bound_chi} in terms of $p_s$ as
+
+\begin{equation} \label{eq:bound_chi_ps}
+    P_{\max} \frac{\Gamma\left(N\ell t + 1\right)^{-\frac{1}{N\ell t}}}
+        {\psi\left(Mt + 1\right) + \gamma_0} \leq p_s \leq
+        P_{\max}\frac{1}{\psi\left(Mt + 1\right) + \gamma_0}
+\end{equation}
+
+In the evaluation of the rate, the lower bound in \eqref{eq:bound_chi_ps} will
+be considered, providing a lower bound to the average rate of each user.
+
+The bounds for the power per stream $p_s$ in \eqref{eq:bound_chi_ps} are
+compared in \reff{fig:bound_chi} with the results obtained through simulations.
+
+\begin{figure}[t]
+\begin{center}
+\dummybox
+% \hspace*{-0mm}\input ./Fig5.tex
+\end{center}
+\caption{Normalized average power per stream $p_s / P_{\max}$ for different
+antenna configurations: comparison between simulations and the bounds in
+\eqref{eq:bound_chi_ps}.}
+\label{fig:bound_chi}
+\end{figure}
+
+First thing that can be seen in \reff{fig:bound_chi} is how the power $p_s$
+decreases with the size of the cluster, and this affects the mean achievable
+rate as it will be discussed in \refs{sec:achiev_numerical}.
+
+Secondly, \reff{fig:bound_chi} shows a very good agreement between the
+analytical and simulation results for different antenna configurations. In
+particular, the upper bound is tight for small clusters while the lower bound
+becomes more accurate for bigger clusters.
+
+%-------------------------------------------------------------------------------
+\subsection{Evaluation of the mean achievable rate}\label{ssec:achiev_rate_eval}
+
+The performance of the coordination scheme will be measured by the mean
+achievable rate per user in the cluster
+
+\begin{equation} \label{eq:mean_achiev_rate_def}
+    \bar{R}^{\text{BD}} = \frac{1}{N} \sum\limits_{i = 1}^N
+    \bar{R}_i^{\text{BD}}  
+\end{equation}
+
+It is possible to derive a lower bound for each user's average rate in
+\eqref{eq:rate_bd_loc_aver} by considering the inequality
+
+\begin{equation} \label{eq:log_ineq}
+    \log\left(1+x\right) \geq \log\left(x\right)
+\end{equation}
+
+\noindent
+so that the average rate for the $i$-th user \eqref{eq:rate_bd_loc_aver} becomes
+
+\begin{equation} \label{rate_bd_i_logapprox}
+    \begin{aligned}
+    \bar{R}_i^{\text{BD}} &\geq \frac{1}{\log\left(2\right)} \sum\limits_{k = 1}
+    ^{\ell} \int\limits_0^{\Rcell} \log\left(\frac{p_{ik}\kappa_{ik}u^{-\gamma}}
+    {\sigma_i^2 + P_{\max}\Meqi\left(D_i - u\right)^{-\gamma}}\right)\frac{2u}
+        {\Rcell^2}\dee u \\
+        &=\frac{1}{\log\left(2\right)}\sum\limits_{k=1}^{\ell}\left\{\log\left(
+    \kappa_{ik}\right) + \log\left(\frac{p_{ik}}{P_{\max}}\right) + Z_i
+    \right)
+    \end{aligned}
+\end{equation}
+
+\noindent
+where the interference model has been introduced, and $Z_i$ is defined as
+
+\begin{equation} \label{eq:zi_def}
+    Z_i \triangleq \int\limits_0^{\Rcell}\log\left(\frac{u^{-\gamma}}
+        {\frac{\sigma_i^2}{P_{\max}} + \Meqi\left(D_i - u\right)^{-\gamma}}
+    \right)\frac{2u}{\Rcell^2} \dee u
+\end{equation}
+
+The value of $Z_i$is derived in \refa{ch:appendix_a}, and it is
+
+\begin{equation} \label{eq:zi_chapter}
+\begin{aligned}
+    Z_i &= \frac{\gamma}{2} + \log\left(\rho\right) + \bar{d}_i^2\log\left(
+    \frac{\bar{d}_i^{\gamma}}{\Meqi \rho + \bar{d}_i^{\gamma}}\right)\\
+    &- 2 \bar{d}_i^2\gamma \hgeo \left(1,\frac{1}{\gamma};
+    \frac{\gamma+1}{\gamma};\frac{-\bar{d}_i^{\gamma}}{\Meqi\rho +
+    \bar{d}_i^{\gamma}}\right)\\
+    &+ \frac{\bar{d}_i^2}{2}\gamma \hgeo\left(1, \frac{2}{\gamma};
+    \frac{\gamma+2}{\gamma};\frac{-\bar{d}_i^{\gamma}}{\Meqi\rho +
+    \bar{d}_i^{\gamma}}\right)\\
+    &- \left(\bar{d}_i^2-1\right)\log\left(
+    \frac{\left(\bar{d}_i-1\right)^{\gamma}}
+    {\Meqi\rho+\left(\bar{d}_i - 1\right)^{\gamma}}\right)\\
+    &+ 2\bar{d}_i\left(\bar{d}_i - 1\right)\gamma\hgeo\left(1,\frac{1}{\gamma};
+    \frac{\gamma + 1}{\gamma};\frac{-\left(\bar{d}_i-1\right)^{\gamma}}
+    {\Meqi\rho}\right)\\
+    &- \frac{\left(\bar{d}_i-1\right)^2}{2}\gamma\hgeo\left(1,\frac{2}{\gamma};
+    \frac{\gamma + 2}{\gamma};\frac{-\left(\bar{d}_i-1\right)^{\gamma}}
+    {\Meqi\rho}\right)
+\end{aligned}
+\end{equation}
+
+%-------------------------------------------------------------------------------
+\section{Numerical Results}\label{sec:achiev_numerical}

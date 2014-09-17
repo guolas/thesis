@@ -18,24 +18,36 @@ conditions of all the cells in the network.
 
 \begin{figure}[t]
    \centering
-   \includegraphics[width=0.5\textwidth]{./03.system_model/img/torus_scenario}
-   \caption{Wrap around scenario. Cells on one side of the scenario influence
-            the cells on the other side as if they were next to each other.}
-   \label{fig:torus_scenario}
+   \includegraphics[width=0.5\textwidth]{./03.system_model/img/cellular_layout}
+   \caption{Schematic representation of the cellular network that will be used
+       throughout this dissertation.}
+   \label{fig:gen_cellular_layout}
 \end{figure}
 
 \begin{figure}[t]
-   \centering
-   \includegraphics[width=0.5\textwidth]{./03.system_model/img/interfering_scenario}
-   \caption{Oversized scenario. The behavior of the network is analyzed in the
-            central cells of the network, and the exterior cells compensate the 
-            network edge effects.}
-   \label{fig:interfering_scenario}
+    \subcaptionbox{Wrap around scenario. Cells on one side of the scenario
+        influence the cells on the other side as if they were next to each
+        other.\label{fig:torus_scenario}}
+    [0.45\textwidth]
+    {
+     \includegraphics[width=0.45\textwidth]{./03.system_model/img/torus_scenario}
+    }
+    \hfill
+    \subcaptionbox{Oversized scenario. The behavior of the network is analyzed
+        in the central cells of the network, and the exterior cells compensate
+        the network edge effects.\label{fig:interfering_scenario}}
+    [0.45\textwidth]
+    {
+    \includegraphics[width=0.45\textwidth]{./03.system_model/img/interfering_scenario}
+    }
 \end{figure}
 
 Each cell in the system under study will be served with a single \gls{bs} that
 is equipped with $t$ transmit antennas. Each of the users considered in the
-system has $r$ receive antennas.
+system has $r$ receive antennas. \reff{fig:gen_cellular_layout} shows a
+schematic representation of such a network, where $Rcell$ is the cell
+radius, and $d_{ij}$ is the distance from the $j$-th \gls{bs} to the $i$-th
+user.
 
 A system with $M$ \gls{bs} and $N$ users can then be modelled as
 
@@ -259,8 +271,8 @@ $i$-th user is given by \cite{cover_thomas}, \cite{holter01}
 \end{equation}
 
 \noindent
-where $\RR_{\zz_i} \in \C^{r \times r}$ is the covariance matrix of the noise plus
-the interference term in \eqref{eq:rx_signal_user_interf}
+where $\RR_{\zz_i} \in \C^{r \times r}$ is the covariance matrix of the noise
+plus the interference term in \eqref{eq:rx_signal_user_interf}
 
 \begin{equation} \label{eq:r_in}
     \RR_{\zz_i} = \zz_i \zz_i^H = 
@@ -279,12 +291,83 @@ mainly to guarantee the feasibility of some of the results obtained:
     \item The total number of antennas transmitting will be greater or equal
         than the total number of antennas at the receiver side, this is $Mt
 		\geq Nr$.
-    \item The number of streams transmitted to each user must be $\ell \leq r$.
+    \item The number of streams transmitted to each user must be $\ell \leq r$,
+        and in general it will be assumed the equality.
     \item There is no correlation, neither at the transmitters nor at the
         receivers, so that $\HH$ is full rank or, equivalently, $\rank\left(
         \HH\right) = \min\left(Nr,Mt\right)$. As $Mt \geq Nr$, then $\rank\left(
         \HH\right) = Nr$.
+    \item The power available at each of the \gls{bs} will be assumed the same,
+        \emph{i.e.} $P_{j, \max} = P_{\max}$ for all $j$.
 \end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Channel Model}\label{sec:channel_model}
+As it has been said, each component of $\HH_{ij}$ accounts for the propagation
+path loss, small scale fading, shadowing, and other characteristics of the
+channel.
+
+In terms of propagation, the channel is typically decomposed as
+
+\begin{equation} \label{eq:propagation_decomp}
+    \HH_{ij} = \RR_{\text{rx}, ij} \Hbar_{ij} \RR_{\text{tx}, ij}
+\end{equation}
+
+\noindent
+where $\RR_{\text{tx}, ij} \in \C^{t \times t}$ is the spatial correlation at
+the transmitter, $\Hbar \in \C^{r \times t}$ is the fading channel, and
+$\RR_{\text{rx}, ij} \in \C^{r \times r}$ is the spatial correlation at the
+receiver. In the current work, unless stated otherwise, the channel is
+considered spatially uncorrelated, both at the transmitter and at the receiver,
+that is $\RR_{\text{rx}, ij} = \eye$ and $\RR_{\text{rx}, ij} = \eye$, as in
+\cite{karakayali06}.
+
+The small scale characteristics considered are Rayleigh, so that the entries of
+$\Hbar_{ij}$ are \gls{iid} complex Gaussian random variables with zero mean and
+a variance given by the power path loss between the $j$-th \gls{bs} and the
+$i$-th user.
+
+The attenuation that the signal experiments due to the propagation varies
+according to an exponential power decay with exponent $\gamma$, so that the path
+loss\footnote{
+    In natural units, although it is also commont to represent the path loss in
+    decibels as
+    \begin{equation} \label{eq:path_loss_db}
+        \text{PL}_{ij}\left(\db\right) \triangleq 10 \log_{10} \left(
+        \text{pl}_{ij} \right)
+    \end{equation}
+} is calculated as
+
+\begin{equation} \label{eq:path_loss}
+    \text{pl}_{ij} = \text{pl}_0 \left( \frac{d_{ij}}{d_0}\right)^{-\gamma}
+\end{equation}
+
+\noindent
+where pl$_0$ represents the attenuation at a reference distance $d_0$. For the
+analysis done in this work, but without any loss of generality, pl$_0$ and $d_0$
+are assumed equal to 1.
+
+% ------------------------------------------------------------------------------
+\subsection{\gls{snr}}
+
+With the definition of the propagation model that is used in this work, it can
+also be explained the definition of \gls{snr} that is used for the theoretical
+analyses and the simulations.
+
+Analogously to other works such as \cite{zhang09}, the \gls{snr}, denoted as
+$\rho$, is defined with reference to the power received at the three-way corner
+of the cell, at a distance of $Rcell$, when the \gls{bs} transmits at
+full power, so that the relationship between \gls{snr} and the noise power is
+given by
+
+\begin{equation} \label{eq:snr_noise}
+    \rho = \frac{P_{\max}\Rcell^{-\gamma}}{\sigma_n^2}
+\end{equation}
+
+\noindent
+where it is assumed that all the \gls{bs} have the same maximum transmission
+power. Using \eqref{eq:snr_noise} it is possible to calculate the noise power for a
+given \gls{snr} and vice versa.
 
 % ------------------------------------------------------------------------------
 \section{Block Diagonalization}\label{sec:bd}
@@ -426,7 +509,7 @@ In order to maximize the rate, consider the \gls{svd}
 
 \noindent
 where $\bLambdahat_i = \diag\left\{\lambdahatsqrt_{i1}, \ldots,
-\lambdahatsqrt_{ir} \right\} \in \C^{r \times r}$ contains the non zero singular
+\lambdahatsqrt_{ir} \right\} \in \C^{r \times r}$ contains the non-zero singular
 values of $\Hhat_i$ , which has $\rank\left(\Hhat_i\right) = r$. And
 $\Vhat_i^{(1)} \in \C^{(Mt - \Ltilde_i) \times r}$ contains the first $r$ right
 singular vectors of $\Hhat_i$ , and it will be used as $\WW_i^{\prime}$,
@@ -619,8 +702,8 @@ The sum-rate maximization problem can then be formulated in \emph{standard form}
     \end{array}\\
     & &&-p_{ik} \leq 0, &&
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}
 \end{aligned}
 \end{equation}
@@ -662,8 +745,8 @@ to analyze the optimization problem in search for an optimal solution. The
 
     p_{ik}^\ast &\leq & 0, &
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}\\
 
     \nu_j^\ast & \geq & 0, &
@@ -673,8 +756,8 @@ to analyze the optimization problem in search for an optimal solution. The
 
     \mu_{ik}^\ast & \geq & 0, &
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}\\
 
     \nu_j^\ast\left(\sum\limits_{i = 1}^N \sum\limits_{k = 1}^\ell p_{ik}
@@ -685,8 +768,8 @@ to analyze the optimization problem in search for an optimal solution. The
 
     -\mu_{ik}^\ast p_{ik}^\ast & = & 0, &
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}\\
 
     \nablabf_{\pp} \mathcal{L}\left(\pp^\ast, \mathbf{\nu}^\ast,
@@ -736,7 +819,7 @@ partial derivatives
         -\sum\limits_{i = 1}^N
         \sum\limits_{k = 1}^\ell \log_2\left( 1 +
         \frac{\lambdahat_{ik} p_{ik}}{\sigma_i^2} \right)
-    \right\} = \frac{-\lambdahat_{ik}}{\ln\left(2\right)\left(\sigma_i^2 +
+    \right\} = \frac{-\lambdahat_{ik}}{\log\left(2\right)\left(\sigma_i^2 +
     \lambdahat_{ik} p_{ik}\right)}
 \end{equation}
 
@@ -759,13 +842,13 @@ So that the condition of the gradient of the Lagrangian vanishing, in
 \eqref{eq:sum_rate_maxim} can be writen as
 
 \begin{equation} \label{eq:gradient_vanishing}
-    \frac{-\lambdahat_{ik}}{\ln\left(2\right)\left(\sigma_i^2 +
+    \frac{-\lambdahat_{ik}}{\log\left(2\right)\left(\sigma_i^2 +
     \lambdahat_{ik} p_{ik}^\ast\right)} +
     \sum\limits_{j = 1}^M \nu_j^\ast \left\|\wbar_{j, ik}\right\|_2^2 -
     \mu_{ik}^\ast = 0,\quad
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}\\
 \end{equation}
 
@@ -774,13 +857,13 @@ non-negativeness of the powers $p_{ik}$, and it can be ommited to get the
 equation
 
 \begin{equation} \label{eq:gradient_inequality}
-    \frac{-\lambdahat_{ik}}{\ln\left(2\right)\left(\sigma_i^2 +
+    \frac{-\lambdahat_{ik}}{\log\left(2\right)\left(\sigma_i^2 +
     \lambdahat_{ik} p_{ik}^\ast\right)} +
     \sum\limits_{j = 1}^M \nu_j^\ast \left\|\wbar_{j, ik}\right\|_2^2
     \geq 0,\quad
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}\\
 \end{equation}
 
@@ -794,11 +877,11 @@ Calling
 \eqref{eq:gradient_inequality} can be solved for $p_{ik}^\ast$
 
 \begin{equation} \label{eq:optimum_p}
-    p_{ik}^\ast \leq \frac{1}{\ln\left(2\right)L_{ik}} - \frac{\sigma_i^2}
+    p_{ik}^\ast \leq \frac{1}{\log\left(2\right)L_{ik}} - \frac{\sigma_i^2}
     {\lambdahat_{ik}}, \quad
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}\\
 \end{equation}
 
@@ -841,8 +924,8 @@ users' streams. The optimization problem becomes then
     P_{\text{BS},\max} \leq 0\\
     & &&-p_{ik} \leq 0, &&
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}
 \end{aligned}
 \end{equation}
@@ -872,12 +955,12 @@ And its gradient is given by
 \begin{equation} \label{eq:modif_wf_gradient}
     \nablabf_{\pp} \mathcal{L}\left(\pp^\ast, \nu^\ast, \mathbf{\mu}^{\ast}
     \right) = 
-    \frac{-\lambdahat_{ik}}{\ln\left(2\right)\left(\sigma_i^2 +
+    \frac{-\lambdahat_{ik}}{\log\left(2\right)\left(\sigma_i^2 +
     \lambdahat_{ik} p_{ik}^\ast\right)} +
     \nu^\ast \OmegaEq - \mu_{ik}^\ast = 0,\quad
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}\\
 \end{equation}
 
@@ -886,11 +969,11 @@ and considering $\mu_{ik}^\ast$ a slack variable, and solving for $p_{ik}^\ast$,
 the following inequality is obtained
 
 \begin{equation} \label{eq:modified_wf_gradient_ineq}
-    p_{ik}^\ast \leq \frac{1}{\ln\left(2\right)\nu^\ast\OmegaEq} -
+    p_{ik}^\ast \leq \frac{1}{\log\left(2\right)\nu^\ast\OmegaEq} -
     \frac{\sigma_i^2}{\lambdahat_{ik}}, \quad 
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}
 \end{equation}
 
@@ -899,11 +982,11 @@ which, together with the constraint of the powers being non-negative, can be
 written as
 
 \begin{equation} \label{eq:mwf}
-    p_{ik}^\ast = \left[\frac{1}{\ln\left(2\right)\nu^\ast\OmegaEq} - 
+    p_{ik}^\ast = \left[\frac{1}{\log\left(2\right)\nu^\ast\OmegaEq} - 
     \frac{\sigma_i^2}{\lambdahat_{ik}}\right]^+, \quad 
 	\begin{array}{l}
-	i = 1, \ldots, N\\
-	k = 1, \ldots, \ell
+        i = 1, \ldots, N\\
+        k = 1, \ldots, \ell
 	\end{array}
 \end{equation}
 
@@ -917,6 +1000,30 @@ original, and its solution will be also a feasible solution for the original
 problem, albeit not the optimal. The results in \cite{armada11b} show how under
 some conditions, the solution achieved like this can be rather close to the
 optimum one.
+
+% ------------------------------------------------------------------------------
+\subsubsection{Standard Water-Filling}\label{sssec:standard_wf}
+
+One further simplification that is done in \cite{armada11b} is to consider that,
+in practice, the values of all the $\OmegaEq$ are very similar to each other, so
+that it is possible to consider them equal. This turns the problem into a
+standard water-filling problem, with constant water level, where the solution is
+given by
+
+\begin{equation} \label{eq:standard_wf}
+    p_{ik}^\ast = \left[K_{\text{WF}} -
+        \frac{\sigma_i^2}{\lambdahat_{ik}}\right]^+, \quad
+        \begin{array}{l}
+            i = 1, \ldots, N\\
+            k = 1, \ldots, \ell
+        \end{array}
+\end{equation}
+
+\noindent
+where $K_{\text{WF}} = \frac{1}{\log\left(2\right)\nu^\ast\Omega_{\text{WF}}}$,
+is constant, as $\OmegaEq = \Omega_{\text{WF}}\,\forall i = 1, \ldots, N;\, 
+\forall k = 1, \ldots, \ell$ is the same for all the data streams of all the
+users.
 
 % ------------------------------------------------------------------------------
 \subsection{Scaled Water-Filling}\label{ssec:scaled_wf}
