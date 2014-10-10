@@ -1,211 +1,290 @@
-\chapter[Rate Statistics]{Achievable Rate and Fairness in Coordinated Base Station Transmission}
+\chapter[Rate Statistics]{Achievable Rate and Fairness in Coordinated Base Station Transmission}\label{ch:rate_statistics}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
+% ------------------------------------------------------------------------------
+\section{Introduction}\label{sec:stats_intro}
 
-Cooperative communications are receiving a great attention since they can provide the capacity increase needed for future wireless applications \cite{karakayali06}, \cite{sawahashi10}, although recent investigations show \cite{lozano13} that out-of-cluster interference limits the advantages that can be obtained and a saturation effect occurs.
+\refc{ch:achiev_rates} deals with the evaluation of the mean achievable rate,
+and the analysis of the influence of the cluster size and power assignment on
+the maximization of the rate. This chapter in turn focuses on the analysis of
+the \gls{qos} of the system, in terms of the fairness in the distribution of the
+achievable rate among the users.
 
-We consider the achievable rate in coordinated base station downlink with \gls{bd}, evaluating \gls{qos} characteristics such as the fairness in the distribution of the achievable rate among the users. In fact although the mean value can provide useful information \cite{corvaja13b} also the cumulative distribution function (CDF) plays an important role to design fairness and \gls{qos} management strategies in coordinated downlink networks. In the following we show that the statistics are almost perfectly represented by a Gamma distribution.
+Although the mean achievable rate, as calculated in \refc{ch:achiev_rates} can
+provide useful information, also the \gls{cdf} plays an important role when
+designing fairness, and other \gls{qos} related, management strategies in
+coordinated downlink networks.
 
-Note that the Gamma distribution arises in several contexts when considering non-negative random variables whose value is determined by several joint contributions. For example in \cite{heath13} it is used for the success probability and the average rate in a wireless system, assuming that it is interference limited, in \cite{alahmadi10} to describe composite fading channels, and in \cite{atapattu11} it is generalized to a mixture of Gamma distributions to model the \gls{snr} in wireless channels.
+In the following, it is shown that the statistics of the achievable rate are
+almost perfectly represented by a Gamma distribution. Note that the Gamma
+distribution arises in several contexts when considering non-negative random
+variables whose value is determined by several joint distributions. For example,
+in \cite{heath13} it is used to model the interference in an interference
+limited cellular network in order to simplify the calculation of the success
+probability, \emph{i.e.} the complementary event of an outage, adn the ergodic
+rate. In \cite{alahmadi10} a Gamma distribution is used to model composite
+fading channels. And in \cite{atapattu11} a mixture Gamma distribution is
+proposed to describe the \gls{snr} of wireless channels, mainly composite
+shadowing/fading channels, but also many other small-scale fading channels.
 
-The contribution of this work is to provide the CDF characterization (not only the mean value as in \cite{corvaja13b}) of the achievable rate in a coordinated base station transmission with \gls{bd}, where coordinated cells are grouped in clusters and the interference arises from adjacent clusters. Then fairness considerations are derived for this scenario and we show the dependence of the CDF and fairness on the cluster size and the power assignment strategy. Other considerations on the optimal cluster size and on the power assignment to maximize the achievable rates may be found in \cite{corvaja13b} and \cite{armada11b}.
+This chapter provides a characterization of the \gls{cdf} of the achievable rate
+in a coordinated base station transmission with \gls{bd}, where the \gls{bs} are
+grouped in clusters and the interference is due to adjacent clusters.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Using the system model from \refc{ch:system_model}, including the power
+assignment strategies described there, and the cluster model proposed in
+\refs{sec:achiev_clust_net}, the dependence of the \gls{cdf} on the cluster
+size, and the power assignment strategy is studied as well in the current
+chapter.
 
-\section{System Model}\label{sec:system_model}
+% ------------------------------------------------------------------------------
+\section{Rate Statistics}\label{sec:stats_rate_stats}
+% ------------------------------------------------------------------------------
+\subsection{Cumulative Distribution Function}\label{ssec:stats_cdf}
 
-This work targets the downlink transmission where the coordinated cells of radius $R_{cell}$ are grouped in clusters composed of $M$ base stations (BS), serving a total of $N$ users in each cluster.
-We consider static clusters formed on the basis of a pre-selection criterion, typically minimizing some average distance between the cells of the cluster because of the propagation power path-loss, as it happens in conventional cellular systems, where the size of the cluster determines the reuse distance.
-Each \gls{bs} is equipped with $t$ transmit antennas and the user terminals have $r$ receive antennas. The signals coming from the \gls{bs} in a cluster cause interference to other clusters since there is no coordination among them. The size of the cluster $M$ is then one of the parameters in the analysis. Each base station has a maximum available power $P_{max}$.
+Recal the expression of the achievable rate when \gls{bd} is used to coordinate
+the \gls{bs} in the cluster
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Channel model and block diagonalization}\label{ChannelModel}
-
-The propagation inside a cluster is modelled by a $Nr\times Mt$ channel matrix $\miH$ where the matrix coefficients represent the fading from any transmit antenna of each \gls{bs} to any receive antenna of each user. If we define $\miH_i$ with $i=1,\dots, N$ as the
-$r\times Mt$ channel matrix seen by user $i$, then $\miH=\left[\miH_1^\miT\miH_2^\miT\dots\miH_N^\miT\right]^\miT$, whose entries are iid complex Gaussian with zero mean and variance $u^{-\gamma}$, modelling the path loss by an exponential power decay as a function of the distance $u$ between transmitter and receiver, with exponent $\gamma$.
-The received signal is given by 
-\begin{equation}
-    \miy=\miH\mix+ \minn =\miH\miW\mib+ \minn \label{eq:yHxn}
-\end{equation}
-where $\minn$ is the $Nr\times 1$ noise vector of i.i.d complex Gaussian variables with zero-mean and variance $\sigma_n^2$ and 
-the $Mt\times 1$ signal vector $\mix$ transmitted from all the \gls{bs} within a cluster is obtained by applying a precoding (or beamforming) matrix
-\begin{equation}
-    \mix= \miW\mib
-\end{equation}
-where $\mib=[b_{11},\dots,b_{1r},\dots,b_{Nr}]^\miT$ with $b_{ij}$ representing the $j$-th data symbol for user $i$ transmitted with
-power $P_{ij}$. The beamforming matrix is given by $\miW=[\miw_{11},\dots,\miw_{1r},\dots,\miw_{Nr}]$ where each sub-matrix
-$\miw_{ij}$ has size $M \times t$ with elements $w_{ij}^{kl}$, $k=1,\ldots, M$, $l=1,\ldots, t$
-and is obtained with $Mt\geq Nr$ under a \gls{bd} criteria as in \cite{karakayali06},\cite{armada11b},\cite{shim08}, to guarantee that
-\begin{equation}
-\label{eq:3}
-\begin{split}
-     &\miH_k \left[\miw_{i1},\miw_{i2}\dots \miw_{ir}\right]
-         =\left \{\begin{array}{lcl}\mi0 &: & k\neq i\\ \miU_k\miS_k &: & k=i \end{array}\right .,\\
-     %&\parallel \miw_{ij} \parallel ^2=1, \; \; \forall i \not= k, \; \; i=1,...,N, \; j=1,...,r
-\end{split}
-\end{equation}
-where $\miU_k$ is a unitary matrix and
-$\miS_k=\text{diag}\{\lambda_{k1}^{1/2},\lambda_{k2}^{1/2},\dots,\lambda_{kr}^{1/2}\}$.
-The $\lambda_{ij}^{1/2}$ are obtained from a singular value decomposition of the interfering channels in the cluster according to the procedure explained in \cite{armada11b}. Then, the received signal is expressed by the block-diagonal matrix
-\begin{equation}
-	\miy={\rm diag}\left[\miU_1\miS_1, \miU_2\miS_2, \ldots, \miU_N\miS_N \right]\mib+ \minn . \label{eq:4} 
-\end{equation}
-Each user independently rotates the received signal and decouples the different streams
-\begin{eqnarray}
-  \widetilde{\miy}&=&{\rm diag}\left[\miU_1^H, \miU_2^H, \ldots, \miU_N^H\right ]\miy\nonumber \\
-    &=&\left [
-        \lambda_{11}^{1/2}b_{11}, \lambda_{1r}^{1/2}b_{1r}, \ldots, \lambda_{Nr}^{1/2}b_{Nr}
-     \right ]^{T}+ \widetilde{\minn}\label{eq:5} 
-\end{eqnarray}
-where the noise $\widetilde{\minn}$ remains white with the same covariance because of the unitary transformation. \gls{bd} is possible in this scenario if the condition $Mt$ $\geq$ $Nr$ is satisfied in each cluster. Under this \gls{bd} strategy the transmission system within each cluster is a set of parallel non-interfering channels, since \gls{bd} removes the interference inside the cluster. 
-We can account for the effect of the additive noise by means of a \gls{snr} $\rho$ defined at the cell border, as done also in e.g. \cite{zhang09}, namely
-\begin{equation}
-    \rho = \frac{P_{max}R_{cell}^{-\gamma}}{\sigma_n^2}\;. \label{defSNR}
+\begin{equation} \label{eq:stats_achiev_rate}
+    R_i^{\text{BD}}\left(d_i\right) = \sum\limits_{k = 1}^{\ell} \log_2 \left(
+    1 + \frac{\lambdahat_{ik} p_{ik}}{\sigma_i^2 + I_i\left(d_i\right)} \right)
 \end{equation}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\noindent
+where the dependence on the $i$-th user's distance to its \gls{bs}, $d_i$, is
+made explicit, the interference power is defined by \eqref{eq:interf_power}, the
+noise power $\sigma_i^2$ is obtained as a function of the \gls{snr} using
+\eqref{eq:snr_noise}, and the powers $p_{ik}$ would be computed using the power
+allocation strategies described in \refs{sec:power_allocation} in order to
+maximize the sum rate for the set of users served in each cluster.
 
-\subsection{Achievable rate}\label{SINR}
+The derivation of the complete statistical characterization of the achievable
+rate per user is an almost intractable task, due to the combination of many
+effects such as the power assignment, the interference coming from outside the
+cluster, the channel characteristics, etc. Even the evaluation of the mean
+requires to resort to several approximations, although the final result has been
+shown to be quite accurate, \emph{cf.} \refc{ch:achiev_rates}.
 
-In order to account for the effects of the fading and of the out-of-cluster interference it is convenient to condition the achievable rate on the distance $u_i$ of user $i$ from the center of its cell. The achievable rate for a user $i$ at the distance $u_i$ becomes 
-\begin{equation}
- {R_i}(u_i)= \sum_{j=1}^{r} \log_2\left(1+\lambda_{ij}\frac{P_{ij}}{\sigma_n^2+I_i(u_i)}\right)\label{rate_u_i}
+If the \gls{pdf} o fthe achievable rate per user is considered, a suitable
+analytical model is provided by the Gamma distribution's \gls{pdf}
+
+\begin{equation} \label{eq:gamma_pdf}
+   f_{R}\left(x\right) = \frac{1}{\Gamma\left(\theta\right)\theta^k}x^{k-1}
+   e^{-\frac{x}{\theta}}
 \end{equation}
-and its mean value becomes
-\begin{equation}
- \overline{R_i}=\int_0^{R_{cell}} R(u_i) \,f_{u_i}(u_i)\,du_i\;.\label{rates1inte}
-\end{equation}
-where, assuming a uniform distribution of the users over each cell, the distance $u_i$ has a probability density function
-\begin{equation}
-    f_{u_i}(u_i)=2u_i/R_{cell}^2\;, \label{density_d}
-\end{equation}
-which approximates the hexagonal cell by a circular one with the same radius. Note that the values $\lambda_ij$ in (\ref{rate_u_i}), which are related to the actual channel, depend on the distance $u_i$ of the user $i$, and their characterization is detailed in \cite{corvaja13b}.
-The interference power is modelled as in \cite{corvaja13b} and turns out to be
-\begin{equation}
-      I_i(u_i) = \sum_{m=1}^{M_{\rm interf}} P_{max}\, \left(d_{im}\right)^{-\gamma}\;,\label{interfexact}
-\end{equation}
-where $M_{\rm interf}$ is the number of interfering stations and $d_{im}$ is the distance between user $i$ and \gls{bs} $m$ (belonging to the external clusters) \cite{corvaja13b}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+with mean and variance given by $k\theta$ and $k\theta^2$, respectively, and
+related to the system parameters as discussed in \refss{ssec:stats_mean} and
+\refss{ssec:stats_variance}.
 
-\subsection{Power allocation}
+The choosing of the Gamma distribution is not arbitrary, and it is motivated by
+the fact that the achievable rate per user in \eqref{eq:stats_achiev_rate} is
+the result of adding several non-negative terms. The \emph{central limit theorem
+for causal functions} \cite{papoulis_fourier} states that the convolution of an
+unbounded number of causal functions can be approximated using a Gamma
+distribution. A causal function is a function defined only for $\mathbb{R}^{+}
+\cup \left\{0\right\}$, as $\log_2\left(1+x\right)$ with $x \geq 0$ is. In the
+case under study the sum of terms is not unbounded, but \cite{papoulis_fourier}
+shows also how the approximation is accurate also for a sum of a finite number
+of terms.
 
-The power may be allocated so that it maximizes some parameters linked to the \gls{qos}, such as the sum rate (or a weighted sum of the rates), for the set of users served in each cluster. This objective is subject to a maximum transmission power available at each base station $P_{max}$, namely
-\begin{equation}
-	\sum_{l=1}^{t} \sum_{i=1}^{N}\sum_{j=1}^{r} P_{ij} \left|w_{ij}^{kl}\right|^2 \leq P_{max}\;,
- \label{constraints}
-\end{equation}
-for each \gls{bs} $k=1,\ldots,M$. The problem of maximizing the sum-rate with constrained power turns out to be convex and has been tackled in several works, e.g. \cite{armada11b},\cite{shim08} with solutions ranging from the simplest uniform power approach to optimal allocation with a cumbersome numerical convex optimization. A power allocation solution, which resembles the well known waterfilling scheme and performs very close to the optimum, has been presented in \cite{armada11b}. If we consider a uniform power allocation scheme among the users, a common average value $P_{0}$ replaces $P_{ij}$ in (\ref{rate_u_i}) and represents the average transmitted power from the \gls{bs} to each receive antenna of user $i$. Its characterization can be obtained as in \cite{corvaja13b}, where the evaluation of the integral (\ref{rates1inte}) has been carried out.
-In the following also a waterfilling scheme \cite{armada11b} and a numerically optimized power assignment scheme (convex optimization) will be considered in the numerical results for a comparison. Note that if we neglect the interference from other clusters it can be shown that the optimal power allocation to the multi-cell \gls{bd} can be obtained by using a water-filling approach \cite{zhang10b}.
+The Gamma distribution has been introduced also in \cite{cheikh11} to describe
+the \gls{sir} in a simpler environment, without noise and without any kind of
+coordination.
 
+In fact, when comparing the CDF obtained by simulation and a Gamma \gls{cdf},
+with the same mean and variance, it is interesting to note a very accurate
+fitting.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\section{Rate statistics}
-
-\subsection{Cumulative distribution function}
-
-The derivation of the complete statistical characterization of the achievable rate per user is an almost intractable task due to the combination of many effects, such as the power assignment, the interference from outside the cluster, the channel characteristics, etc. Even the evaluation of the mean value requires to resort to several approximations although the final result is quite accurate \cite{corvaja13b}.
-If we consider the \emph{Probability Density Function} (PDF) of the achievable rate per user, a suitable analytical model is provided by the Gamma PDF 
-\begin{equation}
-	f_R(x)= \scriptstyle \frac{1}{\Gamma(k) \theta^k} x^{k \,-\, 1} e^{-\frac{x}{\theta}} \label{GammaPDF}
-\end{equation}
-with parameters $k$ and $\theta$, giving mean and variance equal to $k\theta$ and $k\theta^2$, respectively. This is justified by the application of the central limit theorem, when the PDFs of the variables that are summed are defined only for $\mathbb{R}^{+}$. In this case, what is called the \emph{central limit theorem for causal functions} \cite{papoulis_fourier} states that the convolution of an unbounded number of causal functions (functions not defined for negative values) can be approximated using a Gamma distribution.
-The Gamma distribution has been introduced also in \cite{cheikh11} to describe the SIR in a simpler environment,
-without noise and without any kind of coordination.
-In fact, by a comparison of the CDF obtained by simulation and a Gamma CDF, with the same mean and variance, it is interesting to note a perfect fitting.
-
-Moreover, we should remember that the \emph{Probability Density Function} (PDF) of the sum of random variables is equal to the convolution of their respective PDFs and the \emph{central limit theorem} states that the convolution of an unbounded number of functions can be approximated by a Normal distribution \cite{papoulis_fourier}. In some situations, though, the PDFs of the variables that are summed are defined only for $\mathbb{R}^{+}$, and a different version of the central limit theorem applies. This is what is called the \emph{central limit theorem for causal functions} \cite{papoulis_fourier}, and it states that the convolution of an unbounded
-number of causal functions (functions not defined for negative values) can be approximated using a Gamma distribution.
-
-The results shown in the following figures have been obtained assuming a number of active users equal to the number of coordinated base stations $M=N$.
-In \reff{CDFgamma} we compare the experimental CDF with a Gamma CDF for the uniform power assignment and different system parameters.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \begin{center}
-\begin{small}
+   \dummybox
 % \hspace*{8mm}\input ./CDFgamma.tex
-\end{small}
 \end{center}
-\vspace*{-2.2mm}\caption{CDF of the achievable rate per user with $t=2$, $r=2$ and SNR=15\,dB.
-Comparison with the Gamma distribution with the same mean and variance.}\label{CDFgamma}
+\caption{\gls{cdf} of the achievable rate per user with $t=r=2$ and
+SNR=15\,dB. Comparison with the Gamma distribution with the same mean and
+variance.}
+\label{fig:cdf_sim_analy}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Then in \reff{CDFclusters} we see the effect of increasing the size of the cluster on the CDF of the rate. As it will be shown also in the following, we can see an increase of the rate with the cluster size just up to a point; then the rate starts to decrease. This gives rise to a specific value of the cluster size maximizing the average rate per user. Moreover, we can see a decreasing variability of the rate around the mean, i.e. a smaller variance, as the cluster size increases.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\reff{fig:cdf_sim_analy} shows the perfect match between the experimental
+\gls{cdf} adn a Gamma \gls{cdf} for a uniform power allocation, and for
+different system parameters.
+
+The effect of increasing the size of the cluster on the \gls{cdf} of the
+achievable rate is shown in \reff{fig:cdf_cluster_size}
+
 \begin{figure}[t]
 \begin{center}
-\begin{small}
+   \dummybox
 % \hspace*{1mm}\input ./CDFclusters.tex
-\end{small}
 \end{center}
-\vspace*{-2.2mm}\caption{CDF of the achievable rate per user with $t=2$, $r=2$ and SNR=15\,dB for different values of the cluster size.}\label{CDFclusters}
+\caption{\gls{cdf} of the achievable rate per user with $t=r=2$ and
+SNR=15\,dB for different values of the cluster size.}
+\label{fig:cdf_cluster_size}
 \end{figure}
 
-\subsection{Effect of the power allocation}
+\reff{fig:cdf_cluster_size} also shows how the rate increases with the cluster
+size up to a certain point, and then it starts to decrease. This is the same
+behavior observed in the mean achievable rate in \refc{ch:achiev_rates}.
 
-In order to show the effect of different power allocation schemes, \reff{CDFgamma_power} presents the CDF of the achievable rate per user comparing the uniform power allocation with the waterfilling scheme described in \cite{armada11b}, which is very close to the optimum for a single cluster, and a numerical optimization performed by a convex optimization tool. The results refer to $r=t=3$  and SNR=15\,dB and two different sizes of the cluster, namely $M=5$ and $M=8$. Note that the waterfilling schemes of \cite{armada11b} have not been adapted to a multi-cluster environment in order to account for an additional noise level representing the amount of out-of-cluster interference since this adaptation would require some kind of coordination among different clusters.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Another aspect that can be seen is how the variance of the rate decreases as the
+cluster size increases.
+
+% ------------------------------------------------------------------------------
+\subsection{Effect of the power allocation}\label{ssec:stats_power_alloc}
+
+Three different power allocation schemes have been considered:
+
+\begin{itemize}
+   \item Uniform power allocation, as described in
+      \refss{ssec:uniform_allocation}.
+   \item The modified water-filling from \refss{ssec:modified_wf}.
+   \item Optimal power allocation result of solving the convex optimization
+      problem \eqref{eq:sum_rate_maxim} using numerical solvers.
+\end{itemize}
+
 \begin{figure}[t]
 \begin{center}
-\begin{small}
+   \dummybox
 % \hspace*{1mm}\input ./CDFgamma_power.tex
-\end{small}
 \end{center}
-\vspace*{-2.2mm}\caption{CDF of the achievable rate per user with $t=3$, $r=3$ and SNR=15\,dB. Comparison between different power allocation schemes.}\label{CDFgamma_power}
+\caption{\gls{cdf} of the achievable rate per user with $t=r=3$ and SNR=15\,dB.
+Comparison between different power allocation schemes.}
+\label{fig:cdf_power_alloc}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Mean value}
+In order to show the effect of using each of these power allocation schemes,
+\reff{fig:cdf_power_alloc} presents the \gls{cdf} of the achievable rate per
+user for the three of the schemes proposed, and using a constant antenna setup
+of $t = r = 3$ antennas, an SNR=15\,dB, and two different cluster sizes, namely
+$M \in \left\{5, 8\right\}$.
 
-The derivation of the mean value has been obtained in \cite{corvaja13b} resorting to some approximations, which allow one to evaluate the integral (\ref{rates1inte}), in particular to a model for the interference coming from outside the cluster. The value of the mean is rather accurate in a wide range of the scenario parameters as shown in detail in \cite{corvaja13b}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+It should be noted that both, the water-filling and the numerical solutions are
+calculated for the problem formulated in \eqref{eq:sum_rate_maxim}, where no
+out-of-cluster interference is present, so that these solutions are not adapted
+to a multi-cluster environment. This is so because such adaptation would require
+some sort of coordination among different clusters, and that is out of the scope
+of this work.
 
-\subsection{Variance}
+% ------------------------------------------------------------------------------
+\subsection{Mean value}\label{ssec:stats_mean}
 
-The variance of the achievable rate cannot be obtained without too many simplifying approximations so, instead, an accurate value is obtained by simulations. In \reff{Varianza} we show the variance of the achievable rate per user as a function of the cluster size $M$ for different values of \gls{snr} and number of antennas, with a path loss coefficient $\gamma=3.8$, which is rather typical for an urban environment, also used in \cite{karakayali06}. A uniform power assignment is considered. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The derivation of the mean value has been done in \refc{ch:achiev_rates}
+resorting to some approximations that allow to evaluate the mean achievable rate
+defined as in \eqref{eq:rate_bd_loc_aver}
+
+\begin{equation} \label{eq:rate_bd_loc_aver_2}
+    \bar{R}_i^{\text{BD}} = \int\limits_0^{\Rcell} R_i^{\text{BD}}\left(u
+    \right) \frac{2u}{\Rcell^2} \dee u
+\end{equation}
+
+\noindent
+using a particular model for the interference coming from outside the cluster,
+\emph{cf.} \refs{sec:achiev_interf}.
+
+The value of the mean that is thus obtained is rather accurate for a wide range
+of the scenario parameters, as it is shown in detail in \refc{ch:achiev_rates}.
+
+% ------------------------------------------------------------------------------
+\subsection{Variance}\label{ssec:stats_variance}
+
+A closed form expression for the variance of the achievable rate cannot be
+obtained without too many simplifying approximations so, instead, an accurate
+value for it is obtained through simulations.
+
 \begin{figure}[t]
 \begin{center}
-\begin{small}
+    \dummybox
 % \hspace*{1mm}\input ./Varianza.tex
-\end{small}
 \end{center}
-\vspace*{-2.2mm}\caption{Variance of the achievable rate per user with different values of \gls{snr} and of $t$, $r$ as a function of the cluster size $M$.}\label{Varianza}
+\caption{Variance of the achievable rate per user with different values of
+\gls{snr} and of $t$ and $r$ as a function of the cluster size $M$.}
+\label{fig:rate_variance}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-It can be seen that increasing the degrees of freedom by a larger number of antennas increases the variance of the rate, but a minimum value appears when the \gls{snr} increases. Then, in order to increase the fairness and to limit the differences among the users a limited cluster size is better.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Fairness and QoS considerations}
+\reff{fig:rate_variance} shows the variance of the achievable rate per user as a
+function of the cluster size $M$. The different curves are for different system
+parameters, for instance, several values of the \gls{snr} and different antenna
+configurations. Other simulation parameters are fixed, as is the path loss
+exponent $\gamma=3.8$, which is a rather typical value for urban environments as
+used in \cite{karakayali06}, and the uniform power assignment is considered.
 
-If we consider the fairness of the coordination schemes derived by their statistics, it is interesting to evaluate the minimum rate guaranteed to a percentage $X$ of the users, thus the value of the CDF at $1-X$ gives the rate guaranteed to $X$\% users.
-In \reff{Fairness90} the rate achieved by 90\% of the users is shown as a function of the cluster size $M$ for different antennas configurations and different values of \gls{snr}, considering a uniform power assignment. It can be seen that although there is a maximum value of this rate that increases with the number of antennas, also the variability increases so that a high rate cannot be guaranteed to almost all the users, especially when increasing the cluster size and a lower complexity scheme with fewer antennas can achieve a higher common rate. In particular for large cluster size, a configuration with $r=t=4$ antennas performs worse than $r=t=3$ since it decreases faster with $M$. Therefore a limited size of the cluster is advisable in order to provide the advantages of MIMO to all the users.
+It is interesting to note that increasing the degrees of freedom available in
+the system, by using a higher number of antennas, increases the variance of the
+achievable rate. Something similar happens when the \gls{snr} of the system
+increases.
 
-Note however that the power assignment method plays an important role, as seen in the slope of the CDF. The effect of the power assignment scheme on the fairness is shown in \reff{Fairness90power}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+An important detail that can be stressed is how the variance do not decrease
+unboundedly with the cluster size, but a minimum can be found, analogously to
+the maximum that can be found in the mean achievable rate in
+\refss{ssec:achiev_optimum_size}.
+
+Understanding that fairness in the system is closely related to the variance of
+the achievable rates per user, it is plain to see that in order to maximize the
+fairness of the system, a limited number of \gls{bs} per cluster is preferable.
+
+% ------------------------------------------------------------------------------
+\section{Fairness and QoS considerations}\label{sec:stats_fairnes_qos}
+
+Using the statistics of the coordination schemes considered that have been
+presented in \refs{sec:stats_rate_stats}, several fairness and \gls{qos}
+characteristics can be studied.
+
+One of these is the minimum rate that can be guaranteed to a percentage $X$ of
+the users. This is given by the value of the rate, the abscise, when the
+\gls{cdf} is equal to $\left(1 - \sfrac{X}{100}\right)$, which gives the rate
+that can be guaranteed to $X$\,\% of the users.
+
 \begin{figure}[t]
 \begin{center}
-\begin{small}
+    \dummybox
 % \hspace*{1mm}\input ./Fairness90.tex
-\end{small}
 \end{center}
-\vspace*{-2.2mm}\caption{Rate achieved by 90\% of the users with different antennas configurations and different values of \gls{snr}.}\label{Fairness90}
+\caption{Rate achieved by 90\,\% of the users with different antenna
+configurations and different values of \gls{snr}.}
+\label{fig:min_rate_sys_param}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We can clearly see that optimal power assignment schemes show worst fairness conditions, although achieving higher average rates, while waterfilling and uniform power assignment schemes are better in this regard and show a similar behavior. For a reduced cluster size a uniform assignment performs better than waterfilling in terms of fairness, but the rate guaranteed to 90\% of the users decreases faster with the cluster size $M$, while waterfilling maintains an almost constant value.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\reff{fig:min_rate_sys_param} presents the rate achieved by 90\,\% of the users
+as a function of the cluster size $M$, for different system parameters,
+considering a uniform power assignment.
+
+The behavior observed suggests, again, that a limited cluster size is advisable
+in order to deliver the advantages of \gls{mimo} to the maximum number of users
+possible.
+
+A maximum of the minimum rate guaranteed to 90\,\% of the users appears for a
+cluster size of around 7, and it decreases as the cluster grows bigger. This
+decrease is steeper for higher number of antennas because the variance
+increases, as seen in \reff{fig:rate_variance}. In particular, it can be seen
+that for clusters of size 18, a configuration with $t=r=4$ performs worse than a
+configuration with $t=r=3$.
+
+Note, however, that the power assignment method plays an important role, as it
+can be seen from the slope of the \gls{cdf} in \reff{fig:cdf_power_alloc}. In
+order to illustrate this, \reff{fig:min_rate_power_alloc} represents the minimum
+rate that can be guaranteed to 90\,\% of the users for different power
+allocation strategies.
+
 \begin{figure}[t]
 \begin{center}
-\begin{small}
+    \dummybox
 % \hspace*{1mm}\input ./Fairness90power.tex
-\end{small}
 \end{center}
-\vspace*{-2.2mm}\caption{Rate achieved by 90\% of the users with different power assignment schemes, $r=t=3$ and SNR$=15$\,dB.}\label{Fairness90power}
+\caption{Rate achieved by 90\,\% of the users with different power assignment
+schemes, $t=r=3$ and SNR$=15$\,dB.}
+\label{fig:min_rate_power_alloc}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Conclusions}
-We have provided fairness considerations in a coordinated base station environment with \gls{bd}, resorting to a statistical characterization of the achievable rate per user described by a Gamma probability distribution, whose accuracy is very good for several channel and system conditions. We can see that together with the cluster size, which can be limited to values not very large due to a saturation effect and to an increase of the rate variance, also the power assignment affects the fairness conditions. In particular although the optimization of the assigned power, by means of heavy numerical procedures, can provide a significant enhancement in the mean value, the side effect is also a dramatic increase in the variance, which gives rise to an unfair distribution of the rates among the users.
+The optimal power allocation scheme presents the worst performance, in terms of
+the minimum guaranteed rate. It is easy to understand that the optimal solution
+tries to maximize the sum-rate, which comes at the cost of letting the users
+with the worst conditions out, yielding a very unfair system.
+
+On the other hand, both waterfilling and the uniform assignment schemes perform
+better in this regard, and they show a similar behavior. The only difference in
+the behavior appears for bigger clusters. The uniform power assignment performs
+better for small clusters, and the minimum rate decreases noticeable for large
+clusters. The modified water-filling alternative shows a much more constant
+behavior, with much less difference between small and big clusters.

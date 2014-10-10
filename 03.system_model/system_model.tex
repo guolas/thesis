@@ -12,9 +12,9 @@ network. A typical way to deal with this situation is to consider a scenario
 that wraps around (\reff{fig:torus_scenario}) so that cells on one side of the
 scenario affect cells on the opposite side. Another option is to consider a
 scenario with more cells than necessary, and then analyze the behavior of the
-cells located within the center of the network (\reff{fig:interfering_scenario})
-, so that the exterior cells account for the interference, equaling the
-conditions of all the cells in the network.
+cells located within the center of the network
+(\reff{fig:interfering_scenario}), so that the exterior cells account for the
+interference, equaling the conditions of all the cells in the network.
 
 \begin{figure}[t]
    \centering
@@ -45,9 +45,12 @@ conditions of all the cells in the network.
 Each cell in the system under study will be served with a single \gls{bs} that
 is equipped with $t$ transmit antennas. Each of the users considered in the
 system has $r$ receive antennas. \reff{fig:gen_cellular_layout} shows a
-schematic representation of such a network, where $Rcell$ is the cell
+schematic representation of such a network, where $\Rcell$ is the cell
 radius, and $d_{ij}$ is the distance from the $j$-th \gls{bs} to the $i$-th
-user.
+user. Each user is supposed to be associated with a single \gls{bs} and, without
+loss of generality, it is assumed that the $i$-th user is served by the $i$-th
+\gls{bs}, and in the following the distance between a user and its serving
+\gls{bs} will be denoted by $d_i \triangleq d_{ii}$.
 
 A system with $M$ \gls{bs} and $N$ users can then be modelled as
 
@@ -55,7 +58,8 @@ A system with $M$ \gls{bs} and $N$ users can then be modelled as
     \yy = \HH \xx + \nn
 \end{equation}
 
-$\yy$ represents the signal received at all the users and is defined as
+\noindent
+where $\yy$ represents the signal received at all the users and is defined as
 
 \begin{equation} \label{eq:generic_rx_signal}
     \yy = \begin{bmatrix}
@@ -68,8 +72,8 @@ $\yy$ represents the signal received at all the users and is defined as
 \noindent
 where $\yy_i \in \C^{r \times 1}$ is the signal received at the $i$-th user.
 
-$\HH$ is the channel matrix from all the \gls{bs} to all the users, with the
-following structure
+$\HH$ is the channel matrix representing the propagation from all the \gls{bs}
+to all the users, with the following structure
 
 \begin{equation} \label{eq:generic_ch_mat}
     \HH = \begin{bmatrix}
@@ -85,7 +89,8 @@ $j$-th \gls{bs} to the $i$-th user. It will include the path loss due to
 propagation, small scale fading, shadowing, and any other characteristic of
 the radio channel that needs to be taken into consideration.
 
-$\xx$ is the signal transmitted from all the \gls{bs}, and it is composed of
+The vector $\xx$ in \eqref{eq:generic_rx_signal} is the signal transmitted from
+all the \gls{bs}, and it is composed of
 
 \begin{equation} \label{eq:generic_tx_signal}
     \xx = \begin{bmatrix}
@@ -108,7 +113,7 @@ P_{j,\tx} = \Tr \left(\xx_j \xx_j^H\right) = \xx_j^H \xx_j
 and each \gls{bs} will have an independent power constraint
 
 \begin{equation} \label{eq:pbpc}
-    P_{j,\tx} \leq P_{j, \max}
+    P_{j,\tx} \leq P_{j, \max}.
 \end{equation}
 
 Finally $\nn$ represents the \gls{awgn} at all the receivers
@@ -123,7 +128,7 @@ Finally $\nn$ represents the \gls{awgn} at all the receivers
 
 \noindent
 with $\nn_i \in \C^{r \times 1}$ accounts for the Gaussian noise at the $i$-th
-receiver. Throughout this work $\nn_i$ is considered to be formed by \emph{iid}
+receiver. Throughout this work $\nn_i$ is considered to be formed by \gls{iid}
 entries, drawn from a zero mean, $\sigma_i^2$ variance Gaussian distribution,
 $\nn_i \sim \mathcal{N}\left(\zero, \sigma_i^2 \eye\right)$. The noise variance
 will be assumed the same for all the receivers.
@@ -152,7 +157,7 @@ $\ss_i$. The transmitted power can be expressed as
 
 \begin{equation} \label{eq:bs_precod_power}
     P_{j, \tx} = \sum\limits_{i=1}^{N} \Tr \left( \Wtx_{ji} \RR_{\ss_i}
-    \WtxH_{ji} \right)
+    \WtxH_{ji} \right).
 \end{equation}
 
 The choice of the precoding matrices and of the receiving filter will determine
@@ -215,7 +220,7 @@ with
         \Wtx_{11} \\
         \vdots \\
         \Wtx_{M1}
-    \end{bmatrix} \in \C^{Mt \times \ell}
+    \end{bmatrix} \in \C^{Mt \times \ell}.
 \end{equation}
 
 The channel matrix can then be partitioned as
@@ -229,8 +234,8 @@ The channel matrix can then be partitioned as
 \end{equation}
 
 \noindent
-where $\HH_i \in \C^{r \times Mt}$ is the channel matrix from all the \gls{bs}
-to the $i$-th user.
+where $\HH_i \in \C^{r \times Mt}$ is the channel matrix representing the
+propagation from all the \gls{bs} to the $i$-th user.
 
 As it has already been mentioned, receiver cooperation is not going to be
 considered, so looking at a particular user, \emph{e.g.} the $i$-th user, the
@@ -260,6 +265,7 @@ Defining the term of interference plus noise as
     \ss_j + \nn_i
 \end{equation}
 
+\noindent
 and using \eqref{eq:rx_signal_user_interf}, the ergodic (mean) rate for the
 $i$-th user is given by \cite{cover_thomas}, \cite{holter01}
 
@@ -279,7 +285,7 @@ plus the interference term in \eqref{eq:rx_signal_user_interf}
     \left(\sum\limits_{\substack{j=1\\j\neq i}}^{N} \HH_i\Wtx_j+\nn_i
     \right)
     \left(\sum\limits_{\substack{j=1\\j\neq i}}^{N} \HH_i\Wtx_j+\nn_i
-    \right)^H
+    \right)^H.
 \end{equation}
 
 In the rest of the work, there are a set of assumptions that will be made,
@@ -327,7 +333,7 @@ $\Hbar_{ij}$ are \gls{iid} complex Gaussian random variables with zero mean and
 a variance given by the power path loss between the $j$-th \gls{bs} and the
 $i$-th user.
 
-The attenuation that the signal experiments due to the propagation varies
+The attenuation that the signal experiences due to the propagation varies
 according to an exponential power decay with exponent $\gamma$, so that the path
 loss\footnote{
     In natural units, although it is also commont to represent the path loss in
@@ -356,7 +362,7 @@ analyses and the simulations.
 
 Analogously to other works such as \cite{zhang09}, the \gls{snr}, denoted as
 $\rho$, is defined with reference to the power received at the three-way corner
-of the cell, at a distance of $Rcell$, when the \gls{bs} transmits at
+of the cell, at a distance of $\Rcell$, when the \gls{bs} transmits at
 full power, so that the relationship between \gls{snr} and the noise power is
 given by
 
@@ -377,7 +383,7 @@ channel matrix. Perfect diagonalization is only possible if $Mt \geq Nr$
 \cite{caire03}, and it is achieved using the following precoding matrix
 
 \begin{equation} \label{eq:zf_precod}
-    \Wtx = \HH^\dagger
+    \Wtx = \HH^\dagger.
 \end{equation}
 
 This solution is optimum only when every user has only one antenna. In the case
@@ -396,10 +402,11 @@ to cancel the interference term in \eqref{eq:rx_signal_user_interf}, and this
 is equivalent to meet the following
 
 \begin{equation} \label{eq:cancel_interf}
-    \HH_i \Wtx_j = \zero \text{\quad } \forall j \neq i
+    \HH_i \Wtx_j = \zero \text{\quad } \forall j \neq i.
 \end{equation}
 
-Let $\Htilde_i$ be the channel matrix $\HH$ without $\HH_i$, \emph{i.e.}
+Let $\Htilde_i$ be the channel matrix $\HH$ with the rows corresponding to the
+matrix $\HH_i$ removed, \emph{i.e.}
 
 \begin{equation} \label{eq:h_tilde}
     \Htilde_i = \begin{bmatrix}
@@ -409,7 +416,7 @@ Let $\Htilde_i$ be the channel matrix $\HH$ without $\HH_i$, \emph{i.e.}
         \HH_{i + 1} \\
         \vdots \\
         \HH_N
-    \end{bmatrix} \in \C^{(N - 1)r \times Mt}
+    \end{bmatrix} \in \C^{(N - 1)r \times Mt}.
 \end{equation}
 
 Then the condition \eqref{eq:cancel_interf} can be obtained making $\Wtx_i$ lie
@@ -421,7 +428,7 @@ Now, with the dimensions of $\Htilde$, the rank of its null space is
 
 \begin{equation} \label{eq:rank_kern_htilde}
    \rank\left(\ker\left(\Htilde_i\right)\right) = Mt - \rank\left(\Htilde_i
-   \right)
+   \right).
 \end{equation}
 
 But it is assumed that $\HH$ is full rank, ergo $\rank\left(\Htilde_i\right) =
@@ -453,7 +460,7 @@ the null space of $\Htilde_i$, and thus its columns can be used to cancel the
 inter-user interference
 
 \begin{equation} \label{eq:v0_zero_interf}
-    \Htilde_i \Vtilde_i^{(0)} = \zero
+    \Htilde_i \Vtilde_i^{(0)} = \zero.
 \end{equation}
 
 Using these matrices as precoding the result is

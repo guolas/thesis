@@ -21,27 +21,18 @@ Recall the definition of the \gls{snr} $\rho$ in \eqref{eq:snr_noise}, then
 \begin{aligned}
     Z_i &= \int\limits_0^1\log\left(\frac{v^{-\gamma}}{\frac{1}{\rho} + \Meqi
     \left(\bar{d}_i-v\right)^{-\gamma}}\right)2v \dee v\\
-    &= 2 \int\limits_0^1\log\left(\frac{1}{\frac{1}{\rho}+\Meqi\left(\bar{d}_i-
-    v\right)^{-\gamma}}\right)v\dee v - 2\gamma
-    \underbrace{\int\limits_0^1\log\left(v\right) v\dee v}_{\mathtt{I}}
+    &= 2 \underbrace{\int\limits_0^1\log\left(\frac{1}{\frac{1}{\rho}+\Meqi
+    \left(\bar{d}_i-v\right)^{-\gamma}}\right)v\dee v}_{\mathtt{I}} - 2\gamma
+    \underbrace{\int\limits_0^1\log\left(v\right) v\dee v}_{\mathtt{II}}
 \end{aligned}
 \end{equation}
 
-The term $\mathtt{I}$ in \eqref{eq:zi_2} is evaluated using (2.723) from
+The term $\mathtt{II}$ in \eqref{eq:zi_2} is evaluated using (2.723) from
 \cite{gradshteyn00}, namely
 
-\begin{equation} \label{eq:zi_term1}
+\begin{equation} \label{eq:zi_term2}
     \int v\log\left(v\right)\dee v = v^2\left(\frac{\log\left(v\right)}{2} -
     \frac{1}{4}\right)
-\end{equation}
-
-\noindent
-yielding
-
-\begin{equation} \label{eq:zi_3}
-    Z_i = \frac{\gamma}{2} + 2\underbrace{\int\limits_0^1\log\left(\frac{1}
-        {\frac{1}{\rho} + \Meqi\left(\bar{d}_i-v\right)^{-\gamma}}\right)
-        v\dee v}_{\mathtt{II}}
 \end{equation}
 
 Using the change of variable
@@ -51,11 +42,11 @@ Using the change of variable
 \end{equation}
 
 \noindent
-in the term $\mathtt{II}$ of \eqref{eq:zi_3} becomes
+in the term $\mathtt{I}$ of \eqref{eq:zi_2}, it becomes
 
-\begin{equation} \label{eq:zi_term2}
+\begin{equation} \label{eq:zi_term1}
 \begin{aligned}
-    \mathtt{(II)} &= -\int\limits_{\bar{d}_i}^{\bar{d}_i -1}
+    \mathtt{(I)} &= -\int\limits_{\bar{d}_i}^{\bar{d}_i -1}
     \log\left(\frac{\rho}{1 + \Meqi\rho w^{-\gamma}}\right)\left(\bar{d}_i - w
     \right)\dee w\\
     &=\underbrace{\int\limits_{\bar{d}_i-1}^{\bar{d}_i}\log\left(\rho\right)
@@ -66,7 +57,7 @@ in the term $\mathtt{II}$ of \eqref{eq:zi_3} becomes
 \end{aligned}
 \end{equation}
 
-The term $\mathtt{III}$ of \eqref{eq:zi_term2} is straightforward to calculate
+The term $\mathtt{III}$ of \eqref{eq:zi_term1} is straightforward to calculate
 
 \begin{equation} \label{eq:zi_term3}
     \int\limits_{\bar{d}_i-1}^{\bar{d}_i}\log\left(\rho\right)
