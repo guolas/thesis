@@ -18,12 +18,12 @@ In the following, it is shown that the statistics of the achievable rate are
 almost perfectly represented by a Gamma distribution. Note that the Gamma
 distribution arises in several contexts when considering non-negative random
 variables whose value is determined by several joint distributions. For example,
-in \cite{heath13} it is used to model the interference in an interference
-limited cellular network in order to simplify the calculation of the success
-probability, \emph{i.e.} the complementary event of an outage, adn the ergodic
-rate. In \cite{alahmadi10} a Gamma distribution is used to model composite
-fading channels. And in \cite{atapattu11} a mixture Gamma distribution is
-proposed to describe the \gls{snr} of wireless channels, mainly composite
+in \cite{heath13} it is used to model the interference in an
+interference-limited cellular network in order to simplify the calculation of
+the success probability, \emph{i.e.} the complementary event of an outage, and
+the ergodic rate. In \cite{alahmadi10} a Gamma distribution is used to model
+composite fading channels. And in \cite{atapattu11} a mixture Gamma distribution
+is proposed to describe the \gls{snr} of wireless channels, mainly composite
 shadowing/fading channels, but also many other small-scale fading channels.
 
 This chapter provides a characterization of the \gls{cdf} of the achievable rate
@@ -54,8 +54,7 @@ where the dependence on the $i$-th user's distance to its \gls{bs}, $d_i$, is
 made explicit, the interference power is defined by \eqref{eq:interf_power}, the
 noise power $\sigma_i^2$ is obtained as a function of the \gls{snr} using
 \eqref{eq:snr_noise}, and the powers $p_{ik}$ would be computed using the power
-allocation strategies described in \refs{sec:power_allocation} in order to
-maximize the sum rate for the set of users served in each cluster.
+allocation strategies described in \refs{sec:power_allocation}.
 
 The derivation of the complete statistical characterization of the achievable
 rate per user is an almost intractable task, due to the combination of many
@@ -64,7 +63,7 @@ cluster, the channel characteristics, etc. Even the evaluation of the mean
 requires to resort to several approximations, although the final result has been
 shown to be quite accurate, \emph{cf.} \refc{ch:achiev_rates}.
 
-If the \gls{pdf} o fthe achievable rate per user is considered, a suitable
+If the \gls{pdf} of the achievable rate per user is considered, a suitable
 analytical model is provided by the Gamma distribution's \gls{pdf}
 
 \begin{equation} \label{eq:gamma_pdf}
@@ -108,7 +107,7 @@ variance.}
 \end{figure}
 
 \reff{fig:cdf_sim_analy} shows the perfect match between the experimental
-\gls{cdf} adn a Gamma \gls{cdf} for a uniform power allocation, and for
+\gls{cdf} and a Gamma \gls{cdf} for a uniform power allocation, and for
 different system parameters.
 
 The effect of increasing the size of the cluster on the \gls{cdf} of the
@@ -140,8 +139,10 @@ Three different power allocation schemes have been considered:
    \item Uniform power allocation, as described in
       \refss{ssec:uniform_allocation}.
    \item The modified water-filling from \refss{ssec:modified_wf}.
-   \item Optimal power allocation result of solving the convex optimization
-      problem \eqref{eq:sum_rate_maxim} using numerical solvers.
+   \item Power allocation result of solving the convex optimization
+      problem \eqref{eq:sum_rate_maxim} using numerical solvers. In particular
+      the numerical solver used is CVX \cite{cvx}, \cite{gb08}. For the rest of
+      the chapter, this solution will be noted as CVX solution.
 \end{itemize}
 
 \begin{figure}[t]
@@ -160,7 +161,7 @@ user for the three of the schemes proposed, and using a constant antenna setup
 of $t = r = 3$ antennas, an SNR=15\,dB, and two different cluster sizes, namely
 $M \in \left\{5, 8\right\}$.
 
-It should be noted that both, the water-filling and the numerical solutions are
+It should be noted that both the water-filling and the numerical solutions are
 calculated for the problem formulated in \eqref{eq:sum_rate_maxim}, where no
 out-of-cluster interference is present, so that these solutions are not adapted
 to a multi-cluster environment. This is so because such adaptation would require
@@ -191,7 +192,7 @@ of the scenario parameters, as it is shown in detail in \refc{ch:achiev_rates}.
 
 A closed form expression for the variance of the achievable rate cannot be
 obtained without too many simplifying approximations so, instead, an accurate
-value for it is obtained through simulations.
+value is obtained through simulations.
 
 \begin{figure}[t]
 \begin{center}
@@ -208,14 +209,15 @@ function of the cluster size $M$. The different curves are for different system
 parameters, for instance, several values of the \gls{snr} and different antenna
 configurations. Other simulation parameters are fixed, as is the path loss
 exponent $\gamma=3.8$, which is a rather typical value for urban environments as
-used in \cite{karakayali06}, and the uniform power assignment is considered.
+used in \cite{karakayali06}, and the uniform power assignment that is
+considered.
 
 It is interesting to note that increasing the degrees of freedom available in
 the system, by using a higher number of antennas, increases the variance of the
 achievable rate. Something similar happens when the \gls{snr} of the system
 increases.
 
-An important detail that can be stressed is how the variance do not decrease
+An important detail that can be stressed is how the variance does not decrease
 unboundedly with the cluster size, but a minimum can be found, analogously to
 the maximum that can be found in the mean achievable rate in
 \refss{ssec:achiev_optimum_size}.
@@ -277,14 +279,14 @@ schemes, $t=r=3$ and SNR$=15$\,dB.}
 \label{fig:min_rate_power_alloc}
 \end{figure}
 
-The optimal power allocation scheme presents the worst performance, in terms of
-the minimum guaranteed rate. It is easy to understand that the optimal solution
+The CVX power allocation scheme presents the worst performance, in terms of
+the minimum guaranteed rate. It is easy to understand that the CVX solution
 tries to maximize the sum-rate, which comes at the cost of letting the users
 with the worst conditions out, yielding a very unfair system.
 
 On the other hand, both waterfilling and the uniform assignment schemes perform
 better in this regard, and they show a similar behavior. The only difference in
 the behavior appears for bigger clusters. The uniform power assignment performs
-better for small clusters, and the minimum rate decreases noticeable for large
+better for small clusters, and the minimum rate decreases noticeably for large
 clusters. The modified water-filling alternative shows a much more constant
 behavior, with much less difference between small and big clusters.
