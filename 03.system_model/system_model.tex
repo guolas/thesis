@@ -40,6 +40,7 @@ interference, equaling the conditions of all the cells in the network.
     {
     \includegraphics[width=0.45\textwidth]{./03.system_model/img/interfering_scenario}
     }
+    \caption{Different scenario configurations.}\label{fig:scenario_types}
 \end{figure}
 
 Each cell in the system under study will be served with a single \gls{bs} that
@@ -112,7 +113,7 @@ P_{j,\tx} = \Tr \left(\xx_j \xx_j^H\right) = \xx_j^H \xx_j
 \noindent
 and each \gls{bs} will have an independent power constraint
 
-\begin{equation} \label{eq:pbpc}
+\begin{equation} \label{eq:pbpc_generic}
     P_{j,\tx} \leq P_{j, \max}.
 \end{equation}
 
@@ -238,7 +239,7 @@ where $\HH_i \in \C^{r \times Mt}$ is the channel matrix representing the
 propagation from all the \gls{bs} to the $i$-th user.
 
 As it has already been mentioned, receiver cooperation is not going to be
-considered, so looking at a particular user, \emph{e.g.} the $i$-th user, the
+considered, so looking at a particular user, \eg the $i$-th user, the
 signal that is received will be
 
 \begin{equation} \label{eq:rx_signal_user}
@@ -270,7 +271,7 @@ and using \eqref{eq:rx_signal_user_interf}, the ergodic (mean) rate for the
 $i$-th user is given by \cite{cover_thomas}, \cite{holter01}
 
 \begin{equation} \label{eq:generic_ergodic_capacity}
-    R_i = \mathbb{E}\left\{
+    R_i = \E\left\{
         \log_2\left| \eye + \HH_i\Wtx_i\RR_{\ss_i}\WtxH_i\HH_i^H \RR_{\zz_i}^{-1}
     \right|
     \right\}
@@ -293,7 +294,7 @@ mainly to guarantee the feasibility of some of the results obtained:
 
 \begin{itemize}
     \item The number of users will be the same as the number of \gls{bs},
-        \emph{i.e.} $N = M$.
+        \ie $N = M$.
     \item The total number of antennas transmitting will be greater or equal
         than the total number of antennas at the receiver side, this is $Mt
 		\geq Nr$.
@@ -304,7 +305,7 @@ mainly to guarantee the feasibility of some of the results obtained:
         \HH\right) = \min\left(Nr,Mt\right)$. As $Mt \geq Nr$, then $\rank\left(
         \HH\right) = Nr$.
     \item The power available at each of the \gls{bs} will be assumed the same,
-        \emph{i.e.} $P_{j, \max} = P_{\max}$ for all $j$.
+        \ie $P_{j, \max} = P_{\max}$ for all $j$.
 \end{itemize}
 
 % ------------------------------------------------------------------------------
@@ -316,22 +317,22 @@ channel.
 In terms of propagation, the channel is typically decomposed as
 
 \begin{equation} \label{eq:propagation_decomp}
-    \HH_{ij} = \RR_{\text{rx}, ij} \Hbar_{ij} \RR_{\text{tx}, ij}
+    \HH_{ij} = \RR_{\text{rx}, ij} \HH_{\text{iid},ij} \RR_{\text{tx}, ij}
 \end{equation}
 
 \noindent
 where $\RR_{\text{tx}, ij} \in \C^{t \times t}$ is the spatial correlation at
-the transmitter, $\Hbar \in \C^{r \times t}$ is the fading channel, and
-$\RR_{\text{rx}, ij} \in \C^{r \times r}$ is the spatial correlation at the
-receiver. In the current work, unless stated otherwise, the channel is
-considered spatially uncorrelated, both at the transmitter and at the receiver,
-that is $\RR_{\text{rx}, ij} = \eye$ and $\RR_{\text{rx}, ij} = \eye$, as in
-\cite{karakayali06}.
+the transmitter, $\HH_{\text{iid},ij} \in \C^{r \times t}$ is the uncorrelated
+fading channel, and $\RR_{\text{rx}, ij} \in \C^{r \times r}$ is the spatial
+correlation at the receiver. In the current work, unless stated otherwise, the
+channel is considered spatially uncorrelated, both at the transmitter and at the
+receiver, that is $\RR_{\text{tx}, ij} = \eye$ and $\RR_{\text{rx}, ij} = \eye$,
+as in \cite{karakayali06}.
 
 The small scale characteristics considered are Rayleigh, so that the entries of
-$\Hbar_{ij}$ are \gls{iid} complex Gaussian random variables with zero mean and
-a variance given by the power path loss between the $j$-th \gls{bs} and the
-$i$-th user.
+$\HH_{\text{iid},ij}$ are \gls{iid} complex Gaussian random variables with zero
+mean and a variance given by the power path loss between the $j$-th \gls{bs} and
+the $i$-th user.
 
 The attenuation that the signal experiences due to the propagation varies
 according to an exponential power decay with exponent $\gamma$, so that the path
@@ -354,7 +355,7 @@ analysis done in this work, but without any loss of generality, pl$_0$ and $d_0$
 are assumed equal to 1.
 
 % ------------------------------------------------------------------------------
-\subsection{\gls{snr}}
+\subsection{\gls{snr}} \label{ssec:snr}
 
 With the definition of the propagation model that is used in this work, it can
 also be explained the definition of \gls{snr} that is used for the theoretical
@@ -406,7 +407,7 @@ is equivalent to meet the following
 \end{equation}
 
 Let $\Htilde_i$ be the channel matrix $\HH$ with the rows corresponding to the
-matrix $\HH_i$ removed, \emph{i.e.}
+matrix $\HH_i$ removed, \ie
 
 \begin{equation} \label{eq:h_tilde}
     \Htilde_i = \begin{bmatrix}
@@ -421,7 +422,7 @@ matrix $\HH_i$ removed, \emph{i.e.}
 
 Then the condition \eqref{eq:cancel_interf} can be obtained making $\Wtx_i$ lie
 in the null space or kernel of $\Htilde_i$. This is possible only if the
-dimension of the null space is greater than zero, \emph{i.e.} $\rank\left(\ker
+dimension of the null space is greater than zero, \ie $\rank\left(\ker
 \left(\Htilde_i\right)\right) > 0$.
 
 Now, with the dimensions of $\Htilde$, the rank of its null space is
@@ -479,7 +480,7 @@ Using these matrices as precoding the result is
 that, as it can be seen, has a block diagonal structure, which gives the name to
 the algorithm proposed in \cite{spencer04}.
 
-The next problem that \gls{bd} solves is the maximization of the sum rate of the
+The next problem that \gls{bd} solves is the maximization of the sum-rate of the
 system, given the block diagonal structure in \eqref{eq:block_diag}. The
 precoding matrix $\Wtx_i$ will be considered to be
 
@@ -495,7 +496,7 @@ Introducing \eqref{eq:wtx_nosvd} into \eqref{eq:generic_ergodic_capacity} the
 ergodic capacity simplifies to
 
 \begin{equation} \label{eq:bd_ergodic_capacity_nosvd}
-    R_i^{\text{no interf}} = \mathbb{E}\left\{
+    R_i^{\text{no interf}} = \E\left\{
         \log_2\left| \eye + \frac{1}{\sigma_i^2}\Hhat_i\WW_i^{\prime}
         \RR_{\ss_i} \WW_i^{\prime,H}\Hhat_i^H
     \right|
@@ -537,7 +538,7 @@ Using all of the above, the rate that the $i$-th user can obtain is given by the
 expression
 
 \begin{equation} \label{eq:bd_ergodic_capacity}
-    R_i^{\text{BD}} = \mathbb{E}\left\{
+    R_i^{\text{BD}} = \E\left\{
         \sum\limits_{k = 1}^{\ell} \log_2 \left(1 + \frac{\lambdahat_{ik}
         p_{ik}}{\sigma_i^2} \right)
     \right\}
@@ -639,7 +640,7 @@ the power constraint in \eqref{eq:generic_optim_problem} can then be
 reformulated as
 
 \begin{equation} \label{eq:pbpc_constraint}
-	\Tr \left( \WtxBar_j\RR_{\ss}\WtxHbar_j \right) \leq P_{j,\max}
+	\Tr \left( \WtxBar_j\RR_{\ss}\WtxBarH_j \right) \leq P_{j,\max}
 \end{equation}
 
 Now the term inside the trace operator can be written explicitly as a function
@@ -652,13 +653,13 @@ of $p_{ik}$ in order to make it easier to analyze. First define
 
 \noindent
 where $\wbar_{j, ik} \in \C^{t \times 1}$ is the $ik$-th column of $\WtxBar_j$,
-\emph{i.e.} the precoding that is used at the $j$-th \gls{bs} for the $k$-th
+\ie the precoding that is used at the $j$-th \gls{bs} for the $k$-th
 stream of the $i$-th user.
 And then:
 
 \begin{equation}
 \begin{aligned}
-	\WtxBar_j\RR_{\ss}\WtxHbar_j = &\left[\wbar_{j,11}, \ldots, \wbar_{j, N\ell}
+	\WtxBar_j\RR_{\ss}\WtxBarH_j = &\left[\wbar_{j,11}, \ldots, \wbar_{j, N\ell}
 	\right]
 	\begin{bmatrix}
 		p_{11} &        & 0\\
@@ -682,7 +683,7 @@ And then:
 and the trace is
 
 \begin{equation} \label{eq:trace_terms_p_i}
-	\Tr\left(\WtxBar_j \RR_{\ss} \WtxHbar_j\right) = \sum\limits_{i = 1}^N
+	\Tr\left(\WtxBar_j \RR_{\ss} \WtxBarH_j\right) = \sum\limits_{i = 1}^N
 	\sum\limits_{k = 1}^\ell p_{ik} \left\| \wbar_{j, ik} \right\|_2^2
 \end{equation}
 
@@ -1110,7 +1111,7 @@ Recall from \eqref{eq:pbpc_constraint} the power transmitted by the $j$-th
 and \eqref{eq:pbpc_constraint} becomes
 
 \begin{equation} \label{eq:pbpc_equal}
-    p_s \Tr \left( \WtxBar_j \WtxHbar_j \right) \leq P_{j, \max}, \quad
+    p_s \Tr \left( \WtxBar_j \WtxBarH_j \right) \leq P_{j, \max}, \quad
     j = 1, \ldots, M
 \end{equation}
 
@@ -1119,12 +1120,12 @@ The new power allocation problem can be formulated as
 \begin{equation} \label{eq:equal_optim}
 \begin{aligned}
     &\maxi\limits_{p} && p \\
-    &\st && p \Tr \left(\WtxBar_j \WtxHbar_j \right) \leq P_{j, \max}, &\quad
+    &\st && p \Tr \left(\WtxBar_j \WtxBarH_j \right) \leq P_{j, \max}, &\quad
     j = 1, \ldots, M
 \end{aligned}
 \end{equation}
 
 \noindent
 which is a \emph{linear programming} optimization problem, and it can be solved
-efficiently using classical methods, \emph{e.g.} bisection method
+efficiently using classical methods, \eg bisection method
 \cite{burden_numerical}.

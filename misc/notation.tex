@@ -3,7 +3,7 @@
 { % taller table rows
 \renewcommand{\arraystretch}{1.5}
 
-\begin{tabularx}{\textwidth}{lX}
+\begin{longtabu} to \textwidth {lX}
 $a$ & Scalar. \\
 $\aa$ & Vector. \\
 $\AA$ & Matrix. \\
@@ -24,18 +24,21 @@ $\blkdiag\left(\AA_1, \ldots, \AA_N\right)$ & Block diagonal matrix
     formed with the matrices $\left\{\AA_1, \ldots, \AA_N\right\}$. \\
 $\diag\left(a_1, \ldots, a_N\right)$ & Diagonal matrix whose main
     diagonal is $\left\{a_1, \ldots, a_N\right\}$. \\
+$\text{eig}\left(\AA\right)$ & Diagonal matrix whose main diagonal are the
+    eigenvalues of the matrix $\AA$. \\
 $\left\|\aa\right\|_2$ & Norm-2 (Euclidean norm) of the vector $\aa$, see
     \eqref{eq:norm2}. \\
+$\left\|\AA\right\|_F$ & Frobenius norm of the matrix $\AA$, see
+    \eqref{eq:frob_norm}. \\
 $\nablabf_{\xx}f(\xx)$ & Gradient of a function $f(\xx)$,
-    \eqref{eq:gradient} \\
-$\mathbb{E}\left\{\cdot\right\}$ & Statistical expectation. \\
+    \eqref{eq:gradient}. \\
+$\E\left\{\cdot\right\}$ & Statistical expectation. \\
 $\log\left(\cdot\right)$ & Natural (base $e$) logarithm. \\
 $\log_2\left(\cdot\right)$ & Base 2 logarithm. \\
 $\left[ a \right]^+$ & $\max\left( 0,a \right)$. \\
-$\mathbb{R}$ & Field of real numbers. \\
-$\mathbb{R}^+$ & Set of positive real numbers. \\
-$\mathbb{R}^+ \cup \left\{0\right\}$ & Set of non-negative real numbers. \\
-$\mathbb{C}$ & Field of complex numbers.
-\end{tabularx}
-
+$\R$ & Field of real numbers. \\
+$\R^+$ & Set of positive real numbers. \\
+$\R^+ \cup \left\{0\right\}$ & Set of non-negative real numbers. \\
+$\C$ & Field of complex numbers.
+\end{longtabu}
 }

@@ -1,4 +1,6 @@
-\chapter[Rate Statistics]{Achievable Rate and Fairness in Coordinated Base Station Transmission}\label{ch:rate_statistics}
+\chapter[Rate Statistics]{Achievable Rate and Fairness in Coordinated Base
+Station Transmission\footnote{The work shown in this chapter has been published
+in \cite{corvaja14}.}}\label{ch:rate_statistics}
 
 % ------------------------------------------------------------------------------
 \section{Introduction}\label{sec:stats_intro}
@@ -20,7 +22,7 @@ distribution arises in several contexts when considering non-negative random
 variables whose value is determined by several joint distributions. For example,
 in \cite{heath13} it is used to model the interference in an
 interference-limited cellular network in order to simplify the calculation of
-the success probability, \emph{i.e.} the complementary event of an outage, and
+the success probability, \ie the complementary event of an outage, and
 the ergodic rate. In \cite{alahmadi10} a Gamma distribution is used to model
 composite fading channels. And in \cite{atapattu11} a mixture Gamma distribution
 is proposed to describe the \gls{snr} of wireless channels, mainly composite
@@ -81,7 +83,7 @@ the fact that the achievable rate per user in \eqref{eq:stats_achiev_rate} is
 the result of adding several non-negative terms. The \emph{central limit theorem
 for causal functions} \cite{papoulis_fourier} states that the convolution of an
 unbounded number of causal functions can be approximated using a Gamma
-distribution. A causal function is a function defined only for $\mathbb{R}^{+}
+distribution. A causal function is a function defined only for $\R^{+}
 \cup \left\{0\right\}$, as $\log_2\left(1+x\right)$ with $x \geq 0$ is. In the
 case under study the sum of terms is not unbounded, but \cite{papoulis_fourier}
 shows also how the approximation is accurate also for a sum of a finite number
@@ -97,8 +99,8 @@ fitting.
 
 \begin{figure}[t]
 \begin{center}
-   \dummybox
-% \hspace*{8mm}\input ./CDFgamma.tex
+%     \dummybox
+    \hspace*{8mm}\input ./11.rate_statistics/img/CDFgamma.tex
 \end{center}
 \caption{\gls{cdf} of the achievable rate per user with $t=r=2$ and
 SNR=15\,dB. Comparison with the Gamma distribution with the same mean and
@@ -115,8 +117,8 @@ achievable rate is shown in \reff{fig:cdf_cluster_size}
 
 \begin{figure}[t]
 \begin{center}
-   \dummybox
-% \hspace*{1mm}\input ./CDFclusters.tex
+%    \dummybox
+    \hspace*{1mm}\input ./11.rate_statistics/img/CDFclusters.tex
 \end{center}
 \caption{\gls{cdf} of the achievable rate per user with $t=r=2$ and
 SNR=15\,dB for different values of the cluster size.}
@@ -147,8 +149,8 @@ Three different power allocation schemes have been considered:
 
 \begin{figure}[t]
 \begin{center}
-   \dummybox
-% \hspace*{1mm}\input ./CDFgamma_power.tex
+%    \dummybox
+    \hspace*{1mm}\input ./11.rate_statistics/img/CDFgamma_power.tex
 \end{center}
 \caption{\gls{cdf} of the achievable rate per user with $t=r=3$ and SNR=15\,dB.
 Comparison between different power allocation schemes.}
@@ -164,7 +166,7 @@ $M \in \left\{5, 8\right\}$.
 It should be noted that both the water-filling and the numerical solutions are
 calculated for the problem formulated in \eqref{eq:sum_rate_maxim}, where no
 out-of-cluster interference is present, so that these solutions are not adapted
-to a multi-cluster environment. This is so because such adaptation would require
+to a multicluster environment. This is so because such adaptation would require
 some sort of coordination among different clusters, and that is out of the scope
 of this work.
 
@@ -196,8 +198,8 @@ value is obtained through simulations.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{1mm}\input ./Varianza.tex
+%     \dummybox
+    \hspace*{1mm}\input ./11.rate_statistics/img/Varianza.tex
 \end{center}
 \caption{Variance of the achievable rate per user with different values of
 \gls{snr} and of $t$ and $r$ as a function of the cluster size $M$.}
@@ -240,8 +242,8 @@ that can be guaranteed to $X$\,\% of the users.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{1mm}\input ./Fairness90.tex
+%     \dummybox
+    \hspace*{1mm}\input ./11.rate_statistics/img/Fairness90.tex
 \end{center}
 \caption{Rate achieved by 90\,\% of the users with different antenna
 configurations and different values of \gls{snr}.}
@@ -271,8 +273,8 @@ allocation strategies.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{1mm}\input ./Fairness90power.tex
+%     \dummybox
+    \hspace*{1mm}\input ./11.rate_statistics/img/Fairness90power.tex
 \end{center}
 \caption{Rate achieved by 90\,\% of the users with different power assignment
 schemes, $t=r=3$ and SNR$=15$\,dB.}

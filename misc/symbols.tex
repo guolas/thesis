@@ -5,12 +5,12 @@
 
 \def\C{\mathbb{C}}
 \def\R{\mathbb{R}}
+\def\E{\mathbb{E}}
 
 \def\Ltilde{\widetilde{L}}
 \def\Lhat{\widehat{L}}
 \def\lambdahat{\hat{\lambda}}
 \def\lambdahatsqrt{\hat{\lambda}^{\sfrac{1}{2}}}
-
 \def\Rcell{R_{\text{cell}}}
 \def\Dtone{D_{\text{tier 1}}}
 \def\Dtonebar{\overline{D}_{\text{tier 1}}}
@@ -24,6 +24,14 @@
 
 \def\hgeo{\tensor*[_2]{\text{F}}{_1}}
 
+\def\thetath{\theta_{\text{th}}}
+
+\def\B{\mathcal{B}}
+\def\Bin{\mathcal{B}_{\text{in}}}
+\def\Bout{\mathcal{B}_{\text{out}}}
+\def\U{\mathcal{U}}
+\def\Ubd{\mathcal{U}_{\text{BD}}}
+
 % Matrices
 \def\zero{\mathbf{0}}
 \def\eye{\mathbf{I}}
@@ -31,13 +39,13 @@
 \def\HH{\mathbf{H}}
 \def\Htilde{\mathbf{\widetilde{H}}}
 \def\Hhat{\mathbf{\widehat{H}}}
-\def\Hbar{\mathbf{\bar{H}}}
+\def\Hbar{\mathbf{\overline{H}}}
 
 \def\WW{\mathbf{W}}
 \def\Wtx{\mathbf{W}^{(\tx)}}
 \def\WtxBar{\mathbf{\overline{W}}^{(\tx)}}
 \def\WtxH{\mathbf{W}^{(\tx),H}}
-\def\WtxHbar{\mathbf{\overline{W}}^{(\tx),H}}
+\def\WtxBarH{\mathbf{\overline{W}}^{(\tx),H}}
 \def\Wrx{\mathbf{W}^{(\rx)}}
 \def\WrxH{\mathbf{W}^{(\rx),H}}
 
@@ -69,11 +77,13 @@
 % Vectors
 \def\yy{\mathbf{y}}
 \def\xx{\mathbf{x}}
+\def\xbar{\mathbf{\overline{x}}}
 \def\ww{\mathbf{w}}
 \def\wbar{\mathbf{\bar{w}}}
 \def\nn{\mathbf{n}}
 \def\ss{\mathbf{s}}
 \def\zz{\mathbf{z}}
+\def\zhat{\mathbf{\hat{z}}}
 \def\pp{\mathbf{p}}
 \def\aa{\mathbf{a}}
 
@@ -88,25 +98,15 @@
 \DeclareMathOperator*{\maxp}{max.}
 \DeclareMathOperator*{\st}{subject\,to}
 \DeclareMathOperator*{\stp}{s.t.}
+\DeclareMathOperator*{\argmax}{arg.\,max.}
+\DeclareMathOperator*{\first}{first}
+\DeclareMathOperator*{\cell}{cell}
 
 % Dummy box for images to be placed later
 \def\dummybox{\framebox(266.67, 150){}}
 
-% original from Roberto's hand
-\def\be{\begin{equation}}
-\def\ee{\end{equation}}
-\def\miH{\mathbf{H}}
-\def\miy{\mathbf{y}}
-\def\mix{\mathbf{x}}
-\def\miw{\mathbf{w}}
-\def\miW{\mathbf{W}}
-\def\minn{\mathbf{n}}
-\def\mib{\mathbf{b}}
-\def\miT{\text{T}}
-\def\miQ{\mathbf{Q}}
-\def\miR{\mathbf{R}}
-\def\mi0{\mathbf{0}}
-\def\miI{\mathbf{I}}
-\def\miU{\mathbf{U}}
-\def\miS{\mathbf{S}}
-\def\miSigma{\mathbf{\Sigma}}
+% Latin phrases, both followed by a comma and not italicized, as it is usual
+% in American English:
+% (http://dictionary.reference.com/help/faq/language/g58.html)
+\def\ie{i.e., }
+\def\eg{e.g., }

@@ -6,7 +6,7 @@ Station Transmission with Block Diagonalization\footnote{
 %-------------------------------------------------------------------------------
 \section{Introduction}\label{sec:achiev_introduction}
 
-In \verb+\refc{ch:state_art}+ it has been discussed how global coordination in a
+In \refc{ch:state_art} it has been discussed how global coordination in a
 cellular network is not feasible for practical application. Research has shown
 that grouping cells in clusters may help to alleviate some of the problems of
 global coordination. The clustering solution is not unique, though, and multiple
@@ -29,7 +29,7 @@ The network to be considered is organized as independent groups of $M$ cells,
 each of which is a cluster where its cells coordinate in order to transmit to
 the $N$ users that are located within the cluster.
 
-The clusters that form the network are non-overlapping, \emph{i.e.} each cell in
+The clusters that form the network are non-overlapping, \ie each cell in
 the system belongs to one and only one cluster. Overlapping, user-centric
 clusters have been shown to provide, in some situations, better performance than
 disjoint clusters \cite{bjornson11}, but this approach gives rise to a dramatic
@@ -47,8 +47,8 @@ of the optimization problem to obtain the power allocation scheme.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{1mm}\input ./Fig2.tex
+%     \dummybox
+    \hspace*{1mm}\input ./10.achievable_rates/img/Fig2.tex
 \end{center}
 \caption{System layout with clusters of seven cells of radius $\Rcell$ (the
 radius of the circle circumscribing the cell) with an example of two users,
@@ -98,7 +98,7 @@ The interference power received at the user $i$ is equal to
 \end{equation}
 
 \noindent
-where $\Minterf$ is the number of interfering \gls{bs}, \emph{i.e.} the total
+where $\Minterf$ is the number of interfering \gls{bs}, \ie the total
 number of cells in the system minus the $M$ cells that form the cluster, and
 $\hat{d}_{im}$ is the distance from the $m$-th \gls{bs} outside the cluster to
 the $i$-th user in the cluster. All the interfering \gls{bs} are assumed to be
@@ -141,8 +141,8 @@ as $\Minti \leq \Minterf$.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{-8mm}\input ./Fig3.tex
+%     \dummybox
+    \hspace*{-8mm}\input ./10.achievable_rates/img/Fig3.tex
 \end{center}
 \caption{Cluster with $M=4$ cells and neighbor interfering cells.}
 \label{fig:cluster_interf_cells}
@@ -169,7 +169,7 @@ $M_{\text{int}, 1} = 6$ belonging to the first tier.
 \label{fig:cluster_1}
 \end{figure}
 
-An assumption that can be made is that half of the $M_{\text{int}, 1}$, \emph{i.e.} three, \gls{bs} are located at a distance $\left( D_1 - d_1 \right)$ and the
+An assumption that can be made is that half of the $M_{\text{int}, 1}$, \ie three, \gls{bs} are located at a distance $\left( D_1 - d_1 \right)$ and the
 other half are located at a distance $\left( D_1 + d_1 \right)$. Accordingly,
 the interference power can be expressed as
 
@@ -200,11 +200,11 @@ is given by
 In order to evaluate \eqref{eq:general_meq}, it is possible to set the distance
 $d_i$ to the average distance of the user within the cell. A similar approach is
 used in \cite{pijcke11} to characterize the statistics of the interference in a
-multi-cell scenario. This average distance can be obtained from the uniform
+multicell scenario. This average distance can be obtained from the uniform
 spatial distribution in \eqref{eq:pdf_distance} as
 
 \begin{equation} \label{eq:average_distance}
-    \mathbb{E}\left\{d_i\right\} = \frac{2}{3}\Rcell
+    \E\left\{d_i\right\} = \frac{2}{3}\Rcell
 \end{equation}
 
 \noindent
@@ -374,7 +374,7 @@ covariance matrix is different from the identity, $\mathbf{\Sigma} \neq \eye$,
 and it is given by \cite{tulino04}
 
 \begin{equation} \label{eq:sum_log_kappa}
-    \mathbb{E}\left\{\sum_{i=1}^{N}\sum_{k=1}^{\ell}\log\left(\kappa_{ik}
+    \E\left\{\sum_{i=1}^{N}\sum_{k=1}^{\ell}\log\left(\kappa_{ik}
     \right)\right\} = \sum_{m = 1}^{N\ell} \psi\left(N\ell - m\right) +
     \log\left(\left|\mathbf{\Sigma}\right|\right)
 \end{equation}
@@ -447,8 +447,8 @@ case of $t = r = 2$.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{1mm}\input ./Fig4.tex
+%     \dummybox
+    \hspace*{1mm}\input ./10.achievable_rates/img/Fig4.tex
 \end{center}
 \caption{Sum-log of the terms $\kappa_{ij}$. Comparison between simulations and
 the values obtained using \eqref{eq:sum_log_kappa} for $ t = r = 2$.}
@@ -476,7 +476,7 @@ Under the \gls{bd} strategy, the transmission within each cluster is equivalent
 to a set of parallel non-interfering channels.
 
 Therefore, the transmission power must be allocated in order to optimize some
-quality of service parameters, such as the sum rate or a weighted sum of the
+quality of service parameters, such as the sum-rate or a weighted sum of the
 rates, for the users of each cluster.
 
 This objective is subject to a maximum transmission power available at each
@@ -517,14 +517,14 @@ which the following factor is maximum
     \wbar_{j, ik} \right\|_2^2
 \end{equation}
 
-Assuming that the coefficients of the precoding matrix, \emph{i.e.} the elements
+Assuming that the coefficients of the precoding matrix, \ie the elements
 of the vector $\wbar_{j, ik}$, are Gaussian then $\chi_j$ is a Chi-squared
 random variables with $\Np \triangleq N\ell t$ degrees of freedom, and then
 the power $p_s$ is related to the reciprocal value of the maximum of $M$ random
 variables
 
 \begin{equation} \label{eq:ps_reciprocal}
-    p_s = \frac{P_{\max}}{\mathbb{E}\left\{\chi\right\}}
+    p_s = \frac{P_{\max}}{\E\left\{\chi\right\}}
 \end{equation}
 
 \noindent
@@ -547,7 +547,7 @@ The mean value can be derived from the probability distribution function in
 \eqref{eq:chi_squared_dist_function} as
 
 \begin{equation} \label{eq:chi_squared_mean}
-    \mathbb{E}\left\{\chi\right\} = \int\limits_0^\infty \left( 1 - F_{\chi}
+    \E\left\{\chi\right\} = \int\limits_0^\infty \left( 1 - F_{\chi}
     \left(x\right)\right) \dee x
 \end{equation}
 
@@ -582,7 +582,7 @@ The average value of $\chi$ is then bounded by
 
 \begin{equation} \label{eq:bound_chi}
     \frac{1}{\beta}\left[\psi\left(Mt + 1\right) + \gamma_0\right] \leq
-    \mathbb{E}\left\{\chi\right\} \leq
+    \E\left\{\chi\right\} \leq
     \frac{1}{\alpha}\left[\psi\left(Mt + 1\right) + \gamma_0\right]
 \end{equation}
 
@@ -606,8 +606,8 @@ compared in \reff{fig:bound_chi} with the results obtained through simulations.
 
 \begin{figure}[t]
 \begin{center}
-\dummybox
-% \hspace*{-0mm}\input ./Fig5.tex
+%     \dummybox
+    \hspace*{-0mm}\input ./10.achievable_rates/img/Fig5.tex
 \end{center}
 \caption{Normalized average power per stream $p_s / P_{\max}$ for different
 antenna configurations: comparison between simulations and the bounds in
@@ -742,13 +742,13 @@ The parameter evaluated in the simulations is the achievable rate defined in
 by simulations.
 
 As it has already been mentioned, the clusters considered are static,
-\emph{i.e.} they are fixed and do not change for all the simulations. Despite
+\ie they are fixed and do not change for all the simulations. Despite
 this, not all the clusters must have the same shape for the same cluster size
 $M$. In fact, in the simulations, the clusters were generated following a
 heuristic approach that tries to group cells in a compact way, with a regular
 shape, by minimizing the sum of the inter-cell distances, thus to avoid long
 clusters. Note, however, that some values of $M$ do not allow for regular
-clusters, \emph{i.e.} hexagonal, to be formed. \reff{fig:irregular_clusters}
+clusters, \ie hexagonal, to be formed. \reff{fig:irregular_clusters}
 shows an example of this situation, where not all the clusters have the same
 shape.
 
@@ -778,8 +778,8 @@ so to observe the behaviour in different \gls{snr} regimes.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{-2mm}\input ./Fig6.tex
+%     \dummybox
+    \hspace*{-2mm}\input ./10.achievable_rates/img/Fig6.tex
 \end{center}
 \caption{Mean achievable rate per user as a function of the number of
 cells in the cluster for $r=2$, $t=2$, variable values of \gls{snr},
@@ -827,11 +827,11 @@ values.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{-2mm}\input ./Fig7.tex
+%     \dummybox
+    \hspace*{-2mm}\input ./10.achievable_rates/img/Fig7.tex
 \end{center}
 \caption{Mean achievable rate as a function of the \gls{snr} for different
-values of the path-loss coefficient $\gamma$.}
+values of the path loss coefficient $\gamma$.}
 \label{fig:rate_vs_snr_gamma}
 \end{figure}
 
@@ -849,8 +849,8 @@ despite having the same number of cells.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{0.5mm}\input ./Fig8.tex
+%     \dummybox
+    \hspace*{0.5mm}\input ./10.achievable_rates/img/Fig8.tex
 \end{center}
 \caption{Mean achievable rate per user as a function of the cluster size for
 \gls{snr}$=25\,$dB, $\gamma=3.8$ and different antenna configurations.}
@@ -870,7 +870,7 @@ in \reff{fig:rate_vs_cluster_size}, is two-fold:
     \item Second, the power assigned to each data stream, the terms $p_{ik}$
         that for a uniform power allocation are all equal to $p_s$, also
         decreases as the the cluster grows, \reff{fig:bound_chi}, due to a
-        coordination "loss".
+        coordination ``loss''.
 \end{itemize}
 
 In this section, a different power allocation scheme, other than the uniform,
@@ -885,8 +885,8 @@ instead of the uniform power allocation.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{-1mm}\input ./Fig9.tex
+%     \dummybox
+    \hspace*{-1mm}\input ./10.achievable_rates/img/Fig9.tex
 \end{center}
 \caption{Comparison between different power allocation schemes, namely uniform
 and optimal. Mean achievable rate per user as a function of the cluster size for
@@ -928,8 +928,8 @@ set to a 10\,\%.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{-1mm}\input ./Fig10.tex
+%     \dummybox
+    \hspace*{-1mm}\input ./10.achievable_rates/img/Fig10.tex
 \end{center}
 \caption{Optimum cluster size as a function of the \gls{snr}, $\gamma=3.8$ and
 different antenna configurations.}
@@ -971,8 +971,8 @@ by a factor of $\alpha$, getting $\mathtt{SNR}_{\text{eff}}=\left(1-\alpha
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% \hspace*{-1mm}\input ./Fig11.tex
+%     \dummybox
+    \hspace*{-1mm}\input ./10.achievable_rates/img/Fig11.tex
 \end{center}
 \caption{Mean achievable rate and payload rate as a function of the cluster size
 $M$ with different SNRs.}
