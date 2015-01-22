@@ -53,7 +53,7 @@ loss of generality, it is assumed that the $i$-th user is served by the $i$-th
 \gls{bs}, and in the following the distance between a user and its serving
 \gls{bs} will be denoted by $d_i \triangleq d_{ii}$.
 
-A system with $M$ \gls{bs} and $N$ users can then be modelled as
+A system with $M$ \glspl{bs} and $N$ users can then be modelled as
 
 \begin{equation} \label{eq:generic_system_model}
     \yy = \HH \xx + \nn
@@ -73,7 +73,7 @@ where $\yy$ represents the signal received at all the users and is defined as
 \noindent
 where $\yy_i \in \C^{r \times 1}$ is the signal received at the $i$-th user.
 
-$\HH$ is the channel matrix representing the propagation from all the \gls{bs}
+$\HH$ is the channel matrix representing the propagation from all the \glspl{bs}
 to all the users, with the following structure
 
 \begin{equation} \label{eq:generic_ch_mat}
@@ -91,7 +91,7 @@ propagation, small scale fading, shadowing, and any other characteristic of
 the radio channel that needs to be taken into consideration.
 
 The vector $\xx$ in \eqref{eq:generic_rx_signal} is the signal transmitted from
-all the \gls{bs}, and it is composed of
+all the \glspl{bs}, and it is composed of
 
 \begin{equation} \label{eq:generic_tx_signal}
     \xx = \begin{bmatrix}
@@ -134,10 +134,10 @@ entries, drawn from a zero mean, $\sigma_i^2$ variance Gaussian distribution,
 $\nn_i \sim \mathcal{N}\left(\zero, \sigma_i^2 \eye\right)$. The noise variance
 will be assumed the same for all the receivers.
 
-In a general scenario, there may be cooperation among the \gls{bs} in the system
-so that the information intended for a particular user will be transmitted by
-several or all the \gls{bs}. Or, equivalently, each \gls{bs} transmits a
-combination of the information of several users
+In a general scenario, there may be cooperation among the \glspl{bs} in the
+system so that the information intended for a particular user will be
+transmitted by several or all the \glspl{bs}. Or, equivalently, each \gls{bs}
+transmits a combination of the information of several users
 
 \begin{equation} \label{eq:generic_tx_precod}
     \xx_j = \Wtx_{j1} \ss_1 + \cdots + \Wtx_{jN} \ss_N
@@ -236,7 +236,7 @@ The channel matrix can then be partitioned as
 
 \noindent
 where $\HH_i \in \C^{r \times Mt}$ is the channel matrix representing the
-propagation from all the \gls{bs} to the $i$-th user.
+propagation from all the \glspl{bs} to the $i$-th user.
 
 As it has already been mentioned, receiver cooperation is not going to be
 considered, so looking at a particular user, \eg the $i$-th user, the
@@ -293,7 +293,7 @@ In the rest of the work, there are a set of assumptions that will be made,
 mainly to guarantee the feasibility of some of the results obtained:
 
 \begin{itemize}
-    \item The number of users will be the same as the number of \gls{bs},
+    \item The number of users will be the same as the number of \glspl{bs},
         \ie $N = M$.
     \item The total number of antennas transmitting will be greater or equal
         than the total number of antennas at the receiver side, this is $Mt
@@ -304,8 +304,8 @@ mainly to guarantee the feasibility of some of the results obtained:
         receivers, so that $\HH$ is full rank or, equivalently, $\rank\left(
         \HH\right) = \min\left(Nr,Mt\right)$. As $Mt \geq Nr$, then $\rank\left(
         \HH\right) = Nr$.
-    \item The power available at each of the \gls{bs} will be assumed the same,
-        \ie $P_{j, \max} = P_{\max}$ for all $j$.
+    \item The power available at each of the \glspl{bs} will be assumed the
+        same, \ie $P_{j, \max} = P_{\max}$ for all $j$.
 \end{itemize}
 
 % ------------------------------------------------------------------------------
@@ -372,9 +372,9 @@ given by
 \end{equation}
 
 \noindent
-where it is assumed that all the \gls{bs} have the same maximum transmission
-power. Using \eqref{eq:snr_noise} it is possible to calculate the noise power for a
-given \gls{snr} and vice versa.
+where it is assumed that all the \glspl{bs} have the same maximum transmission
+power. Using \eqref{eq:snr_noise} it is possible to calculate the noise power
+for a given \gls{snr} and vice versa.
 
 % ------------------------------------------------------------------------------
 \section{Block Diagonalization}\label{sec:bd}
@@ -585,7 +585,7 @@ intermediate result.
 For the sake of simplicity, \gls{pbpc} will be used for the different analyses. In any case, \gls{papc} can be seen as a particularization of \gls{pbpc} as the
 derivations shown in this section can be applied to a \gls{papc} system
 considering instead of each \gls{bs} to have $t$ transmit antennas, $t$ single
-antenna \gls{bs}.
+antenna \glspl{bs}.
 
 The problem that needs to be solved is, in general, the maximization of some
 function of the rate of each of the users subject to a \gls{pbpc}
@@ -896,7 +896,7 @@ Calling
 The result in \eqref{eq:optimum_p} resembles the classical \emph{water-filling}
 solution, except that now the water level is not fixed, and it depends on the
 precoders. The coupling existing among the power constraints of the different
-\gls{bs} makes it impossible to find a closed-form solution for the values of
+\glspl{bs} makes it impossible to find a closed-form solution for the values of
 $p_{ik}$.
 
 Nevertheless, this analysis motivates the development of suboptimal schemes that are described in the following sections.
@@ -911,9 +911,9 @@ optimal power allocation problem. \cite{armada11b} approaches the problem by
 first considering an equivalent virtual \gls{bs} so that the problem is cast
 with a single power constraint.
 
-In order to do so, instead of having a power constraint for each of the \gls{bs}
-consider a single power constraint given by the most restrictive \gls{bs} in the
-original problem. Define
+In order to do so, instead of having a power constraint for each of the
+\glspl{bs} consider a single power constraint given by the most restrictive
+\gls{bs} in the original problem. Define
 
 \begin{equation} \label{eq:equiv_bs}
     \OmegaEq = \max\limits_{j=1, \ldots,M} \left\|\wbar_{j,ik} \right\|_2^2
@@ -940,7 +940,7 @@ users' streams. The optimization problem becomes then
 
 \noindent
 where $P_{\text{BS}, \max}$ represents the most restrictive power constraint
-among all of the \gls{bs}.
+among all of the \glspl{bs}.
 
 This problem meets the same conditions as the original problem so that a similar
 analysis can be used. First formulate the Lagrangian of the new problem as
@@ -1098,7 +1098,7 @@ users. Formally this means
 
 \noindent
 where the power $p_s$ should be computed taking into account the \gls{pbpc} for
-each of the \gls{bs}.
+each \gls{bs}.
 
 Recall from \eqref{eq:pbpc_constraint} the power transmitted by the $j$-th
 \gls{bs}, where now the matrix $\RR_{\ss}$ is given by

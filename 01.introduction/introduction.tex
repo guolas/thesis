@@ -12,8 +12,8 @@ previous generations, and updating them with novel ideas.
 
 
 The \emph{release 7} of the \gls{3gpp} \gls{3g} specifications \cite{3gpprel7},
-also known as \gls{hspa+}, inluded the use of \gls{mimo} as a means to increase
-the rates of transmission.
+also known as \gls{hspa+}, included the use of \gls{mimo} as a means to increase
+the transmission rates.
 
 
 \emph{Release 8}, more well known by its commercial name \gls{lte}
@@ -30,7 +30,7 @@ radio interface \cite{imta} for what is known as \gls{4g} though.
 The introduction of \gls{ltea} in \emph{release 10} of the LTE specification
 \cite{3gppltea} met the requirements to be considered an \gls{imta} system. The
 main novelties included in \gls{ltea} are \gls{ca}, enhanced use of MIMO
-techniques and support for \gls{rn}.
+techniques and support for \glspl{rn}.
 
 \emph{Release 11} \cite{3gpprel11} included in the specification the support for
 \gls{comp} operation. \gls{comp} was included in order to improve the network
@@ -46,9 +46,9 @@ clear what it will \emph{not} be, an incremental advance on \gls{4g}. It needs
 to be a paradigm shift \cite{andrews14}.
 
 The new \gls{5g} systems will be characterized by being heterogeneous, what is
-known as \gls{hetnet}, formed by multiple small cells, using different radio
-access technologies \cite{chin14}. One of the main problems for \gls{hetnet} is
-inter-cell interference, because of the possible presence of unplanned
+known as \glspl{hetnet}, formed by multiple small cells, using different radio
+access technologies \cite{chin14}. One of the main problems for \glspl{hetnet}
+is inter-cell interference, because of the possible presence of unplanned
 deployment of small cells, and the irregular shape of the cells. Hence the importance of interference coordination techniques.
 
 \begin{figure}[t]
@@ -62,7 +62,7 @@ deployment of small cells, and the irregular shape of the cells. Hence the impor
     % so that it does not put the images one on top of the other...
     \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=\textwidth]{./01.introduction/img/universal_freq_reuse.png}
-        \caption{Frequency reuse factor of $1$.}
+        \caption{Frequency reuse factor of $1$. {\color{red} DO NOT FORGET TO NOT EMPHASIZE THE 7-CELL CLUSTERS BUT EACH CELL INDIVIDUALLY}}
         \label{fig:ufreuse}
     \end{subfigure}
     \caption{Different frequency planning options}
@@ -73,7 +73,7 @@ Current \gls{mimo} systems used in cellular networks are not achieving the
 expected performance predicted by the initial theoretical works. The main reason
 for this is the interference that is present naturally in cellular systems when
 all cells share the same spectrum for the tranmissions. The effect of this
-interference is a reduction of the \gls{sinr} experience by the users, highly
+interference is a reduction of the \gls{sinr} experienced by the users, highly
 reducing the advantages that \gls{mimo} could potentially deliver.
 
 The conventional approach for cellular networks was to perform a careful
@@ -95,9 +95,9 @@ It is in this kind of networks that the need for coordination among cells
 arises, as every cell will interfere with the rest of the cells in the system
 reducing the \gls{sinr} operating point of the users.
 
-In the search for higher spectral data rates and a more efficient use of the
-resources, \gls{ufr} is a must to make the most out of the scarce resource that
-the radio frequency spectrum is. Therefore, ``A new look at the interference''
+In the search for higher data rates and a more efficient use of the resources,
+\gls{ufr} is a must to make the most out of the scarce resource that the radio
+frequency spectrum is. Therefore, ``A new look at the interference''
 \cite{gesbert10} is needed. The conventional concept of the interference as
 being an impairment needs to shift to a new point of view where the interference
 can be used to improve the overall performance of the network. A joint
@@ -110,25 +110,25 @@ several cells are assumed to cooperate, in the sense that they take measures in
 order to alleviate to a certain degree the level of interference introduced into
 other parts of the network, or the use of that interference to their advantage.
 
-Intuitively, the best strategy should be to allow all the \gls{bs} in the
-network to cooperate, what is known as \emph{global Coordination}. Even though
+Intuitively, the best strategy should be to allow all the \glspl{bs} in the
+network to cooperate, what is known as \emph{global coordination}. Even though
 it may seem that global coordination may solve all the problems of frequency
 planning and resource allocation, it cannot be ignored that it comes at a
-non-negligible cost. The \gls{bs} in the network may need to interchange
+non-negligible cost. The \glspl{bs} in the network may need to interchange
 information in order to cooperatively transmit the information to all the users
 in the system. The amount of information that needs to be exchanged grows out of
-control with the size of the network, \ie the number of \gls{bs} that form the
+control with the size of the network, \ie the number of \glspl{bs} that form the
 system. The result of this is that the capacity required to transmit this
 information renders the alleged solution useless. Not only are the backhaul
 transmission capabilities required prohibitive, but also tight synchronization
-among the \gls{bs} becomes a challenge, and channel information gathering
+among the \glspl{bs} becomes a challenge, and channel information gathering
 becomes a cumbersome task. Apart from this, theoretical works \cite{lozano13}
 have unveiled intrinsic limitations of cooperation, whose benefits do not
 unboundedly grow with the size of the coordination group.
 
 For all these reasons, clustering appears as a means to cope with the
 limitations of global coordination. In clustering, the coordination is not
-performed among all the \gls{bs} in the network but, instead, small groups, or
+performed among all the \glspl{bs} in the network but, instead, small groups, or
 clusters, are formed and the cooperation takes place locally within the cluster.
 This greatly reduces the amount of control information that should be handled by
 the backhaul. Also, the reduced size of the group makes the system work at an
@@ -179,6 +179,6 @@ The organization of the document is as follows:
         \verb+\refc{ch:adaptive_schedule}+, and a mechanism to deal with it, based on
         a mixed tranmission strategy and on a scheduling algorithm, is
         presented.
-    \item Finally, some conclusions are discussed in \verb+\refc{ch:conclusions}+, and
+    \item Finally, some conclusions are presented in \verb+\refc{ch:conclusions}+, and
         future research topis are discussed.
 \end{itemize}

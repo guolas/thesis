@@ -110,7 +110,7 @@ the absence of interference coming from outside the cluster that is coordinated
 using \gls{bd}.
 
 In this work, \gls{oci} is considered, and in this case \gls{bd}
-is not able to remove it, as the \gls{bs} only coordinate to get rid of the
+is not able to remove it, as the \glspl{bs} only coordinate to get rid of the
 interference from within the cluster. As a result, the rate obtained when using
 \gls{bd} is no longer given by \eqref{eq:bd_ergodic_capacity}, but the following
 revised expression
@@ -131,7 +131,7 @@ of the signal transmitted from the $k$-th \gls{bs} outside the cluster.
 
 The other transmission strategy that is considered in this work is Single User
 processing. This is the case when no coordination is used, so that each \gls{bs}
-serves only one user and, therefore, all the rest of \gls{bs} are considered
+serves only one user and, therefore, all the rest of \glspl{bs} are considered
 interferers.
 
 This translates into
@@ -198,8 +198,8 @@ to compare this metric with a fixed threshold locally at each user in order to
 decide which transmission strategy to use.
 
 Intuitively, \gls{bd} will perform better when the \gls{oci} is low, compared to
-the power received from the \gls{bs} in the cluster. Hence, the proposed metric
-is
+the power received from the \glspl{bs} in the cluster. Hence, the proposed
+metric is
 
 \begin{equation} \label{eq:metric}
    \theta_i =
@@ -209,8 +209,8 @@ is
 \end{equation}
 
 \noindent
-which is the quotient of the power received from the \gls{bs} in the cluster and
-the power received from the \gls{bs} outside the cluster.
+which is the quotient of the power received from the \glspl{bs} in the cluster
+and the power received from the \glspl{bs} outside the cluster.
 
 After the metric is computed, it is compared with a fixed threshold
 $\thetath$ for which there is no closed form expression. That is the
@@ -223,29 +223,29 @@ user. The $i$-th user compares the metric $\theta_i$ with the threshold
 $\thetath$, and decides to use \gls{bd} if $\theta_i >
 \thetath$, and choosen \gls{su} if $\theta_i \leq \thetath$.
 
-All the users feed back their decissions to the \gls{bs}, and this information
-is jointly used by the \gls{bs} in the cluster to coordinate the scheduling of
+All the users feed back their decissions to their \gls{bs}, and this information
+is jointly used by the \glspl{bs} in the cluster to coordinate the scheduling of
 the users and the transmission strategy used for each of them.
 
 % ------------------------------------------------------------------------------
 \section{Scheduling}\label{sec:sched_scheduling}
 
-After the users have made their decision and fed it back to the \gls{bs}, these
-will know which users are more suited to being served using \gls{bd} and which
-ones using \gls{su}.
+After the users have made their decision and fed it back to the \glspl{bs},
+these will know which users are more suited to being served using \gls{bd} and
+which ones using \gls{su}.
 
 Analogously to \cite{moon13}, the users are grouped so that the transmission
-strategy in all the \gls{bs} is the same within a given transmission interval.
+strategy in all the \glspl{bs} is the same within a given transmission interval.
 The motive for this was simplicity, in \cite{moon13}, whereas in this work it is
 proposed to guarantee a good performance. This is so because users served with
 \gls{bd} will experience a serious degradation in their rate if not all the
-\gls{bs} in the cluster coordinate, \ie some of the \gls{bs} transmit to their
-users using \gls{su} precoding.
+\glspl{bs} in the cluster coordinate, \ie some of the \glspl{bs} transmit to
+their users using \gls{su} precoding.
 
 Users that are better served using \gls{su} are indiferent to other users'
-strategies, as no power control is considered or used, and all \gls{bs} will be
-transmitting at maximum power. On the other hand, when the transmission strategy
-used is \gls{bd}, which users are selected in each cell is an important
+strategies, as no power control is considered or used, and all \glspl{bs} will
+be transmitting at maximum power. On the other hand, when the transmission
+strategy used is \gls{bd}, which users are selected in each cell is an important
 operating decision. Depending on the channel matrices of each user, the \gls{bd}
 process will result in a higher or a lower rate. The objective is, then, to
 group the users from different cells so that a certain metric is maximized. In
@@ -412,8 +412,8 @@ of cluster interferers.
 
 At each simulation run, 100 \gls{iid} users are randomly placed within each cell
 of the cluster, according to a uniform spatial distribution over each cell. Each
-of the users has the same antennas as each of the \gls{bs}, \ie $t=r$, either 2
-or 3 in the simulations.
+of the users has the same antennas as each of the \glspl{bs}, \ie $t=r$, either
+2 or 3 in the simulations.
 
 The channel model used is described in \refs{sec:channel_model}.
 
@@ -422,8 +422,8 @@ transmision and immediately after that the rate is calculated for the following
 transmission options:
 
 \begin{itemize}
-    \item All \gls{bs} transmit using \gls{su}.
-    \item All \gls{bs} transmit using \gls{bd}.
+    \item All \glspl{bs} transmit using \gls{su}.
+    \item All \glspl{bs} transmit using \gls{bd}.
     \item The transmission strategy is chosen using the algorithm and scheduling
         proposed in this paper.
     \item The same as the previous, but the scheduling is performed based on the

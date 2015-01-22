@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+@inproceedings{venkatesan07,
+  title={Network {MIMO}: Overcoming intercell interference in indoor wireless systems},
+  author={Venkatesan, Sivarama and Lozano, Angel and Valenzuela, Reinaldo},
+  booktitle={Signals, Systems and Computers, 2007. ACSSC 2007. Conference Record of the Forty-First Asilomar Conference on},
+  pages={83-87},
+  year={2007},
+  organization={IEEE}
+}
+They introduce the concept of network \gls{mimo}. The idea behind this concept
+is that, in theory, it is possible to see the whole cellular network as a single
+\gls{mimo} system, so that all the processing techniques available for
+\gls{mimo} systems could be used to enhance the performance of the network.
+--------------------------------------------------------------------------------
+[Enhancing the Cellular Downlink Capacity via Co-Processing at the Transmitting End] 
+--------------------------------------------------------------------------------

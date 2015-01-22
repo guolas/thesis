@@ -36,14 +36,14 @@ disjoint clusters \cite{bjornson11}, but this approach gives rise to a dramatic
 increase of the management complexity.
 
 The clusters, then, are defined by the network planner, and they are kept fixed,
-grouping the \gls{bs} according to a distance criterion, so that the cells
+grouping the \glspl{bs} according to a distance criterion, so that the cells
 belonging to a cluster must form, borrowing the name from graph theory, a
 \emph{connected component} of the graph containing all the cells in the system.
 
-In the setup under study, all the \gls{bs} in the cluster are considered cluster
-members, that is, no scheduling or adaptive selection of active \gls{bs} is
-addressed in this work. In any case, they could be considered as a special case
-of the optimization problem to obtain the power allocation scheme.
+In the setup under study, all the \glspl{bs} in the cluster are considered
+cluster members, that is, no scheduling or adaptive selection of active
+\glspl{bs} is addressed in this work. In any case, they could be considered as a
+special case of the optimization problem to obtain the power allocation scheme.
 
 \begin{figure}[t]
 \begin{center}
@@ -53,7 +53,7 @@ of the optimization problem to obtain the power allocation scheme.
 \caption{System layout with clusters of seven cells of radius $\Rcell$ (the
 radius of the circle circumscribing the cell) with an example of two users,
 with the distances $\Dtone$ and $\Dttwo$, respectively, from their \gls{bs} to
-the interfering \gls{bs}.}
+the interfering \glspl{bs}.}
 \label{fig:achiev_cluster_layout}
 \end{figure}
 
@@ -98,10 +98,10 @@ The interference power received at the user $i$ is equal to
 \end{equation}
 
 \noindent
-where $\Minterf$ is the number of interfering \gls{bs}, \ie the total
+where $\Minterf$ is the number of interfering \glspl{bs}, \ie the total
 number of cells in the system minus the $M$ cells that form the cluster, and
 $\hat{d}_{im}$ is the distance from the $m$-th \gls{bs} outside the cluster to
-the $i$-th user in the cluster. All the interfering \gls{bs} are assumed to be
+the $i$-th user in the cluster. All the interfering \glspl{bs} are assumed to be
 transmitting at full power.
 
 In order to simplify the computation of the interference power, an equivalent
@@ -116,7 +116,7 @@ the closest interfering \gls{bs}
     D_i \in \left\{ \Dtone, \Dttwo \right\}
 \end{equation}
 
-The equivalent number of interfering \gls{bs}, $\Meqi$, is such that the total
+The equivalent number of interfering \glspl{bs}, $\Meqi$, is such that the total
 interference power is the same as in the original layout.
 
 With all this, \eqref{eq:interf_power} can be written as
@@ -126,16 +126,16 @@ With all this, \eqref{eq:interf_power} can be written as
 \end{equation}
 
 This approach is similar to that followed in \cite{cheikh11}, where a fluid
-model network is used. This model assumes that there is a continuum of \gls{bs}
-interfering, but this will not be considered in the current work for the sake of
-simplicity.
+model network is used. This model assumes that there is a continuum of
+\glspl{bs} interfering, but this will not be considered in the current work for
+the sake of simplicity.
 
 The real and equivalent model produce the same total interference, provided that
 $\Meqi$ is adequately selected.
 
 In order to determine $\Meqi$ the only interference that is accounted for is the
 one coming from the first tier of neighboring cells. This implies that different
-cluster configurations may have different number of interfering \gls{bs} for
+cluster configurations may have different number of interfering \glspl{bs} for
 each of the cells in the cluster, and this number for the $i$-th cell is denoted
 as $\Minti \leq \Minterf$.
 
@@ -154,7 +154,7 @@ and 3 experience an interference coming from $M_{\text{int}, 1} =
 M_{\text{int}, 3} = 4$ neighboring cells, while cells 2 and 4 receive the
 interference from $M_{\text{int}, 2} = M_{\text{int}, 4} = 3$ cells.
 
-In order to approximate the value of equivalent interfering \gls{bs} for a
+In order to approximate the value of equivalent interfering \glspl{bs} for a
 general network setup, fist consider a simple scenario \reff{fig:cluster_1} with
 a cluster of $M = 1$ cells, where a single user, $i = 1$, in the cell is
 affected by an interference power $I_1$ coming from all the
@@ -169,7 +169,7 @@ $M_{\text{int}, 1} = 6$ belonging to the first tier.
 \label{fig:cluster_1}
 \end{figure}
 
-An assumption that can be made is that half of the $M_{\text{int}, 1}$, \ie three, \gls{bs} are located at a distance $\left( D_1 - d_1 \right)$ and the
+An assumption that can be made is that half of the $M_{\text{int}, 1}$, \ie three, \glspl{bs} are located at a distance $\left( D_1 - d_1 \right)$ and the
 other half are located at a distance $\left( D_1 + d_1 \right)$. Accordingly,
 the interference power can be expressed as
 
@@ -180,7 +180,7 @@ the interference power can be expressed as
 
 \noindent
 which is equal to \eqref{eq:interf_power_eq} if the equivalent number of
-interfering \gls{bs} is defined as
+interfering \glspl{bs} is defined as
 
 \begin{equation} \label{eq:meq_cluster_1}
     M_{\text{eq},1} = 3 \left[ 1 + \left(\frac{D_1 - d_1}{D_1 + d_1}
@@ -188,8 +188,8 @@ interfering \gls{bs} is defined as
 \end{equation}
 
 In general, if a user $i$ is considered to have $M_{\text{int}, i}$ interfering
-\gls{bs} in the first tier at a distance $D_i$, defined as in
-\eqref{eq:interf_min_dist}, then the equivalent number of interfering \gls{bs}
+\glspl{bs} in the first tier at a distance $D_i$, defined as in
+\eqref{eq:interf_min_dist}, then the equivalent number of interfering \glspl{bs}
 is given by
 
 \begin{equation} \label{eq:general_meq}
@@ -225,7 +225,7 @@ the analytical results, showing that the approximation in
 \section{Analysis of the Rate}\label{sec:achiev_rate_analysis}
 
 In the case of having global coordination or, equivalently, having only one
-cluster including all the \gls{bs}, the interference among the users is
+cluster including all the \glspl{bs}, the interference among the users is
 completely eliminated through the use of \gls{bd}, \emph{cf.} \refs{sec:bd}. On
 the other hand, in a multicluster environment, it is necessary to consider the
 effect of the interference coming from the cells outside the cluster. Hence, the
@@ -240,7 +240,7 @@ expectation notation)
 \noindent
 where the parameter $I_i$ represents the average power of the total interference
 contributions received in each data stream of user $i$ from the interfering
-\gls{bs}.
+\glspl{bs}.
 
 It can be seen in \eqref{eq:rate_bd_interf} that the rate depends on the distance $d_i$ of each user's equipment from the center of its cell. Using the pdf in
 \eqref{eq:pdf_distance} the average of the rate over all possible locations,
@@ -276,9 +276,9 @@ approached separatedly.
 As described in \refs{sec:achiev_interf} the contribution of interference,
 $I_i\left(d_i\right)$ on each data stream of user $i$, coming from the cells
 outside the cluster, can be considered as generated by an equivalent number of
-\gls{bs} located all of them at a distance of $D_i - d_i$ from the user. Recall
-that, for clusters of size up to 18, $D_i$ can take one of two values as in
-\eqref{eq:interf_min_dist}.
+\glspl{bs} located all of them at a distance of $D_i - d_i$ from the user.
+Recall that, for clusters of size up to 18, $D_i$ can take one of two values as
+in \eqref{eq:interf_min_dist}.
 
 The interfering distance $D_i$ is then normalized to the cell radius $\Rcell$ by
 setting
@@ -412,7 +412,7 @@ It is possible to define a parameter $G_i$
 \noindent
 that can be considerd as a cluster gain. Its value can be approximated
 considering the average distance of a user to its \gls{bs} 
-\eqref{eq:average_distance}, and the distance from the rest of the \gls{bs} in
+\eqref{eq:average_distance}, and the distance from the rest of the \glspl{bs} in
 the cluster to be either $\Dtone$ or $\Dttwo$. If additionally these two
 distances are normalized by the average distance in \eqref{eq:average_distance}
 
@@ -457,7 +457,7 @@ the values obtained using \eqref{eq:sum_log_kappa} for $ t = r = 2$.}
 
 It can be seen how the sum of the log values of $\kappa_{ij}$ presents a
 diminishing increase as the cluster size $M$ increases. This can be explained by
-a reduced contribution of the \gls{bs}, that are farther than in smaller
+a reduced contribution of the \glspl{bs}, that are farther than in smaller
 clusters, which becomes negligible due to the path loss.
 
 Notice that, in the evaluation of the mean achievable rate, a factor
@@ -488,7 +488,7 @@ This objective is subject to a maximum transmission power available at each
 \end{equation}
 
 \noindent
-for each of the $M$ \gls{bs} in the cluster.
+for each of the $M$ \glspl{bs} in the cluster.
 
 The rate maximization problem is described in more detail in
 \refs{sec:power_allocation}, and the solutions range from the simplest uniform
@@ -504,9 +504,9 @@ power allocation will be presented with the results.
 
 With a uniform power allocation a common average power $p_s$ is used for every
 stream of every user, as seen in \eqref{eq:equal_power}. This value $p_s$ varies
-according to the number of \gls{bs} in the cluster, decreasing for a larger size
-of the cluster, since a fraction of the overall available power is spent in the
-coordination, to null the interference.
+according to the number of \glspl{bs} in the cluster, decreasing for a larger
+size of the cluster, since a fraction of the overall available power is spent in
+the coordination, to null the interference.
 
 Substituting all the $p_{ik}$ in \eqref{eq:pbpc} by the common value $p_s$ it is
 easy to see that the condition in \eqref{eq:pbpc} is limited by the \gls{bs} for
