@@ -17,7 +17,7 @@
         regular polygon,
         regular polygon sides = 6,
         draw,
-        minimum size = #1
+        minimum size = #1,
     }
 }
 
@@ -25,12 +25,12 @@
 
 \begin{tikzpicture}
     \def\hdiam{2}
-    \node[hexagon = \hdiam cm] at (0, 0) {};
     \pgfmathparse{\hdiam * cos(30)}
-    \foreach \ang in {30, 90, ..., 330} {
-        \node[hexagon = \hdiam cm] at (\ang:\pgfmathresult cm) {};
-    }
 
+    \node[hexagon = \hdiam] at (0, 0) {A};
+    \foreach \ang/\lbl in {30, 90, ..., 330 / B, C, ..., G} {
+        \node[hexagon = \hdiam] at (\ang:\pgfmathresult) {\lbl};
+    }
 \end{tikzpicture}
 
 \end{document}
