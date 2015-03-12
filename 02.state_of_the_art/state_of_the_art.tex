@@ -1,2 +1,277 @@
-\chapter{Analysis of the state of the art}\label{ch:state_art}
+\chapter{Analysis of the State of the Art}\label{ch:state_art}
 
+This thesis deals with three main topics:
+
+\begin{itemize}
+   \item Interference Management.
+   \item Clustering.
+   \item Scheduling.
+\end{itemize}
+
+This chapter presents a brief literature review on these fields, in order to put
+this thesis in perspective. Interference management represents the cornerstone
+of this document, hence it will be more thoroughly treated.
+
+% ------------------------------------------------------------------------------
+\section{Interference management} \label{sec:sa_interf}
+
+The bulk of the work of this thesis is around interference management and, in
+particular, around \gls{bd}, which is just a concrete case of a much broader
+field.
+
+Interference management techniques can be organized according to the information
+requiered for the process to work:
+
+\begin{description}
+    \item[Beamforming] In order to perform beamforming, both \gls{csi} and user
+        data should be shared among the transmitters. \gls{bd} lies within this
+        category.
+    \item[Interference Alignment] User data is not required for interference
+        alignment to work, but \gls{csi} is still needed.
+    \item[Blind techniques] Finally there are theoretical alternatives which may
+        enable the interference management without \emph{a priori} knowledge
+        about \gls{csi} or user data.
+\end{description}
+
+% ------------------------------------------------------------------------------
+\subsection{Beamforming} \label{ssec:sa_bf}
+
+Most of the work about beamforming applied to cellular networks was initially
+based on the adaptation of \gls{mumimo} processing techniques to the context of
+multi-cell cooperation, \cite{gesbert10}.
+
+In particular the \gls{bc} and \gls{mac} channels are of special interest,
+because a coordinated cellular network closely resembles these two channels, on
+the downlink and on the uplink respectively. In \cite{caire00} the achievable
+rate region of the \gls{mimo} \gls{bc} is analyzed for the case of single
+antenna receivers, and it is shown that the use of \gls{dpc} is required to
+achieve such region. The scenario with multiple antenna receivers is studied in
+\cite{yu01}, using the same strategy based on \gls{dpc}.
+
+While these works studied the achievable rate region using a given strategy,
+the actual capacity for the \gls{bc} was calculated in \cite{yu04} and extended 
+in \cite{weingarten06}. This capacity was also calculated using the so called
+\gls{mac}-\gls{bc} duality which was presented \cite{jindal01} for the
+\gls{siso} case and in \cite{vishwanath02} and \cite{jindal04} for the multiple
+antenna scenario.
+
+This thesis focuses on \gls{bd}, which was introduced in \cite{spencer04}
+which, in turn, has spawned extensive research \cite{spencer04b, yoo06,
+gesbert07b, shen06, wiesel08, stankovic08}, just to name a few. \gls{bd} was
+originally formulated for \gls{mumimo}, but as with other techniques, it has
+been also used for cooperative cellular networks. In general, \gls{bd} is
+inferior in terms of sum capacity to \gls{dpc}. Nevertheless, in the special
+case where \gls{bd} is combined with the right user selection algorithms,
+\gls{bd} can come close to the sum capacity of \gls{dpc} \cite{shen06},
+\cite{yoo06}.
+
+The existing results for the \gls{mac} apply directly to a multicell setup
+\cite{jafar04}. Despite the \gls{mac}-\gls{bc} duality, the extension of
+\gls{mimo} \gls{bc} results to the multicell world presents several problems,
+being one of the most important the power constraints. In the case of a
+traditional \gls{mimo} \gls{bc}, the multiple antennas are collocated at a
+single transmitter and, therefore, the power constraint is only one (arguably,
+this is not completely true, because the power used for the transmission may not
+be shared among antennas) while for the multicell case, the different
+transmitters do not share a power constraint, yielding a whole different problem
+formulation.
+
+Early approaches like \cite{shamai01} and \cite{schubert02} dealt with a
+cellular downlink as if it were a classical \gls{bc}, from the information
+theoretical point of view. The key for their analysis is the use of the rather
+unrealistic assumption of a sum-power constraint. They also share the single
+antenna transmitters and receivers scenario formulation, and they differ in the
+objective function that is considered, sum-rate \cite{shamai01} and individual
+\gls{sinr} constraints per user in \cite{schubert02}. A similar scheme to
+\cite{shamai01, schubert02} is used in \cite{karakayali06b}, with a linear
+precoder based on the LQ factorization together with \gls{dpc} to handle the
+remaining interference. The main difference in this work is that they consider a
+\gls{mimo} scenario and, more importantly, the power constraint is set per base
+station, which is a much more realistic assumption.
+
+In \cite{venkatesan07} they propose the study of a realistic scenario in order
+to analyze the advantages of ``Network \gls{mimo}'' when moderately realistic
+assumptions are considered. The more realistic system model can be tackled
+because they consider the uplink, where the assumptions needed to apply
+conventional \gls{mimo} \gls{mac} strategies are simpler than for the downlink.
+
+A first approach to using \gls{bd} in a multi-cell setup can be found in
+\cite{shim08}, where no actual coordination exists among the different cells,
+but they independently use \gls{bd} to serve their users. The key of this work
+is that they consider a strategy that takes into account the interference coming
+from other cells, in the form of the interference plus noise covariance matrix.
+\cite{zhang09} goes one step further, by considering per-base-station power
+constraint, and by considering clusters of coordinated \gls{bs} and partial
+coordination among clusters. It also introduces a novel power allocation scheme,
+\emph{scaled water-filling} which is used in this thesis for its simplicity and
+good performance, despite being suboptimal. The per-base-station power
+constraint is also considered in \cite{zhang10b}, \cite{liu09},
+\cite{boccardi06}.
+
+In \cite{shim08} they already proposed the use of limited size clusters, in
+order to alleviate the burden put unto the backhaul network, feedback channels
+and processing capabilities. But not only the complexity of the joint processing
+increases with the size of the network, but research also shows that there may
+be other limiting factors to the gains that can be achieved through coordination
+\cite{lozano13}, \cite{barbieri12}. The first problem, the complexity increase,
+can be handled by avoiding \gls{csi} sharing and through distributed cooperation
+\cite{sun11}, \cite{bjornson10}, \cite{huang11}, \cite{bogale12}, \cite{he14}.
+Another approach to deal with that problem is reducing the number of cells that
+are coordinated, what is called as clustering. The research on this topic will
+be reviewed in \refs{sec:sa_cluster}.
+
+It is worth noting, albeit not studied within this thesis, that other linear
+schemes based on minimizing the \gls{mse} have also been proposed, yielding
+different precoding matrices \cite{shi08}, \cite{lu09}, \cite{armada11a}, \cite{shi11}, \cite{bogale12b}, \cite{sohn14}.
+
+% ------------------------------------------------------------------------------
+\subsection{Interference Alignment} \label{ssec:sa_ia}
+
+The idea behind \gls{ia} is to find a way of restricting the interference
+subspace to lie within a small subspace that does not span the entire signal
+space at the receiver. This way, the desired signals can be projected into the
+null space of the interference and, by that means, recovered free from
+interference. The advantage of this is that, even though \gls{csi} is still
+required to achieve that, there is no need to share user data, which is a big
+reduction in the amount of information that is exchanged among the transmitters.
+
+An exhaustive survey on \gls{ia} can be found in \cite{jafar10ianewlook}. The
+initial works on this dealt with the \gls{mimo} X channel, with two users,
+\cite{maddah06communication}, \cite{jafar08}, and it was extended to support
+a bigger number of users in the K user interference channel \cite{cadambe08}.
+This in turn was extended to the case of a \gls{mimo} interference channel
+\cite{gou10}. A variety of increasingly sophisticated forms have arised from
+these initial works, \cite{jafar14}, \cite{bresler14}, \cite{lashgari14} among
+others.
+
+In any case, \gls{ia} has found little use in real world applications, and it
+remains as a very elegant and interesting theoretical field.
+
+% ------------------------------------------------------------------------------
+\subsection{Blind techniques} \label{ssec:sa_blind}
+
+A further refinement over \gls{ia} is \gls{bia} \cite{gou11}, \cite{jafar14b}
+and \cite{morales15}. In this case the channel coefficients are not required in
+order to align the interference, and it is only needed to have information about
+the coherence time of the channel, for these methods rely on the use of a
+so-called supersymbol, during which the channel should stay unchanged. As with
+regular \gls{ia}, the main drawback is the \gls{snr} regime required to perform
+as expected, which usually exceeds the operation levels of real world cellular
+networks.
+
+% ------------------------------------------------------------------------------
+\section{Clustering} \label{sec:sa_cluster}
+
+As it has been said in \refc{ch:intro}, coordinating all the \glspl{bs} in the
+system has drawbacks that can be alleviated reducing the number of elements that
+coordinate. This can be achieved using clustering as a means to group a reduced
+number of \glspl{bs} that will cooperatively process and transmit information to
+the users.
+
+Clustering can be done in several ways, and the particular characteristics of
+an actual cluster formation may be highly dependent on the specific scenario to
+be considered.
+
+For analysis purposes the types of clusters can be grouped according to the
+actual layout of the clusters, whether a given transmitter is allowed to belong
+to more than one cluster at the same time or not:
+
+\begin{itemize}
+    \item Non-overlapping.
+    \item Overlapping.
+\end{itemize}
+
+An alternative, non exclusive, characterization depends on the dynamic nature of
+the clusters, whether they change over time or they stay fixed once they are
+set:
+
+\begin{itemize}
+    \item Fixed.
+    \item Dynamic.
+\end{itemize}
+
+In general, to make a certain clustering arrangement, it is necessary a metric,
+a criterion to group several \glspl{bs}. Here there is a wide variety of choices
+in the literature:
+
+\begin{itemize}
+    \item Proximity of the \glspl{bs}. 
+    \item \gls{snr} of the link to each \gls{bs}.
+    \item Level of interference coming from each \gls{bs}.
+    \item Orthogonality of the channels.
+    \item Transmission strategy design.
+    \item Heuristic approaches.
+\end{itemize}
+
+The most common option, and simplest, is to have disjoint clusters, formed by
+proximity of the \glspl{bs}, and fixed in time. The main advantage of this setup
+is, precisely, its simplicity. Fixed clusters over time avoid the need for
+reconfiguration, and the need for control information to be exchanged in order
+to update the clusters configuration. This is the main reason why this is the
+option used in this thesis. But it can also be found in many other references
+\cite{zhang09}, \cite{huang09}, \cite{ramprashad10}, \cite{hosseini13}. This
+advantage comes, in fact, from the fixed nature of the clusters, and not
+necessarily from the distance metric, or the non-overlapping organization. In
+\cite{swannack05}, fixed, non-overlapping clusters are also proposed, but the
+metric used to build the clusters is more sophisticated. They select the
+\glspl{bs} that have orthogonal channels to the users, which is advantageous
+when \gls{zf} is used for coordination within each cluster.
+
+The other alternative, is to have dynamic clusters, whose configuration may
+change in time, evolving to meet the changing nature of the channel. The most
+natural way of having dynamic clusters is when these groups of cells are
+user-centric, \ie the clusters are formed around each user. If the user moves,
+by definition, the clusters will vary accordingly. Another characteristic of
+user-centric clusters is that they are overlapping. \cite{ng10} is an example of
+such a system, where the \glspl{bs} that coordinate to transmit to each user are
+assigned using a user-centric metric. In this case two different metrics are
+proposed: distance based, and level of interference, intuitively it is more
+likely to get a higher gain if the most interfering \glspl{bs} are coordinated.
+A similar approach is used in \cite{gong11}, with overlapping, user-centric
+clusters of fixed size, or of variable size according to the relative signal
+strength received from each \glspl{bs}.
+
+An interesting combination can be found in \cite{baracca12}, where user-centric
+clusters are used, but where the resulting clusters are disjoint. The way to
+achieve this is by carefully selecting which users are transmitted
+simultaneously.
+
+On the other hand, there may be dynamic clusters which are not user-centric.
+This is the case of \cite{papadogiannis08}, \cite{papadogiannis10},
+\cite{papadogiannis11}, \cite{moon11}, \cite{cui11}, \cite{lakshmana12}, and
+\cite{mingyi13}. In general these approaches have in common that the clustering
+is the by-product of another process, such as an optimization problem to reduce
+the amount of feedback needed \cite{papadogiannis11}, \cite{lakshmana12}, or the
+heuristic metrics used in \cite{moon11}.
+
+In general, dynamic, overlapping clusters have the main drawback of requiring a
+more complex management, requiring a higher amount of control information to set
+them up and to update them.
+
+
+% ------------------------------------------------------------------------------
+\section{Scheduling} \label{sec:sa_sched}
+
+In general, multi-user techniques can deal with just so many users in the system so that, when the number of users in too high, scheduling is required to ensure
+that all users are served, in order to keep the fairness of the system
+controlled. In \cite{yoo06}, the users are selected according to the mutual
+orthogonality, and they combine it with a classical round robin scheduling,
+which guarantees a maximum delay, and with a proportional fair strategy, which
+enforces more strongly the fairness at the expense of not guaranteeing the
+maximum delay in the transmissions. In \cite{moon13}, a heuristic algorithm is
+proposed in order to successively schedule the users, in order to enforce
+fairness. 
+
+A similar, yet different use can be found in \cite{papadogiannis08} and
+\cite{kaviani10} where a dynamic scheduling algorithm is used in order to
+improve the fairness of the system, by reducing the effect of the edge users in
+the performance of the network.
+
+More sophisticated scheduling alternatives have been studied in \cite{yi11} and
+\cite{ko12}, with essentially the same objective of controlling the equity of
+the system.
+
+While most of the scheduling research relies on finding an equitable solution
+for the users transmission, a different use is proposed in \cite{baracca12},
+where the user scheduling is a tool in order to enforce the creation of disjoint
+clusters, easing like that the management of such a clustered network.

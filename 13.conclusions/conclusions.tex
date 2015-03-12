@@ -1,1 +1,99 @@
-\chapter{Conclusions}\label{ch:conclusions}
+\chapter{Conclusions and Future Work}\label{ch:conclusions_and_future}
+
+% ------------------------------------------------------------------------------
+\section{Conclusions} \label{sec:conc}
+
+This work has analyzed the downlink of a clustered cellular network using
+cooperation among the \glspl{bs} in the cluster through \gls{bd}. \gls{bd} is
+able to eliminate the interference within the cluster, but does not handle the
+\gls{oci}. Under these conditions, an analytical expression has been derived for
+the mean achievable rate per user, which allows for an analysis of the influence
+of different parameters of the system, such as the \gls{snr}, the antenna
+configuration, the path-loss, and the cluster size. The derivation requires some
+approximations that are used in order to model the \gls{oci}, which is
+oversimplified as Gaussian noise, or neglected completely, in other works in the
+literature.
+
+Several effects have been observed, some of which have opposing impact on the
+mean achievable rate:
+
+\begin{itemize}
+   \item Increasing the size of the cluster brings a natural reduction in the
+      interference coming from other clusters.
+   \item The coordination gain saturates because of the path-loss.
+   \item Additionally, the increasing size yields a reduction in the power
+      available for each data stream of each user (when the uniform power
+      allocation is used) due to the need to coordinate with an increasing
+      number of users, some of which may be far away.
+\end{itemize}
+
+The most interesting result is that the gain due to the coordination does not
+grow unboundedly with the size of the cluster, but there is a limit on the size
+of the cluster which, once surpassed, the gain obtained is limited. Recall that
+the size of the cluster impacts, negatively, directly on the complexity of the
+cooperation processing. It is of interest, hence, to form clusters of reduced
+size. The present thesis yields a range of seven to ten cells, for a wide range
+of \gls{snr}, and for different antenna configurations.
+
+Apart from the mean achievable rate, also fairness considerations have been
+analyzed in the same scenario, with the same \gls{bd} transmission strategy. In
+order to do so, the \gls{cdf} of the achievable rate per user is shown to be
+very accurately approximated via a Gamma distribution. Also the effects of
+several system parameters have been taken into account and their effect on the
+fairness of the system studied. In particular, even though an optimal power
+allocation enables to increase the mean achievable rate, the fairness is
+seriously affected by the power allocation scheme, and a much simpler uniform
+power allocation is able to deliver equitable rates among the users.
+
+By comparing the results of \gls{bd} on a scenario such as the one under study
+in this thesis, it is clear to see how \gls{bd} and other coordination
+techniques are not able to perform as well as expected. That is the reason why,
+after analyzing a scenario where the \gls{oci} plays a main role, a simple yet
+effective strategy has been proposed in order to overcome the impairments
+introduced by the \gls{oci}. The strategy, consisting on a transmission scheme
+based on local decisions made by the users of the system, is able to eliminate
+the pernicious impact of the \gls{oci} on the performance of coordination
+techniques, such as \gls{bd}.
+
+An interesting collateral effect of the decisions being local to the users, is
+that it makes the strategy able to adapt to changes in the conditions of the
+channel of the users. Additionally, the fairness of the system is also improved,
+for the users experiencing the lowest rates are the ones most benefitted from
+the strategy proposed.
+
+Finally, the complexity of the method proposed is kept low through the use of a
+low complexity user scheduling algorithm that prevents the network from needing
+to calculate \gls{svd}, which may be costly, especially as the number of users
+per cell increases.
+
+% ------------------------------------------------------------------------------
+\section{Future lines of research} \label{sec:future}
+
+The outcome of this thesis is, in a few words, that using clustering is
+advantageous if coordination is intended to be used in real world scenarios. And
+in this line, the proposal of a simple transmission strategy, with a low
+complexity user scheduling algorithm, opens the door for further improvements to
+make it an alternative for real applications.
+
+In particular, there is an aspect that requires deeper analysis, and this is the
+local decisions made by the users. This decisions are made by comparison of a
+metric with a given threshold. In the current work the threshold has been
+obtained via simulations, and this seriously reduces its attractiveness for
+actual implementations. An interesting future line of work is trying to find a
+way to calculate this threshold analytically, or at least not relying on
+simulations to obtain it.
+
+During the whole work, the assumptions made, although more or less common in the
+literature, may be a bit strong in some circunstances. For instance the most
+stringent one is the assumption that the \gls{csi} knowledge is perfect in all
+the \glspl{bs}. A study of the influence of having imperfect \gls{csi} would be
+a natural extension of the present work. Another imperfection that has not been
+considered in this thesis, and that may be of importance when considering
+transmitters located in distant locations, is the synchronization among them.
+
+The proposed transmission strategy already alleviates the feedback capacity
+required, for users not requesting coordination do not need to feedback the
+whole channel matrix. Despite that, beamforming has the inherent need for
+sharing user data, and this poses a big burden on the backhaul network. The
+study of smart and efficient ways of distributing this information is an
+interesting aspect to research.

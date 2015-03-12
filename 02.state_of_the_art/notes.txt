@@ -1,4 +1,63 @@
 --------------------------------------------------------------------------------
+@inproceedings{shamai01,
+  title={Enhancing the cellular downlink capacity via co-processing at the transmitting end},
+  author={Shamai, Shlomo and Zaidel, Benjamin M.},
+  booktitle={Vehicular Technology Conference, 2001. VTC 2001 Spring. IEEE VTS 53rd},
+  volume={3},
+  pages={1745-1749},
+  year={2001},
+  organization={IEEE}
+}
+Already in 2001, they propose a scheme where a mix of a linear precoding, based
+on LQ factorization, and \gls{dpc} is used in the downlink of a cellular network
+to eliminate the effect of fully uncorrelated interference.
+
+Cells and users with just a single antenna.
+
+Sum-rate maximization.
+
+Sum-power constraint.
+
+The channel becomes the Broadcast Channel in the classical information
+theoretical sense.
+
+--------------------------------------------------------------------------------
+@inproceedings{schubert02,
+author={Schubert, Martin and Boche, Holger},
+booktitle={Spread Spectrum Techniques and Applications, 2002 IEEE Seventh International Symposium on},
+title={Joint 'dirty paper' pre-coding and downlink beamforming},
+year={2002},
+month={},
+volume={2},
+pages={536-540},
+doi={10.1109/ISSSTA.2002.1048599},}
+
+Similar to \cite{shamai01}, for the broadcast channel, but considering
+individual \gls{sinr} constraints per user instead of the sum-rate as design
+goal.
+
+--------------------------------------------------------------------------------
+@inproceedings{karakayali06b,
+  title={On the maximum common rate achievable in a coordinated network},
+  author={Karakayali, M. Kemal and Foschini, Gerard J. and Valenzuela, Reinaldo A. and Yates, Roy D.},
+  booktitle={Communications, 2006. ICC'06. IEEE International Conference on},
+  volume={9},
+  pages={4333-4338},
+  year={2006},
+  organization={IEEE}
+}
+
+They use exactly the same scheme, ZFDP, as \cite{shamai01} and so many others in
+between, using the LQ factorization and then \gls{dpc} to handle the
+interference remaining.
+
+Max-min rate.
+
+Per-base power constraint.
+
+They consider \gls{mimo} scenario.
+
+--------------------------------------------------------------------------------
 @inproceedings{venkatesan07,
   title={Network {MIMO}: Overcoming intercell interference in indoor wireless systems},
   author={Venkatesan, Sivarama and Lozano, Angel and Valenzuela, Reinaldo},
@@ -11,6 +70,8 @@ They introduce the concept of network \gls{mimo}. The idea behind this concept
 is that, in theory, it is possible to see the whole cellular network as a single
 \gls{mimo} system, so that all the processing techniques available for
 \gls{mimo} systems could be used to enhance the performance of the network.
---------------------------------------------------------------------------------
-[Enhancing the Cellular Downlink Capacity via Co-Processing at the Transmitting End] 
+
+This is not new, they just try it with a "realistic" layout, and they coin the
+term "network MIMO".
+
 --------------------------------------------------------------------------------

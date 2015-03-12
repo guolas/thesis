@@ -42,9 +42,6 @@
 \input{./misc/acronyms}
 \makeglossaries
 
-% To handle the references
-% \usepackage{natbib}
-
 % To handle left subscripts
 \usepackage{tensor}
 
@@ -104,36 +101,36 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-% \frontmatter
-% % First part uses roman numbering
-% \pagenumbering{gobble}
-% \cleardoublepage
-% \include{./00.foreword/frontmatter}
-% \newpage
-%
-% \cleardoublepage
-% \include{./00.foreword/committee}
-% \newpage
-%
-% \cleardoublepage
-% \include{./00.foreword/acknowledgement}
-% \newpage
-%
-% \cleardoublepage
+\frontmatter
+\pagenumbering{gobble}
+\cleardoublepage
+\include{./00.foreword/frontmatter}
+\newpage
+
+\cleardoublepage
+\include{./00.foreword/committee}
+\newpage
+
+\cleardoublepage
+% First part uses roman numbering
 \pagenumbering{Roman}
-% \include{./ch0/abstract}
-% \newpage
-%
-% \cleardoublepage
-% \include{./ch0/resumen}
-% \newpage
+\include{./00.foreword/acknowledgement}
+\newpage
+
+\cleardoublepage
+\include{./00.foreword/abstract}
+\newpage
+
+\cleardoublepage
+\include{./00.foreword/resumen}
+\newpage
 
 % Index
 \tableofcontents{}
 
 % List of tables and Figures
-% \listoftables{}
-% \listoffigures{}
+% % \listoftables{} % Who wants tables?!
+\listoffigures{}
 
 % Notation page
 \cleardoublepage
