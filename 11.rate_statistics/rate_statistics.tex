@@ -100,9 +100,11 @@ fitting.
 \begin{figure}[t]
 \begin{center}
 %     \dummybox
-    \hspace*{8mm}\input ./11.rate_statistics/img/CDFgamma.tex
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./11.rate_statistics/img/cdf_gamma_tikz.tex
+    \restoregeometry
 \end{center}
-\caption{\gls{cdf} of the achievable rate per user with $t=r=2$ and
+\caption{\gls{cdf} of the achievable rate per user with $r=2$, $t=2$, and
 SNR=15\,dB. Comparison with the Gamma distribution with the same mean and
 variance.}
 \label{fig:cdf_sim_analy}
@@ -118,9 +120,11 @@ achievable rate is shown in \reff{fig:cdf_cluster_size}
 \begin{figure}[t]
 \begin{center}
 %    \dummybox
-    \hspace*{1mm}\input ./11.rate_statistics/img/CDFclusters.tex
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./11.rate_statistics/img/cdf_clusters_tikz.tex
+    \restoregeometry
 \end{center}
-\caption{\gls{cdf} of the achievable rate per user with $t=r=2$ and
+\caption{\gls{cdf} of the achievable rate per user with $r=2$, $t=2$, and
 SNR=15\,dB for different values of the cluster size.}
 \label{fig:cdf_cluster_size}
 \end{figure}
@@ -150,9 +154,11 @@ Three different power allocation schemes have been considered:
 \begin{figure}[t]
 \begin{center}
 %    \dummybox
-    \hspace*{1mm}\input ./11.rate_statistics/img/CDFgamma_power.tex
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./11.rate_statistics/img/cdf_gamma_power_tikz.tex
+    \restoregeometry
 \end{center}
-\caption{\gls{cdf} of the achievable rate per user with $t=r=3$ and SNR=15\,dB.
+\caption{\gls{cdf} of the achievable rate per user with $r=3$, $t=3$, and SNR=15\,dB.
 Comparison between different power allocation schemes.}
 \label{fig:cdf_power_alloc}
 \end{figure}
@@ -199,7 +205,9 @@ value is obtained through simulations.
 \begin{figure}[t]
 \begin{center}
 %     \dummybox
-    \hspace*{1mm}\input ./11.rate_statistics/img/Varianza.tex
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./11.rate_statistics/img/varianza_tikz.tex
+    \restoregeometry
 \end{center}
 \caption{Variance of the achievable rate per user with different values of
 \gls{snr} and of $t$ and $r$ as a function of the cluster size $M$.}
@@ -244,7 +252,9 @@ that can be guaranteed to $X$\,\% of the users.
 \begin{figure}[t]
 \begin{center}
 %     \dummybox
-    \hspace*{1mm}\input ./11.rate_statistics/img/Fairness90.tex
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./11.rate_statistics/img/fairness_90_tikz.tex
+    \restoregeometry
 \end{center}
 \caption{Rate achieved by 90\,\% of the users with different antenna
 configurations and different values of \gls{snr}.}
@@ -275,10 +285,12 @@ allocation strategies.
 \begin{figure}[t]
 \begin{center}
 %     \dummybox
-    \hspace*{1mm}\input ./11.rate_statistics/img/Fairness90power.tex
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./11.rate_statistics/img/fairness_90_power_tikz.tex
+    \restoregeometry
 \end{center}
 \caption{Rate achieved by 90\,\% of the users with different power assignment
-schemes, $t=r=3$ and SNR$=15$\,dB.}
+schemes, $r=3$, $t=3$, and SNR$=15$\,dB.}
 \label{fig:min_rate_power_alloc}
 \end{figure}
 
