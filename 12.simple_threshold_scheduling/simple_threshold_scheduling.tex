@@ -363,7 +363,9 @@ locations and channel realizations.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.75\columnwidth]{./12.simple_threshold_scheduling/img/mean_metric_02x02}
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./12.simple_threshold_scheduling/img/mean_metric_02x02_tikz.tex
+    \restoregeometry
     \caption{Mean value of the metric for different \gls{snr} values, in the
     presence of \gls{oci} for a 7 cell cluster with 2x2 antennas configuration.}
     \label{fig:threshold_2x2}
@@ -400,7 +402,7 @@ single tier of cells that will account for the \gls{oci}.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.75\columnwidth]{./12.simple_threshold_scheduling/img/scenario}
+    \includegraphics[width=0.4\columnwidth]{./12.simple_threshold_scheduling/img/scenario}
     \caption{The cells in the cluster (white) experience the \gls{oci} generated
     by the interfering cells (shaded).}
     \label{fig:scenario_threshold}
@@ -436,7 +438,9 @@ described in \refss{ssec:scaled_wf}, in order to accomodate the \gls{pbpc}.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.75\columnwidth]{./12.simple_threshold_scheduling/img/mean_rate_02x02_100user_bd}
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./12.simple_threshold_scheduling/img/mean_rate_02x02_100user_bd_tikz.tex
+    \restoregeometry
 \caption{Mean rate obtained for a 2x2 scenario in the presence of \gls{oci}, 100
 users per cell.}
 \label{fig:mean_rate_2x2}
@@ -444,7 +448,9 @@ users per cell.}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.75\columnwidth]{./12.simple_threshold_scheduling/img/mean_rate_03x03_100user_bd}
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./12.simple_threshold_scheduling/img/mean_rate_03x03_100user_bd_tikz.tex
+    \restoregeometry
 \caption{Mean rate obtained for a 3x3 scenario in the presence of \gls{oci}, 100
 users per cell.}
 \label{fig:mean_rate_3x3}
@@ -470,7 +476,9 @@ complexity of $O\left(mn\right)$.}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.75\columnwidth]{./12.simple_threshold_scheduling/img/mean_rate_vs_users_02x02_s10}
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./12.simple_threshold_scheduling/img/mean_rate_vs_users_02x02_s10_tikz.tex
+    \restoregeometry
 \caption{Mean rate for a 2x2 scenario as a function of the number of users per cell, for an SNR of 10\,dB.}
 \label{fig:mean_rate_vs_users}
 \end{figure}
@@ -498,12 +506,18 @@ to the \gls{oci}, and to match the performance obtained using \gls{su}.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.75\columnwidth]{./12.simple_threshold_scheduling/img/cdf_02x02_s20_100user_bd} \caption{CDF of the rates obtained in a 2x2 scenario, with an SNR of $10$\,dB.}
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./12.simple_threshold_scheduling/img/cdf_02x02_s20_100user_bd_tikz.tex
+    \restoregeometry
+\caption{CDF of the rates obtained in a 2x2 scenario, with an SNR of $10$\,dB.}
 \label{fig:cdf_snr10}
 \end{figure}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.75\columnwidth]{./12.simple_threshold_scheduling/img/mean_rate_005_worst_02x02_100user_bd} \caption{Mean rate of the 5\% worst users, in a 2x2 scenario in the presence of OCI, 100 users per cell.}
+    \newgeometry{textwidth=0.7\textwidth}
+    \input ./12.simple_threshold_scheduling/img/mean_rate_005_worst_02x02_100user_bd_tikz.tex
+    \restoregeometry
+\caption{Mean rate of the 5\% worst users, in a 2x2 scenario in the presence of OCI, 100 users per cell.}
 \label{fig:worst_rate}
 \end{figure}

@@ -47,8 +47,7 @@ special case of the optimization problem to obtain the power allocation scheme.
 
 \begin{figure}[t]
 \begin{center}
-     \dummybox
-%     \hspace*{1mm}\input ./10.achievable_rates/img/Fig2.tex
+     \includegraphics[width=0.45\textwidth]{./10.achievable_rates/img/achiev_cluster_layout}
 \end{center}
 \caption{System layout with clusters of seven cells of radius $\Rcell$ (the
 radius of the circle circumscribing the cell) with an example of two users,
@@ -141,8 +140,7 @@ as $\Minti \leq \Minterf$.
 
 \begin{figure}[t]
 \begin{center}
-%     \dummybox
-    \hspace*{-8mm}\input ./10.achievable_rates/img/Fig3.tex
+    \includegraphics[width=0.45\textwidth]{./10.achievable_rates/img/cluster_interf_cells}
 \end{center}
 \caption{Cluster with $M=4$ cells and neighbor interfering cells.}
 \label{fig:cluster_interf_cells}
@@ -162,7 +160,7 @@ $M_{\text{int}, 1} = 6$ belonging to the first tier.
 
 \begin{figure}[t]
 \begin{center}
-    \includegraphics[width=0.8\textwidth]{./10.achievable_rates/img/cluster_1}
+    \includegraphics[width=0.4\textwidth]{./10.achievable_rates/img/cluster_1}
 \end{center}
 \caption{Simple scenario with a single cluster of $M = 1$ cell, and the six
     interfering cells surrounding it.}
@@ -446,13 +444,9 @@ through simulations and using the expression \eqref{eq:sum_log_kappa}, for the
 case of $t = r = 2$.
 
 \begin{figure}[t]
-% \begin{center}
-%     \dummybox
-%     \hspace*{1mm}\input ./10.achievable_rates/img/Fig4.tex
     \newgeometry{textwidth=0.7\textwidth}
     \input ./10.achievable_rates/img/Fig4_tikz.tex
     \restoregeometry
-% \end{center}
 \caption{Sum-log of the terms $\kappa_{ij}$. Comparison between simulations and
 the values obtained using \eqref{eq:sum_log_kappa} for $ t = r = 2$.}
 \label{fig:sum_log_kappa}
@@ -608,12 +602,9 @@ The bounds for the power per stream $p_s$ in \eqref{eq:bound_chi_ps} are
 compared in \reff{fig:bound_chi} with the results obtained through simulations.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
     \newgeometry{textwidth=0.7\textwidth}
     \input ./10.achievable_rates/img/Fig5_tikz.tex
     \restoregeometry
-\end{center}
 \caption{Normalized average power per stream $p_s / P_{\max}$ for different
 antenna configurations: comparison between simulations and the bounds in
 \eqref{eq:bound_chi_ps}.}
@@ -722,16 +713,7 @@ In this section, the results derived from the analytical expression in
 simulations.
 
 The scenario for the simulations is a network composed of 169 cells, laid out as
-7 concentric tiers of hexagonal cells \reff{fig:simulation_scenario_achiev}.
-
-\begin{figure}[t]
-\begin{center}
-    \dummybox
-% image with the 7 tiers in a hexagonal grid
-\end{center}
-\caption{Scenario used for the simulations, with 7 hexagonal tiers.}
-\label{fig:simulation_scenario_achiev}
-\end{figure}
+7 concentric tiers of hexagonal cells.
 
 The cell radius, unless stated otherwise, is assumed to be $\Rcell=1.4$\,km.
 
@@ -759,9 +741,7 @@ shape.
 
 \begin{figure}[t]
 \begin{center}
-    \dummybox
-% image with the scenario and the clusters marked, but not all of them with
-% the same shape
+     \includegraphics[width=0.45\textwidth]{./10.achievable_rates/img/irregular_clusters}
 \end{center}
 \caption{Irregular shaping of the clusters, due to the heuristic clustering
 algorithm used.}
@@ -782,12 +762,9 @@ different values of the \gls{snr}, as defined in \eqref{eq:snr_noise}, are used
 so to observe the behaviour in different \gls{snr} regimes.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
     \newgeometry{textwidth=0.7\textwidth}
     \input ./10.achievable_rates/img/Fig6_tikz.tex
     \restoregeometry
-\end{center}
 \caption{Mean achievable rate per user as a function of the number of
 cells in the cluster for $r=2$, $t=2$, variable values of \gls{snr},
 $\gamma=3.8$.}
@@ -833,12 +810,9 @@ deliver good performance, using \gls{bd}, within a practical range of \gls{snr}
 values.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
     \newgeometry{textwidth=0.7\textwidth}
     \input ./10.achievable_rates/img/Fig7_tikz.tex
     \restoregeometry
-\end{center}
 \caption{Mean achievable rate as a function of the \gls{snr} for different
 values of the path loss coefficient $\gamma$, for $r=2$, $t = 2$ and $M = 7$.}
 \label{fig:rate_vs_snr_gamma}
@@ -857,12 +831,9 @@ that in the simulation scenario not all the clusters have the same shape,
 despite having the same number of cells.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
     \newgeometry{textwidth=0.7\textwidth}
     \input ./10.achievable_rates/img/Fig8_tikz.tex
     \restoregeometry
-\end{center}
 \caption{Mean achievable rate per user as a function of the cluster size for
 \gls{snr}$=25\,$dB, $\gamma=3.8$ and different antenna configurations.}
 \label{fig:rate_vs_size_antenna}
@@ -895,12 +866,9 @@ optimization, as described in \cite{armada11b}, using CVX \cite{cvx},
 instead of the uniform power allocation.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
     \newgeometry{textwidth=0.7\textwidth}
     \input ./10.achievable_rates/img/Fig9_tikz.tex
     \restoregeometry
-\end{center}
 \caption{Comparison between different power allocation schemes, namely uniform
 and optimal. Mean achievable rate per user as a function of the cluster size for
 $r=t=2$, $\gamma=3.8$ and different values of \gls{snr}.}
@@ -940,14 +908,11 @@ rate is bellow a given percentage. In the case under study, the threshold was
 set to a 10\,\%.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
     \newgeometry{textwidth=0.7\textwidth}
     \input ./10.achievable_rates/img/Fig10_tikz.tex
     \restoregeometry
-\end{center}
-\caption{Optimum cluster size as a function of the \gls{snr}, $\gamma=3.8$ and
-different antenna configurations.}
+\caption{Optimum cluster size as a function of the \gls{snr}, for $\gamma=3.8$
+and different antenna configurations.}
 \label{fig:optimum_M}
 \end{figure}
 
@@ -985,12 +950,9 @@ by a factor of $\alpha$, getting $\mathtt{SNR}_{\text{eff}}=\left(1-\alpha
 \right)\mathtt{SNR}$ and $R_{\text{eff}} = \left(1-\alpha\right)R$.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
     \newgeometry{textwidth=0.7\textwidth}
     \input ./10.achievable_rates/img/Fig11_tikz.tex
     \restoregeometry
-\end{center}
 \caption{Mean achievable rate and payload rate as a function of the cluster size
 $M$ with different SNRs, for $r=2$, $t=2$, and $\gamma = 3.8$.}
 \label{fig:signal_overhead}
