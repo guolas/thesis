@@ -1,4 +1,4 @@
-\chapter{Analysis of the State of the Art}\label{ch:state_art}
+\chapter[State of the Art]{Analysis of the State of the Art}\label{ch:state_art}
 
 This thesis deals with three main topics:
 
@@ -22,16 +22,16 @@ field.
 Interference management techniques can be organized according to the information
 requiered for the process to work:
 
-\begin{description}
-    \item[Beamforming] In order to perform beamforming, both \gls{csi} and user
-        data should be shared among the transmitters. \gls{bd} lies within this
-        category.
-    \item[Interference Alignment] User data is not required for interference
-        alignment to work, but \gls{csi} is still needed.
-    \item[Blind techniques] Finally there are theoretical alternatives which may
-        enable the interference management without \emph{a priori} knowledge
-        about \gls{csi} or user data.
-\end{description}
+\begin{itemize}
+    \item \emph{Beamforming}: in order to perform beamforming, both \gls{csi}
+        and user data should be shared among the transmitters. \gls{bd} lies
+        within this category.
+    \item \emph{Interference Alignment}: user data is not required for
+        interference alignment to work, but \gls{csi} is still needed.
+    \item \emph{Blind techniques}: finally there are theoretical alternatives
+        which may enable the interference management without \emph{a priori}
+        knowledge about \gls{csi} or user data.
+\end{itemize}
 
 % ------------------------------------------------------------------------------
 \subsection{Beamforming} \label{ssec:sa_bf}
@@ -40,30 +40,31 @@ Most of the work about beamforming applied to cellular networks was initially
 based on the adaptation of \gls{mumimo} processing techniques to the context of
 multi-cell cooperation, \cite{gesbert10}.
 
-In particular the \gls{bc} and \gls{mac} channels are of special interest,
-because a coordinated cellular network closely resembles these two channels, on
-the downlink and on the uplink respectively. In \cite{caire00} the achievable
-rate region of the \gls{mimo} \gls{bc} is analyzed for the case of single
-antenna receivers, and it is shown that the use of \gls{dpc} is required to
-achieve such region. The scenario with multiple antenna receivers is studied in
-\cite{yu01}, using the same strategy based on \gls{dpc}.
+In particular the \gls{bc} and \gls{mac} are of special interest, because a
+coordinated cellular network closely resembles these two channels, on the
+downlink and on the uplink respectively. In \cite{caire00} the achievable rate
+region of the \gls{mimo} \gls{bc} is analyzed for the case of single antenna
+receivers, and it is shown that the use of \gls{dpc} is required to achieve such
+region. The scenario with multiple antenna receivers is studied in \cite{yu01},
+using the same strategy based on \gls{dpc}.
 
 While these works studied the achievable rate region using a given strategy,
 the actual capacity for the \gls{bc} was calculated in \cite{yu04} and extended 
 in \cite{weingarten06}. This capacity was also calculated using the so called
 \gls{mac}-\gls{bc} duality which was presented \cite{jindal01} for the
-\gls{siso} case and in \cite{vishwanath02} and \cite{jindal04} for the multiple
+\gls{siso} case, and in \cite{vishwanath02} and \cite{jindal04} for the multiple
 antenna scenario.
 
 This thesis focuses on \gls{bd}, which was introduced in \cite{spencer04}
 which, in turn, has spawned extensive research \cite{spencer04b, yoo06,
 gesbert07b, shen06, wiesel08, stankovic08}, just to name a few. \gls{bd} was
 originally formulated for \gls{mumimo}, but as with other techniques, it has
-been also used for cooperative cellular networks. In general, \gls{bd} is
+also been used for cooperative cellular networks. In general, \gls{bd} is
 inferior in terms of sum capacity to \gls{dpc}. Nevertheless, in the special
 case where \gls{bd} is combined with the right user selection algorithms,
-\gls{bd} can come close to the sum capacity of \gls{dpc} \cite{shen06},
-\cite{yoo06}.
+\gls{bd} can come close to the sum capacity of \gls{dpc} \cite{yoo06},
+\cite{shen06}.
+.
 
 The existing results for the \gls{mac} apply directly to a multicell setup
 \cite{jafar04}. Despite the \gls{mac}-\gls{bc} duality, the extension of
@@ -83,11 +84,11 @@ unrealistic assumption of a sum-power constraint. They also share the single
 antenna transmitters and receivers scenario formulation, and they differ in the
 objective function that is considered, sum-rate \cite{shamai01} and individual
 \gls{sinr} constraints per user in \cite{schubert02}. A similar scheme to
-\cite{shamai01, schubert02} is used in \cite{karakayali06b}, with a linear
-precoder based on the LQ factorization together with \gls{dpc} to handle the
-remaining interference. The main difference in this work is that they consider a
-\gls{mimo} scenario and, more importantly, the power constraint is set per base
-station, which is a much more realistic assumption.
+\cite{shamai01} and \cite{schubert02} is used in \cite{karakayali06b}, with a
+linear precoder based on the LQ factorization together with \gls{dpc} to handle
+the remaining interference. The main difference in this work is that they
+consider a \gls{mimo} scenario and, more importantly, the power constraint is
+set per base station, which is a much more realistic assumption.
 
 In \cite{venkatesan07} they propose the study of a realistic scenario in order
 to analyze the advantages of ``Network \gls{mimo}'' when moderately realistic
@@ -181,7 +182,7 @@ to more than one cluster at the same time or not:
     \item Overlapping.
 \end{itemize}
 
-An alternative, non exclusive, characterization depends on the dynamic nature of
+An alternative, non-exclusive characterization depends on the dynamic nature of
 the clusters, whether they change over time or they stay fixed once they are
 set:
 
@@ -217,7 +218,7 @@ metric used to build the clusters is more sophisticated. They select the
 \glspl{bs} that have orthogonal channels to the users, which is advantageous
 when \gls{zf} is used for coordination within each cluster.
 
-The other alternative, is to have dynamic clusters, whose configuration may
+The other alternative is to have dynamic clusters, whose configuration may
 change in time, evolving to meet the changing nature of the channel. The most
 natural way of having dynamic clusters is when these groups of cells are
 user-centric, \ie the clusters are formed around each user. If the user moves,
@@ -229,12 +230,11 @@ proposed: distance based, and level of interference, intuitively it is more
 likely to get a higher gain if the most interfering \glspl{bs} are coordinated.
 A similar approach is used in \cite{gong11}, with overlapping, user-centric
 clusters of fixed size, or of variable size according to the relative signal
-strength received from each \glspl{bs}.
+strength received from each \gls{bs}.
 
 An interesting combination can be found in \cite{baracca12}, where user-centric
 clusters are used, but where the resulting clusters are disjoint. The way to
-achieve this is by carefully selecting which users are transmitted
-simultaneously.
+achieve this is by carefully selecting which users are served simultaneously.
 
 On the other hand, there may be dynamic clusters which are not user-centric.
 This is the case of \cite{papadogiannis08}, \cite{papadogiannis10},
@@ -245,14 +245,14 @@ the amount of feedback needed \cite{papadogiannis11}, \cite{lakshmana12}, or the
 heuristic metrics used in \cite{moon11}.
 
 In general, dynamic, overlapping clusters have the main drawback of requiring a
-more complex management, requiring a higher amount of control information to set
+more complex management, needing a higher amount of control information to set
 them up and to update them.
 
 
 % ------------------------------------------------------------------------------
 \section{Scheduling} \label{sec:sa_sched}
 
-In general, multi-user techniques can deal with just so many users in the system so that, when the number of users in too high, scheduling is required to ensure
+In general, multi-user techniques can deal with just so many users in the system so that, when the number of users is too high, scheduling is required to ensure
 that all users are served, in order to keep the fairness of the system
 controlled. In \cite{yoo06}, the users are selected according to the mutual
 orthogonality, and they combine it with a classical round robin scheduling,

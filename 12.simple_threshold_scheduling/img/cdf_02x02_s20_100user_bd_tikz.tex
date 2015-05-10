@@ -2,16 +2,16 @@
     \def\minx{0}
     \def\maxx{10}
     \def\miny{0}
-    \def\maxy{1}
+    \def\maxy{0.9}
 
     \datavisualization[
       scientific axes = inner ticks,
       all axes = {grid},
-      x axis = {length = \textwidth, label = {SNR (dB)},
+      x axis = {length = \textwidth, label = {$R$ (bit/s/Hz)},
       min value = \minx, max value = \maxx,
       ticks = {major = {at = {0, 2, ..., 10}}},
       grid = {major = {at = {0, 2, ..., 10}}}},
-      y axis = {length = 0.7\textwidth, label = {$R$ (bit/s/Hz)},
+      y axis = {length = 0.7\textwidth, label = {CDF},
       min value = \miny, max value = \maxy, ticks = few},
       visualize as line/.list = {1, 2, 3},
       visualize as scatter/.list = {4},

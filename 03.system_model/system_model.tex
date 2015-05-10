@@ -4,7 +4,7 @@
 \section{System Model}\label{sec:system_model}
 The system that will be considered throughout this work aims to represent the
 downlink of a canonical cellular network, comprising several identical cells,
-layed out over a regular hexagonal grid.
+laid out over a regular hexagonal grid.
 
 When studying a cellular network, the cells located at the edge of the network
 will not experience the same conditions as the cells in the center of the
@@ -162,7 +162,7 @@ $\ss_i$. The transmitted power can be expressed as
 \end{equation}
 
 The choice of the precoding matrices and of the receiving filter will determine
-the transmission strategy used. This Thesis will focus mainly on \gls{bd}
+the transmission strategy used. This thesis will focus mainly on \gls{bd}
 \cite{spencer04} which is described in \refs{sec:bd}.
 
 On the receiver side, no cooperation among the users will be considered, so each
@@ -574,13 +574,14 @@ There are several different power constraints:
         where all the transmitting antennas are collocated and may share a power
         budget, so that the transmission power can be arbitrarily allocated to
         each of the transmitter antennas.
+    \item \gls{tpc}: it assumes that the maximum power is shared among all the
+        transmitters in the system. Although this system is more easily
+        analyzed, it is very unrealistic so it will not be considered in this
+        work, except in \refss{ssec:scaled_wf} where a \gls{tpc} is used to
+        obtain an intermediate result.
+
 \end{itemize}
 
-A \gls{tpc} can also be considered, which assumes that the maximum power is
-shared among all the transmitters in the system. Although this system is more
-easily analyzed, it is very unrealistic so it will not be considered in this
-work, except in \refss{ssec:scaled_wf} where a \gls{tpc} is used to obtain an
-intermediate result.
 
 For the sake of simplicity, \gls{pbpc} will be used for the different analyses. In any case, \gls{papc} can be seen as a particularization of \gls{pbpc} as the
 derivations shown in this section can be applied to a \gls{papc} system
@@ -726,7 +727,7 @@ In \eqref{eq:sum_rate_maxim}, the function $\log_2(\cdot)$ is convex on $p_{ik}$
  and the sum of convex functions is also convex, so the objective function in
 \eqref{eq:sum_rate_maxim} is convex. The constraints are affine and therefore
 convex too. The optimization problem in \eqref{eq:sum_rate_maxim} is a convex
-optimization problem that can be solved using a myriad of numerical technics
+optimization problem that can be solved using a different numerical techniques
 \cite{boyd_convex}. Nonetheless, it would be interesting to analyze a bit
 further the problem in order to get some insight about it.
 
@@ -1084,7 +1085,7 @@ deliver near-optimum performance.
 
 The simplest, both conceptually and computationally, alternative that can be
 considered to solve the power allocation in \eqref{eq:sum_rate_maxim} consists
-on considering a uniform power allocation.
+in considering a uniform power allocation.
 
 This approach assigns the same power to all the data streams of all the
 users. Formally this means

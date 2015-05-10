@@ -10,8 +10,8 @@ In \refc{ch:state_art} it has been discussed how global coordination in a
 cellular network is not feasible for practical application. Research has shown
 that grouping cells in clusters may help to alleviate some of the problems of
 global coordination. The clustering solution is not unique, though, and multiple
-alternatives an numerous parameters have to be chosen in order to meet different
-objectives.
+alternatives and numerous parameters have to be chosen in order to meet
+different objectives.
 
 The objective of this chapter is to analyze the mean achievable rate in a cellular network where clusters have been formed, and where \gls{bd} is used within
 each cluster to manage the interference. 
@@ -46,9 +46,8 @@ cluster members, that is, no scheduling or adaptive selection of active
 special case of the optimization problem to obtain the power allocation scheme.
 
 \begin{figure}[t]
-\begin{center}
-     \includegraphics[width=0.45\textwidth]{./10.achievable_rates/img/achiev_cluster_layout}
-\end{center}
+    \centering
+    \includegraphics[width=0.45\textwidth]{./10.achievable_rates/img/achiev_cluster_layout}
 \caption{System layout with clusters of seven cells of radius $\Rcell$ (the
 radius of the circle circumscribing the cell) with an example of two users,
 with the distances $\Dtone$ and $\Dttwo$, respectively, from their \gls{bs} to
@@ -139,9 +138,8 @@ each of the cells in the cluster, and this number for the $i$-th cell is denoted
 as $\Minti \leq \Minterf$.
 
 \begin{figure}[t]
-\begin{center}
+    \centering
     \includegraphics[width=0.45\textwidth]{./10.achievable_rates/img/cluster_interf_cells}
-\end{center}
 \caption{Cluster with $M=4$ cells and neighbor interfering cells.}
 \label{fig:cluster_interf_cells}
 \end{figure}
@@ -153,15 +151,14 @@ M_{\text{int}, 3} = 4$ neighboring cells, while cells 2 and 4 receive the
 interference from $M_{\text{int}, 2} = M_{\text{int}, 4} = 3$ cells.
 
 In order to approximate the value of equivalent interfering \glspl{bs} for a
-general network setup, fist consider a simple scenario \reff{fig:cluster_1} with
-a cluster of $M = 1$ cells, where a single user, $i = 1$, in the cell is
-affected by an interference power $I_1$ coming from all the
+general network setup, first a simple scenario \reff{fig:cluster_1} is
+considered, with a cluster of $M = 1$ cells, where a single user, $i = 1$, in
+the cell is affected by an interference power $I_1$ coming from all the
 $M_{\text{int}, 1} = 6$ belonging to the first tier.
 
 \begin{figure}[t]
-\begin{center}
-    \includegraphics[width=0.4\textwidth]{./10.achievable_rates/img/cluster_1}
-\end{center}
+    \centering
+    \includegraphics[width=0.3\textwidth]{./10.achievable_rates/img/cluster_1}
 \caption{Simple scenario with a single cluster of $M = 1$ cell, and the six
     interfering cells surrounding it.}
 \label{fig:cluster_1}
@@ -408,7 +405,7 @@ It is possible to define a parameter $G_i$
 \end{equation}
 
 \noindent
-that can be considerd as a cluster gain. Its value can be approximated
+that can be considered as a cluster gain. Its value can be approximated
 considering the average distance of a user to its \gls{bs} 
 \eqref{eq:average_distance}, and the distance from the rest of the \glspl{bs} in
 the cluster to be either $\Dtone$ or $\Dttwo$. If additionally these two
@@ -444,9 +441,10 @@ through simulations and using the expression \eqref{eq:sum_log_kappa}, for the
 case of $t = r = 2$.
 
 \begin{figure}[t]
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./10.achievable_rates/img/Fig4_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./10.achievable_rates/img/Fig4_tikz.tex
+    \end{minipage}
 \caption{Sum-log of the terms $\kappa_{ij}$. Comparison between simulations and
 the values obtained using \eqref{eq:sum_log_kappa} for $ t = r = 2$.}
 \label{fig:sum_log_kappa}
@@ -505,9 +503,9 @@ according to the number of \glspl{bs} in the cluster, decreasing for a larger
 size of the cluster, since a fraction of the overall available power is spent in
 the coordination, to null the interference.
 
-Substituting all the $p_{ik}$ in \eqref{eq:pbpc} by the common value $p_s$ it is
-easy to see that the condition in \eqref{eq:pbpc} is limited by the \gls{bs} for
-which the following factor is maximum
+Substituting all the $p_{ik}$ in \eqref{eq:pbpc} for the common value $p_s$ it
+is easy to see that the condition in \eqref{eq:pbpc} is limited by the \gls{bs}
+for which the following factor is maximum
 
 \begin{equation} \label{eq:chi_squared_j}
     \chi_j \triangleq \sum\limits_{i = 1}^N \sum\limits_{k = 1}^\ell \left\|
@@ -515,10 +513,9 @@ which the following factor is maximum
 \end{equation}
 
 Assuming that the coefficients of the precoding matrix, \ie the elements
-of the vector $\wbar_{j, ik}$, are Gaussian then $\chi_j$ is a Chi-squared
-random variables with $\Np \triangleq N\ell t$ degrees of freedom, and then
-the power $p_s$ is related to the reciprocal value of the maximum of $M$ random
-variables
+of the vector $\wbar_{j, ik}$, are Gaussian, then $\chi_j$ is a Chi-squared
+random variables with $\Np \triangleq N\ell t$ degrees of freedom, and the power
+$p_s$ is related to the reciprocal value of the maximum of $M$ random variables
 
 \begin{equation} \label{eq:ps_reciprocal}
     p_s = \frac{P_{\max}}{\E\left\{\chi\right\}}
@@ -602,9 +599,10 @@ The bounds for the power per stream $p_s$ in \eqref{eq:bound_chi_ps} are
 compared in \reff{fig:bound_chi} with the results obtained through simulations.
 
 \begin{figure}[t]
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./10.achievable_rates/img/Fig5_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./10.achievable_rates/img/Fig5_tikz.tex
+    \end{minipage}
 \caption{Normalized average power per stream $p_s / P_{\max}$ for different
 antenna configurations: comparison between simulations and the bounds in
 \eqref{eq:bound_chi_ps}.}
@@ -740,9 +738,8 @@ shows an example of this situation, where not all the clusters have the same
 shape.
 
 \begin{figure}[t]
-\begin{center}
-     \includegraphics[width=0.45\textwidth]{./10.achievable_rates/img/irregular_clusters}
-\end{center}
+    \centering
+    \includegraphics[width=0.45\textwidth]{./10.achievable_rates/img/irregular_clusters}
 \caption{Irregular shaping of the clusters, due to the heuristic clustering
 algorithm used.}
 \label{fig:irregular_clusters}
@@ -753,18 +750,20 @@ algorithm used.}
 \label{ssec:achiev_comparison_simulations}
 
 In order to validate the analytical expression \eqref{eq:mean_achiev_rate},
-first it is compared with the mean achievable rate simulated using \gls{bd} and,
-although the analytical derivations did not consider it and for the sake of
-completeness, the \gls{mmse} precoder described in \cite{shi11}.
+first it is compared with the mean achievable rate simulated using \gls{bd}. The
+\gls{mmse} precoder described in \cite{shi11} is also included in the
+comparison, for the sake of completeness, although the analytical derivations
+did not consider it.
 
 The antenna configuration used for this first comparison is $r=t=2$, and also
 different values of the \gls{snr}, as defined in \eqref{eq:snr_noise}, are used
 so to observe the behaviour in different \gls{snr} regimes.
 
 \begin{figure}[t]
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./10.achievable_rates/img/Fig6_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./10.achievable_rates/img/Fig6_tikz.tex
+    \end{minipage}
 \caption{Mean achievable rate per user as a function of the number of
 cells in the cluster for $r=2$, $t=2$, variable values of \gls{snr},
 $\gamma=3.8$.}
@@ -810,9 +809,10 @@ deliver good performance, using \gls{bd}, within a practical range of \gls{snr}
 values.
 
 \begin{figure}[t]
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./10.achievable_rates/img/Fig7_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./10.achievable_rates/img/Fig7_tikz.tex
+    \end{minipage}
 \caption{Mean achievable rate as a function of the \gls{snr} for different
 values of the path loss coefficient $\gamma$, for $r=2$, $t = 2$ and $M = 7$.}
 \label{fig:rate_vs_snr_gamma}
@@ -831,9 +831,10 @@ that in the simulation scenario not all the clusters have the same shape,
 despite having the same number of cells.
 
 \begin{figure}[t]
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./10.achievable_rates/img/Fig8_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./10.achievable_rates/img/Fig8_tikz.tex
+    \end{minipage}
 \caption{Mean achievable rate per user as a function of the cluster size for
 \gls{snr}$=25\,$dB, $\gamma=3.8$ and different antenna configurations.}
 \label{fig:rate_vs_size_antenna}
@@ -851,7 +852,7 @@ in \reff{fig:rate_vs_cluster_size}, is two-fold:
         shown in \reff{fig:sum_log_kappa}.
     \item Second, the power assigned to each data stream, the terms $p_{ik}$
         that for a uniform power allocation are all equal to $p_s$, also
-        decreases as the the cluster grows, \reff{fig:bound_chi}, due to a
+        decreases as the cluster grows, \reff{fig:bound_chi}, due to a
         coordination ``loss''.
 \end{itemize}
 
@@ -866,9 +867,10 @@ optimization, as described in \cite{armada11b}, using CVX \cite{cvx},
 instead of the uniform power allocation.
 
 \begin{figure}[t]
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./10.achievable_rates/img/Fig9_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./10.achievable_rates/img/Fig9_tikz.tex
+    \end{minipage}
 \caption{Comparison between different power allocation schemes, namely uniform
 and optimal. Mean achievable rate per user as a function of the cluster size for
 $r=t=2$, $\gamma=3.8$ and different values of \gls{snr}.}
@@ -892,7 +894,7 @@ the coordination scheme, along the lines of the results in \cite{lozano13}.
 common trend which is the rate having a reduced growth, or even a reduction,
 with the cluster size.
 
-Given this, it is possible and interesing to find the cluster size $M$ that can
+Given this, it is possible and interesting to find the cluster size $M$ that can
 maximize the mean achievable rate.
 
 In the case of the rate actually decreasing with $M$, the optimum value can be
@@ -908,9 +910,10 @@ rate is bellow a given percentage. In the case under study, the threshold was
 set to a 10\,\%.
 
 \begin{figure}[t]
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./10.achievable_rates/img/Fig10_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./10.achievable_rates/img/Fig10_tikz.tex
+    \end{minipage}
 \caption{Optimum cluster size as a function of the \gls{snr}, for $\gamma=3.8$
 and different antenna configurations.}
 \label{fig:optimum_M}
@@ -950,9 +953,10 @@ by a factor of $\alpha$, getting $\mathtt{SNR}_{\text{eff}}=\left(1-\alpha
 \right)\mathtt{SNR}$ and $R_{\text{eff}} = \left(1-\alpha\right)R$.
 
 \begin{figure}[t]
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./10.achievable_rates/img/Fig11_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./10.achievable_rates/img/Fig11_tikz.tex
+    \end{minipage}
 \caption{Mean achievable rate and payload rate as a function of the cluster size
 $M$ with different SNRs, for $r=2$, $t=2$, and $\gamma = 3.8$.}
 \label{fig:signal_overhead}

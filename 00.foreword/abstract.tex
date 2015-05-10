@@ -1,4 +1,37 @@
 \chapter*{Abstract}
-% {\Huge {\bf Abstract}}
 
-\lipsum[5]
+The need for higher data rates and higher efficiency in cellular networks
+motivates the use of \gls{ufr}. Coordination among \glspl{bs} is required then
+to alleviate the performance penalty due to the interference. Global
+coordination is too complex and has inherent limitations that prevents it from
+being used in real world scenarios. Clusters of a reduced number of \glspl{bs}
+can be considered in order to ease off the requirements of coordination. As a
+result, \gls{oci} appears, affecting negatively the communications.
+
+This work focuses on \gls{bd}, a linear precoding technique that combines a
+good theoretical performance with a relatively low complexity. However, the
+unwanted interference seriously impacts the results obtained using \gls{bd}.
+
+This thesis studies the downlink of a clustered cellular network, where \gls{bd}
+is used to coordinate the \gls{bs} within each cluster. The mean achievable rate
+is analyzed as a function of several scenario parameters. Of particular interest
+is the dependence on the cluster size, which yields that there is an optimum
+cluster size, beyond which no significant gain is obtained. Fairness
+considerations are analyzed in the presence of \gls{oci}, also studied as a
+function of scenario parameters such as the power allocation.
+
+A mixed strategy using \gls{bd} and \gls{su} processing is proposed as a means
+to overcome the impairment of the unhandled interference. The transmission
+consists of two stages:
+
+\begin{itemize}
+    \item Users locally decide which transmission strategy they prefer and send
+        this information to the \glspl{bs}.
+    \item \glspl{bs} use the decisions of all users to schedule them for
+        transmission so that the performance of the network is optimized.
+\end{itemize}
+
+The result of the proposed strategy is an improvement in the performance of
+\gls{bd} in the presence of \gls{oci}, especially for the users experiencing the
+worst conditions. This means that the fairness of the system is also increased,
+along with the overall performance of the network.

@@ -1,5 +1,5 @@
 \chapter[Adaptive User Scheduling]{Adaptive Block Diagonalization and User
-Scheduling With Out of Cluster Interference\footnote{The work shown in this
+Scheduling With Out of Cluster Interference \footnote{The work shown in this
 chapter has been presented in \cite{jjgarcia14}.}}\label{ch:adaptive_schedule}
 
 % ------------------------------------------------------------------------------
@@ -137,7 +137,7 @@ interferers.
 This translates into
 
 \begin{equation} \label{eq:wtx_su}
-    \Wtx_{ij} = \zero \forall j \neq i.
+    \Wtx_{ij} = \zero \quad \forall j \neq i.
 \end{equation}
 
 The signal received at the $i$-th user can be written as
@@ -242,7 +242,7 @@ proposed to guarantee a good performance. This is so because users served with
 \glspl{bs} in the cluster coordinate, \ie some of the \glspl{bs} transmit to
 their users using \gls{su} precoding.
 
-Users that are better served using \gls{su} are indiferent to other users'
+Users that are better served using \gls{su} are indifferent to other users'
 strategies, as no power control is considered or used, and all \glspl{bs} will
 be transmitting at maximum power. On the other hand, when the transmission
 strategy used is \gls{bd}, which users are selected in each cell is an important
@@ -256,7 +256,7 @@ In \cite{yoo06} a similar approach is proposed for a \gls{miso} scenario, where
 users are scheduled for simultaneous transmission when their channel vectors are
 as orthogonal as possible. In the \gls{mimo} case the channels are not vectors
 but matrices, and the concept of orthogonal channels is not as clear as in
-\cite{yoo06}. They propose, nonetheless, an extesion to their user selection
+\cite{yoo06}. They propose, nonetheless, an extension to their user selection
 algorithm that can deal with multiantenna users, but it is not applicable here
 because of the selection of \gls{bd} as precoder, instead of \gls{zfbf} as
 transmission strategy.
@@ -285,7 +285,6 @@ Additionally, the Frobenius norm of a matrix $\AA$ is defined as
 \end{equation}
 
 Combining \eqref{eq:eig_trace} and \eqref{eq:frob_norm}, the following relation
-can be expressed
 
 \begin{equation} \label{eq:eig_frob}
     \Tr\left(\text{eig}\left(\AA\AA^H\right)\right) = \left\|\AA\right\|_F^2
@@ -363,9 +362,9 @@ locations and channel realizations.
 
 \begin{figure}[t]
     \centering
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./12.simple_threshold_scheduling/img/mean_metric_02x02_tikz.tex
-    \restoregeometry
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./12.simple_threshold_scheduling/img/mean_metric_02x02_tikz.tex
+    \end{minipage}
     \caption{Mean value of the metric for different \gls{snr} values, in the
     presence of \gls{oci} for a 7 cell cluster with 2x2 antennas configuration.}
     \label{fig:threshold_2x2}
@@ -420,7 +419,7 @@ of the users has the same antennas as each of the \glspl{bs}, \ie $t=r$, either
 The channel model used is described in \refs{sec:channel_model}.
 
 After all the users are placed in the scenario, they are scheduled for
-transmision and immediately after that the rate is calculated for the following
+transmission and immediately after that the rate is calculated for the following
 transmission options:
 
 \begin{itemize}
@@ -437,20 +436,20 @@ In all cases, the power assignment is done using the scaled water-filling
 described in \refss{ssec:scaled_wf}, in order to accomodate the \gls{pbpc}.
 
 \begin{figure}[t]
-\centering
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./12.simple_threshold_scheduling/img/mean_rate_02x02_100user_bd_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./12.simple_threshold_scheduling/img/mean_rate_02x02_100user_bd_tikz.tex
+    \end{minipage}
 \caption{Mean rate obtained for a 2x2 scenario in the presence of \gls{oci}, 100
 users per cell.}
 \label{fig:mean_rate_2x2}
 \end{figure}
 
 \begin{figure}[t]
-\centering
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./12.simple_threshold_scheduling/img/mean_rate_03x03_100user_bd_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./12.simple_threshold_scheduling/img/mean_rate_03x03_100user_bd_tikz.tex
+    \end{minipage}
 \caption{Mean rate obtained for a 3x3 scenario in the presence of \gls{oci}, 100
 users per cell.}
 \label{fig:mean_rate_3x3}
@@ -475,10 +474,10 @@ essentially requires the addition of all the elements of a matrix, with a
 complexity of $O\left(mn\right)$.}
 
 \begin{figure}[t]
-\centering
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./12.simple_threshold_scheduling/img/mean_rate_vs_users_02x02_s10_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./12.simple_threshold_scheduling/img/mean_rate_vs_users_02x02_s10_tikz.tex
+    \end{minipage}
 \caption{Mean rate for a 2x2 scenario as a function of the number of users per cell, for an SNR of 10\,dB.}
 \label{fig:mean_rate_vs_users}
 \end{figure}
@@ -505,19 +504,19 @@ of the hybrid strategy proposed in this work allows to recover from the loss due
 to the \gls{oci}, and to match the performance obtained using \gls{su}.
 
 \begin{figure}[t]
-\centering
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./12.simple_threshold_scheduling/img/cdf_02x02_s20_100user_bd_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./12.simple_threshold_scheduling/img/cdf_02x02_s20_100user_bd_tikz.tex
+    \end{minipage}
 \caption{CDF of the rates obtained in a 2x2 scenario, with an SNR of $10$\,dB.}
 \label{fig:cdf_snr10}
 \end{figure}
 
 \begin{figure}[t]
-\centering
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./12.simple_threshold_scheduling/img/mean_rate_005_worst_02x02_100user_bd_tikz.tex
-    \restoregeometry
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./12.simple_threshold_scheduling/img/mean_rate_005_worst_02x02_100user_bd_tikz.tex
+    \end{minipage}
 \caption{Mean rate of the 5\% worst users, in a 2x2 scenario in the presence of OCI, 100 users per cell.}
 \label{fig:worst_rate}
 \end{figure}

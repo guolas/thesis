@@ -1,4 +1,41 @@
 \chapter*{Resumen}
-% {\Huge {\bf Resumen}}
 
-\lipsum[5]
+La necesidad de tasas de transmisión más elevadas y una mayor eficiencia en las
+redes celulares es la principal motivación para considerar el uso de \gls{ufr}.
+La coordinación entre \glspl{bs} se hace necesaria, entonces, para compensar los
+problemas introducidos por la interferencia. La coordinación global de la red es
+demasiado compleja y, además, presenta limitaciones intrínsecas, que impiden su
+utilización en escenarios reales. La utilización de grupos reducidos de
+\glspl{bs} es una alternativa para reducir los requisitos impuestos por la
+coordinación. Como consecuencia de la agrupación, aparece \gls{oci}, la cual
+perjudica seriamente las comunicaciones.
+
+Este trabajo se centra en \gls{bd}, una técnica de precodificación lineal que
+combina unas buenas prestaciones con una complejidad relativamente baja. Sin
+embargo, la interferencia empeora notablemente su funcionamiento.
+
+En esta tesis se estudia el canal descendente de una red celular conglomerada,
+donde se usa \gls{bd} para coordinar las \glspl{bs} que forman cada grupo. Se
+analiza la tasa media obtenible como función de múltiples parámetros del
+escenario. De especial interés es la dependencia con el tamaño de las
+agrupaciones, de donde se desprende que existe un tamaño óptimo para los grupos
+de \glspl{bs}, por encima del cual no se obtienen mejoras significativas. La
+equidad del sistema se estudia en presencia de \gls{oci}, también como función
+de diversos parámetros del escenario, como puede ser la asignación de potencia.
+
+Se propone una estrategia mixta de transmisión, que combina \gls{bd} con
+procesado \gls{su}, como mecanismo para combatir las dificultades introducidas
+por la interferencia que no se gestiona. La estrategia consiste en dos fases:
+
+\begin{itemize}
+    \item Los usuarios deciden localmente qué estrategia prefieren para la
+        transmisión, y envían esta información a las \glspl{bs}.
+    \item Las \glspl{bs} utilizan las decisiones recibidas para planificar las
+        transmisiones, de modo que se pueda optimizar el funcionamiento de la
+        red.
+\end{itemize}
+
+El resultado de la estrategia propuesta es una mejora de las prestaciones de
+\gls{bd} en presencia de \gls{oci}, especialmente para los usuarios más
+desfavorecidos. Esto se traduce en que, adicionalmente, el sistema se vuelve más
+justo, al mismo tiempo que el rendimiento de la red aumenta.

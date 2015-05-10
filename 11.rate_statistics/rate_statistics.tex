@@ -43,7 +43,7 @@ chapter.
 % ------------------------------------------------------------------------------
 \subsection{Cumulative Distribution Function}\label{ssec:stats_cdf}
 
-Recal the expression of the achievable rate when \gls{bd} is used to coordinate
+Recall the expression of the achievable rate when \gls{bd} is used to coordinate
 the \glspl{bs} in the cluster
 
 \begin{equation} \label{eq:stats_achiev_rate}
@@ -78,7 +78,7 @@ with mean and variance given by $k\theta$ and $k\theta^2$, respectively, and
 related to the system parameters as discussed in \refss{ssec:stats_mean} and
 \refss{ssec:stats_variance}.
 
-The choosing of the Gamma distribution is not arbitrary, and it is motivated by
+The choice of the Gamma distribution is not arbitrary, and it is motivated by
 the fact that the achievable rate per user in \eqref{eq:stats_achiev_rate} is
 the result of adding several non-negative terms. The \emph{central limit theorem
 for causal functions} \cite{papoulis_fourier} states that the convolution of an
@@ -98,12 +98,10 @@ with the same mean and variance, it is interesting to note a very accurate
 fitting.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./11.rate_statistics/img/cdf_gamma_tikz.tex
-    \restoregeometry
-\end{center}
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./11.rate_statistics/img/cdf_gamma_tikz.tex
+    \end{minipage}
 \caption{\gls{cdf} of the achievable rate per user with $r=2$, $t=2$, and
 SNR=15\,dB. Comparison with the Gamma distribution with the same mean and
 variance.}
@@ -118,12 +116,10 @@ The effect of increasing the size of the cluster on the \gls{cdf} of the
 achievable rate is shown in \reff{fig:cdf_cluster_size}
 
 \begin{figure}[t]
-\begin{center}
-%    \dummybox
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./11.rate_statistics/img/cdf_clusters_tikz.tex
-    \restoregeometry
-\end{center}
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./11.rate_statistics/img/cdf_clusters_tikz.tex
+    \end{minipage}
 \caption{\gls{cdf} of the achievable rate per user with $r=2$, $t=2$, and
 SNR=15\,dB for different values of the cluster size.}
 \label{fig:cdf_cluster_size}
@@ -152,12 +148,10 @@ Three different power allocation schemes have been considered:
 \end{itemize}
 
 \begin{figure}[t]
-\begin{center}
-%    \dummybox
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./11.rate_statistics/img/cdf_gamma_power_tikz.tex
-    \restoregeometry
-\end{center}
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./11.rate_statistics/img/cdf_gamma_power_tikz.tex
+    \end{minipage}
 \caption{\gls{cdf} of the achievable rate per user with $r=3$, $t=3$, and SNR=15\,dB.
 Comparison between different power allocation schemes.}
 \label{fig:cdf_power_alloc}
@@ -203,12 +197,10 @@ obtained without too many simplifying approximations so, instead, an accurate
 value is obtained through simulations.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./11.rate_statistics/img/varianza_tikz.tex
-    \restoregeometry
-\end{center}
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./11.rate_statistics/img/varianza_tikz.tex
+    \end{minipage}
 \caption{Variance of the achievable rate per user with different values of
 \gls{snr} and of $t$ and $r$ as a function of the cluster size $M$.}
 \label{fig:rate_variance}
@@ -250,12 +242,10 @@ the users. This is given by the value of the rate, the abscise, when the
 that can be guaranteed to $X$\,\% of the users.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./11.rate_statistics/img/fairness_90_tikz.tex
-    \restoregeometry
-\end{center}
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./11.rate_statistics/img/fairness_90_tikz.tex
+    \end{minipage}
 \caption{Rate achieved by 90\,\% of the users with different antenna
 configurations and different values of \gls{snr}.}
 \label{fig:min_rate_sys_param}
@@ -283,12 +273,10 @@ rate that can be guaranteed to 90\,\% of the users for different power
 allocation strategies.
 
 \begin{figure}[t]
-\begin{center}
-%     \dummybox
-    \newgeometry{textwidth=0.7\textwidth}
-    \input ./11.rate_statistics/img/fairness_90_power_tikz.tex
-    \restoregeometry
-\end{center}
+    \centering
+    \begin{minipage}[t]{0.7\textwidth}
+        \input ./11.rate_statistics/img/fairness_90_power_tikz.tex
+    \end{minipage}
 \caption{Rate achieved by 90\,\% of the users with different power assignment
 schemes, $r=3$, $t=3$, and SNR$=15$\,dB.}
 \label{fig:min_rate_power_alloc}

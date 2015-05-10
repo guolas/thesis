@@ -1,11 +1,16 @@
 \begin{tikzpicture}
-  \datavisualization[
+    \def\minx{1}
+    \def\maxx{19}
+    \def\miny{0}
+    \def\maxy{0.25}
+
+    \datavisualization[
       scientific axes = inner ticks,
       all axes = {grid},
-      x axis = {length = \textwidth, label = {Cluster size},
+      x axis = {length = \textwidth, label = {Cluster size}, min value = \minx, max value = \maxx,
       ticks = {major = {at = {1, 3, ..., 19}}},
       grid = {major = {at = {1, 3, ..., 19}}}},
-      y axis = {length = 0.7\textwidth, label = {Sum-log of $\kappa_{ij}$}, min value = 0, max value = 0.25, ticks = few},
+      y axis = {length = 0.7\textwidth, label = {Sum-log of $\kappa_{ij}$}, min value = \miny, max value = \maxy, ticks = few},
       visualize as line/.list = {simul, theor},
       simul = {pin in data = {text = Simulations}},
       theor = {pin in data = {text' = Theoretical}},
