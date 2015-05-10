@@ -103,7 +103,6 @@
 
 % To change the style of the pages
 \usepackage{fancyhdr}
-
 \fancypagestyle{mystyle}{
     \fancyhf{} % delete current setting for header and footer
     \fancyhead[RO,LE]{{\color{gray} \thepage}}
@@ -130,7 +129,6 @@
         \hrule width\headwidth height\footrulewidth}
     }
 }
-
 \fancypagestyle{plain}{%
 	\fancyhf{} % get rid of headers and footers on plain pages
  	\renewcommand{\headrulewidth}{0pt} % and the header line
@@ -163,41 +161,41 @@
 
 \cleardoublepage
 \include{./00.foreword/frontmatter}
-\newpage
-
+% \newpage
 \cleardoublepage
+
 \include{./00.foreword/committee}
-\newpage
+% \newpage
+\cleardoublepage
 
 % First part uses roman numbering
 \pagenumbering{Roman}
 
-\cleardoublepage
 \include{./00.foreword/acknowledgement}
-\newpage
-
 \cleardoublepage
+
 \include{./00.foreword/abstract}
-\newpage
-
 \cleardoublepage
+
 \include{./00.foreword/resumen}
-\newpage
+\cleardoublepage
 
 % Index
 \tableofcontents{}
+\cleardoublepage
 
 % List of tables and Figures
 % % \listoftables{} % Who wants tables?!
 \listoffigures{}
+\cleardoublepage
 
 % Notation page
-\cleardoublepage
 \include{./misc/notation}
-\newpage
+\cleardoublepage
 
 % Acronyms
 \printglossary[type=\acronymtype]
+\newpage
 
 \mainmatter
 
@@ -219,15 +217,15 @@
 % Achievable Rates
 \include{./10.achievable_rates/achievable_rates}
 
-% % Rate statistics
-% \include{./11.rate_statistics/rate_statistics}
-% 
-% % Scheduling
-% \include{./12.simple_threshold_scheduling/simple_threshold_scheduling}
-% 
-% % Conclusions
-% \include{./13.conclusions/conclusions}
-% 
+% Rate statistics
+\include{./11.rate_statistics/rate_statistics}
+
+% Scheduling
+\include{./12.simple_threshold_scheduling/simple_threshold_scheduling}
+
+% Conclusions
+\include{./13.conclusions/conclusions}
+
 \appendix
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
