@@ -35,13 +35,16 @@
 % To use more customizable footnotes
 \usepackage[symbol]{footmisc}
 
+% To enable hyphenation of some acronyms
+\usepackage{hyphenat}
+
 % To handle the acronyms nicely
 % - ucmark = true --> so that it sets the mark for the header to be upper case
 % - nogroupskip --> so that it does not leave special separation between
 %                   logical groups, I don't fully know what these are, but the
 %                   result is that there were weird different separations in
 %                   some of the lines.
-% [See the manual of `glossaries` for more information
+% [See the manual of `glossaries` for more information]
 \usepackage[nonumberlist, toc, acronym, ucmark=true, nogroupskip]{glossaries}
 \pagenumbering{gobble}
 \input{./misc/acronyms}
