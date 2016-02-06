@@ -1,6 +1,11 @@
 ## Title: Block Diagonalization Techniques for Cellular Networks: Clustering and Scheduling.
 ## Date: June 1st, 2015
 
+### Compilation:
+Use [makeltx](https://github.com/guolas/makeltx) to compile it, using the options:
+
+    makeltx -c -lua tesis
+
 ### Abstract: 
 
 The need for higher data rates and higher efficiency in cellular networks motivates the use of UFR (_Universal Frequency Reuse_). Coordination among BS (_Base Stations_) is required then to alleviate the performance penalty due to the interference. Global coordination is too complex and has inherent limitations that prevents it from being used in real world scenarios. Clusters of a reduced number of BS can be considered in order to ease off the requirements of coordination. As a result, OCI (_Out of Cluster Interference_) appears, affecting negatively the communications.
